@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Installing Python - Dive Into Python 3</title>
+<title>Installation de Python - Plongez au c&oelig;ur de Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -13,22 +13,22 @@ h2,.i>li{clear:both}
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
-<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
-<p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#installing-python>Dive Into Python 3</a> <span class=u>&#8227;</span>
-<p id=level>Difficulty level: <span class=u title=novice>&#x2666;&#x2662;&#x2662;&#x2662;&#x2662;</span>
-<h1>Installing Python</h1>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Rechercher></div></form>
+<p>Vous &ecirc;tes Ici : <a href=index.html>Accueil</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#installing-python>Plongez au c&oelig;ur de Python 3</a> <span class=u>&#8227;</span>
+<p id=level>Niveau de difficult&eacute;e : <span class=u title=novice>&#x2666;&#x2662;&#x2662;&#x2662;&#x2662;</span>
+<h1>Installation de Python</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> <i lang=la>Tempora mutantur nos et mutamur in illis.</i> (Times change, and we change with them.) <span class=u>&#x275E;</span><br>&mdash; ancient Roman proverb
+<p><span class=u>&#x275D;</span> <i lang=la>Tempora mutantur nos et mutamur in illis.</i> (Les temps changent, et nous changeons avec eux.) <span class=u>&#x275E;</span><br>&mdash; vieux proverbe Romain
 </blockquote>
 <p id=toc>&nbsp;
-<h2 id=divingin>Diving In</h2>
-<p class=f>Before you can start programming in Python 3, you need to install it. Or do you?
+<h2 id=divingin>Lan&ccedil;ons Nous</h2>
+<p class=f>Avant de pouvoir commencer &agrave; programmer avec Python 3, vous devez l&#8217;installer. Ou pas ?
 
-<h2 id=which>Which Python Is Right For You?</h2>
+<h2 id=which>Quel Python est votre Python ?</h2>
 
-<p>If you're using an account on a hosted server, your <abbr>ISP</abbr> may have already installed Python 3. If you&#8217;re running Linux at home, you may already have Python 3, too. Most popular GNU/Linux distributions come with Python 2 in the default installation; a small but growing number of distributions also include Python 3. Mac OS X includes a command-line version of Python 2, but as of this writing it does not include Python 3. Microsoft Windows does not come with any version of Python. But don&#8217;t despair! You can point-and-click your way through installing Python, regardless of what operating system you have.
+<p>Si vous utilisez un compte sur un serveur d&#8217;h&eacute;bergement, votre h&eacute;bergeur a peut-&ecirc;tre d&eacute;j&agrave; install&eacute; Python 3. Si vous utilisez Linux &agrave; la maison, you avez peut-&ecirc;tre aussi d&eacute;j&agrave; Python 3. La plupart des distributions GNU/Linux embarquent Python 2 par d&eacute;faut; un petit nombre de distributions incluent Python 3 et cette tendance s&#8217;acc&eacute;l&egrave;re. Mac OS X inclue une version en ligne de commande de Python2, but au moment o&ugrave; ce livre s&#8217;&eacute;crit il n&#8217;inclue pas Python 3. Quant &agrave; Microsoft Windows il n&#8217;inclue aucune version de Python. Mais pas d&#8217;affolement ! Il est toujours possible d&#8217;installer Python en quelques cliques, peu importe le syst&egrave;me d&#8217;exploitation que vous utilisez.
 
-<p>The easiest way to check for Python 3 on your Linux or Mac OS X system is <a href=troubleshooting.html#getting-to-the-command-line>from the command line</a>. Once you&#8217;re at a command line prompt, just type <kbd>python3</kbd> (all lowercase, no spaces), press <kbd>ENTER</kbd>, and see what happens. On my home Linux system, Python 3.1 is already installed, and this command gets me into the <i>Python <dfn>interactive shell</dfn></i>.
+<p>La mani&egrave;re la plus simple pour v&eacute;rifier si Python 3 est sur votre Linux ou votre Mac OS X est <a href=troubleshooting.html#getting-to-the-command-line>d&#8217;acc&eacute;der à la ligne de commande</a>. Une fois que vous avez atteint la ligne de commande de votre syst&egrave;me, tappez juste <kbd>python3</kbd> (tout en minuscule, sans espaces), appuyer sur la touche <kbd>ENTRER</kbd>, et regarder ce qui se passe. Sur mon ordinateur sous Linux, Python 3.1 est d&eacute;j&agrave; install&eacute;, et cette commande m&#8217;envoit dans le <i><dfn>shell interactif</dfn> de Python</i>.
 
 <pre class='nd screen cmdline'>
 <samp class=p>mark@atlantis:~$ </samp><kbd>python3</kbd>
@@ -37,85 +37,85 @@ h2,.i>li{clear:both}
 Type "help", "copyright", "credits" or "license" for more information.
 >>></samp></pre>
 
-<p>(Type <kbd>exit()</kbd> and press <kbd>ENTER</kbd> to exit the Python interactive shell.)
+<p>(Tappez <kbd>exit()</kbd> et appuyez sur <kbd>ENTRER</kbd> pour sortir du shell interactif de Python.)
 
-<p>My <a href=http://cornerhost.com/>web hosting provider</a> also runs Linux and provides command-line access, but my server does not have Python 3 installed. (Boo!)
+<p>Mon <a href=http://cornerhost.com/>h&eacute;bergeur</a> tourne aussi sous Linux et me donne l'acc&egrave;s &agrave; une ligne de commande, mais mon serveur ne poss&egrave;de pas Python 3 d&#8217;install&eacute;. (Sniff!)
 
 <pre class='nd screen cmdline'>
 <samp class=p>mark@manganese:~$ </samp><kbd>python3</kbd>
 <samp>bash: python3: command not found</samp></pre>
 
-<p>So back to the question that started this section, &#8220;Which Python is right for you?&#8221;  Whichever one runs on the computer you already have.
+<p>Donc pour en revenir &agrave; la question initiale, &#8220;Quel Python est votre Python ?&#8221;  Celui qui tourne sur l&#8217;ordinateur que vous avez d&eacute;j&agrave;.
 
-<p>[Read on for Windows instructions, or skip to <a href=#macosx>Installing on Mac OS X</a>, <a href=#ubuntu>Installing on Ubuntu Linux</a>, or <a href=#other>Installing on Other Platforms</a>.]
+<p>[Lisez cette partie pour l&#8217;installation sous Windows, ou passez &agrave; la section <a href=#macosx>Installation sous Mac OS X</a>, <a href=#ubuntu>Installation sous Ubuntu Linux</a>, ou <a href=#other>Installation sous d&#8217;Autres Plateformes</a>.]
 
 <p class=a>&#x2042;
 
-<h2 id=windows>Installing on Microsoft Windows</h2>
+<h2 id=windows>Installation sous Microsoft Windows</h2>
 
-<p>Windows comes in two architectures these days: 32-bit and 64-bit. Of course, there are lots of different <i>versions</i> of Windows&nbsp;&mdash;&nbsp;XP, Vista, Windows 7&nbsp;&mdash;&nbsp;but Python runs on all of them. The more important distinction is 32-bit v. 64-bit. If you have no idea what architecture you&#8217;re running, it&#8217;s probably 32-bit.
+<p>Windows vient sous deux formes d&#8217;architectures ces temps-ci: 32-bit et 64-bit. Bien s&ucirc;r, il y a beaucoup de diff&eacute;rences entre les <i>versions</i> Windows&nbsp;&mdash;&nbsp;XP, Vista, Windows 7&nbsp;&mdash;&nbsp;mais Python tourne indiff&eacute;rement sur toutes ces versions. La plus importante distinction vient de l&#8217;architecture entre 32-bit et 64-bit. Si vous n&#8217;avez aucune id&eacute;e de l&#8217;architecture que vous utilisez, alors c&#8217;est probablement du 32-bit.
 
-<p>Visit <a href=http://python.org/download/><code>python.org/download/</code></a> and download the appropriate Python 3 Windows installer for your architecture. Your choices will look something like this:
+<p>Allez sur <a href=http://python.org/download/><code>python.org/download/</code></a> et t&eacute;l&eacute;chargez la version appropri&eacute;e de Python 3  pour votre architecture. Vos choix possibles ressembleront &agrave; quelque chose comme &ccedil;a :
 
 <ul>
 <li><b>Python 3.1 Windows installer</b> (Windows binary&nbsp;&mdash;&nbsp;does not include source)
 <li><b>Python 3.1 Windows AMD64 installer</b> (Windows AMD64 binary&nbsp;&mdash;&nbsp;does not include source)
 </ul>
 
-<p>I don&#8217;t want to include direct download links here, because minor updates of Python happen all the time and I don&#8217;t want to be responsible for you missing important updates. You should always install the most recent version of Python 3.x unless you have some esoteric reason not to.
+<p>Je refuse d&#8217;inclure un lien direct sur cette page, car des mise &agrave; jour mineure arrivent tout le temps et je ne veux pas &ecirc; accuser de vous avoir faire manquer une mise &agrave; jour importante. Vous devez toujours installer la plus r&eacute;cente version de Python 3.X sauf si vous poss&egrave;dez une bonne raison esoth&eacute;rique de ne pas le faire.
 
 <ol class=i>
 <li>
 <p class='ss nm'><img src=i/win-install-0-security-warning.png width=409 height=309 alt='[Windows dialog: open file security warning]'>
-<p>Once your download is complete, double-click the <code>.msi</code> file. Windows will pop up a security alert, since you&#8217;re about to be running executable code. The official Python installer is digitally signed by the <a href=http://www.python.org/psf/>Python Software Foundation</a>, the non-profit corporation that oversees Python development. Don&#8217;t accept imitations!
-<p>Click the <code>Run</code> button to launch the Python 3 installer.
+<p>Une fois votre t&eacute;l&eacute;chargement termin&eacute;, double-cliquez sur le fichier <code>.msi</code>. Windows va ouvrir une alerte de s&eacute;curit&eacute;, vu que vous &ecirc;tes sur le point d&#8217;ex&eacute;cuter un programme. L&#8217;installeur officiel de Python poss&egrave;de une signature digitale sign&eacute;e par la <a href=http://www.python.org/psf/>Python Software Foundation</a>, l&#8217;organisation &agrave; but non-commerciale qui g&egrave;re le d&eacute;veloppement de Python. Refusez toute imitations !
+<p>Cliquez sur le bouton <code>Ex&eacute;cuter</code> pour lan&ccedil;er l&#8217;installation de Python 3.
 
 <li>
 <p class='ss nm'><img src=i/win-install-1-all-users-or-just-me.png width=499 height=432 alt='[Python installer: select whether to install Python 3.1 for all users of this computer]'>
-<p>The first question the installer will ask you is whether you want to install Python 3 for all users or just for you. The default choice is &#8220;install for all users,&#8221; which is the best choice unless you have a good reason to choose otherwise. (One possible reason why you would want to &#8220;install just for me&#8221; is that you are installing Python on your company&#8217;s computer and you don&#8217;t have administrative rights on your Windows account. But then, why are you installing Python without permission from your company&#8217;s Windows administrator? Don&#8217;t get me in trouble here!)
-<p>Click the <code>Next</code> button to accept your choice of installation type.
+<p>La premi&egrave;re question que l&#8217;;installeur va vous poser est si vous souhaitez installer Python 3 pour tous les utilisateurs ou juste pour vous. Le choix par d&eacute;faut propose de &#8220;l&#8217;installer pour tous les utilisateurs,&#8221; ce qui est le meilleur choix sauf si vous avez une bonne raison pour ne pas vouloir. (Une bonne raison pour &#8220;installer juste pour vous&#8221; est si vous installer Python sur l&#8217;ordinateur de votre soci&eacute;t&eacute; et que vous n&#8217;avez pas les droit d&#8217;administrateur sur votre compte Windows. Mais si c&#8217;est vraiment le cas, pourquoi donc installez-vous Python sans la permission de votre administrateur Windows ? A la r&eacute;flexion, je ne veux pas savoir ! Je ne veux pas d&#8217;ennuis !)
+<p>Cliquez sur le bouton <code>Suivant</code> pour valider votre type d&#8217;installation.
 
 <li>
 <p class='ss nm'><img src=i/win-install-2-destination-directory.png width=499 height=432 alt='[Python installer: select destination directory]'>
-<p>Next, the installer will prompt you to choose a destination directory. The default for all versions of Python 3.1.x is <code>C:\Python31\</code>, which should work well for most users unless you have a specific reason to change it. If you maintain a separate drive letter for installing applications, you can browse to it using the embedded controls, or simply type the pathname in the box below. You are not limited to installing Python on the <code>C:</code> drive; you can install it on any drive, in any folder.
-<p>Click the <code>Next</code> button to accept your choice of destination directory.
+<p>Ensuite, l&#8217;installeur va vous demander de choisir une destination o&ugrave; installer Python 3. L&#8217;emplacement par d&eacute;faut de toutes les versions de Python 3.1.x est <code>C:\Python31\</code>, ce qui devrait fonctionner pour la plupart des utilisateurs lambda sauf si une raison sp&eacute;cifique vous demande de changer cet emplacement. Si vous avez d&eacute;finit une partition annexe pour installer certaines applications (e.g. <code>D:</code>), vous pouvez s&eacute;lectionner ce chemin avec les boutons de l&#8217;interface graphique, ou simplement entrer le chemin en toute lettre au clavier. Vous n&#8217;&ecirc;tes donc pas forc&eacute; d&#8217;installer Python sur le lecteur <code>C:</code>; vous pouvez l'installer sur n'importe quel lecteur et dans n'importe quel dossier.
+<p>Cliquez sur le bouton <code>Suivant</code> pour valider votre destination d&#8217;installation.
 
 <li>
 <p class='ss nm'><img src=i/win-install-3-customize.png width=499 height=432 alt='[Python installer: customize Python 3.1]'>
-<p>The next page looks complicated, but it&#8217;s not really. Like many installers, you have the option not to install every single component of Python 3. If disk space is especially tight, you can exclude certain components.
+<p>La page suivante semble compliqu&eacute;e mais ne l&#8217;est pas vraiment. Comme avec beaucoup d&#8217;installeurs, vous avez la possibilit&eacute; de ne pas installer tous les composants de Python 3. Ainsi si votre espace disque disponible est tr&egrave;s faible, vous pouvez exclure de l&#8217;installation certains composants.
 <ul>
-<li><b>Register Extensions</b> allows you to double-click Python scripts (<code>.py</code> files) and run them. Recommended but not required. (This option doesn&#8217;t require any disk space, so there is little point in excluding it.)
-<li><b>Tcl/Tk</b> is the graphics library used by the Python Shell, which you will use throughout this book. I strongly recommend keeping this option.
-<li><b>Documentation</b> installs a help file that contains much of the information on <a href=http://docs.python.org/><code>docs.python.org</code></a>. Recommended if you are on dialup or have limited Internet access.
-<li><b>Utility Scripts</b> includes the <code>2to3.py</code> script which you&#8217;ll learn about <a href=case-study-porting-chardet-to-python-3.html>later in this book</a>. Required if you want to learn about migrating existing Python 2 code to Python 3. If you have no existing Python 2 code, you can skip this option.
-<li><b>Test Suite</b> is a collection of scripts used to test the Python interpreter itself. We will not use it in this book, nor have I ever used it in the course of programming in Python. Completely optional.
+<li>L&#8217;option <b>Register Extensions</b> vous permet de double-cliquer sur des scripts Python (fichiers <code>.py</code>) pour les ex&eacute;cuter. Elles est recommand&eacute; mais non n&eacute;cessaire. (Cette option ne consomme pas d&#8217;espace disque, il y a donc peu d&#8217;int&eacute;r&ecirc;t &agrave; l&#8217;exclure de l&#8217;installation.)
+<li><b>Tcl/Tk</b> est la biblioth&egrave;que graphique utilis&eacute;e par le shell Python, que nous allons utiliser &agrave; travers cet ouvrage. Je recommande tr&egrave;s fortement de conserver cette option.
+<li>L&#8217;option <b>Documentation</b> installe des fichiers d&#8217;aide qui contiennent presque autant d&#8217;informations que <a href=http://docs.python.org/><code>docs.python.org</code></a>. Cette option est recommand&eacute; surtout si votre acc&egrave;s &agrave; Internet est limit&eacute;.
+<li>L&#8217;option <b>Utility Scripts</b> inclue le tr&egrave;s utile script <code>2to3.py</code> dont nous allons apprendre l&#8217;utilisation <a href=case-study-porting-chardet-to-python-3.html>plus tard dans cet ouvrage</a>. Cette option est n&eacute;cessaire si vous voulez apprendre &agrave; migrer des projet Python 2 vers Python 3. Si vous n&#8217;avez aucun code Python 2 existant, vous pouvez vous passer de cette option.
+<li>L&#8217;option <b>Test Suite</b> installe une collection de scripts pour tester l&#8217;interpr&eacute;teur Python lui-m&ecirc;me. Nous n&#8217;allons pas l&#x27;utiliser dans cet ouvrage, je ne l&#8217;ai d&#8217;ailleurs jamais utilis&eacute; dans le cadre d&#8217;aucun cours de programmation avec Python. Consid&eacute;rons le donc comme compl&egrave;tement optionnel.
 </ul>
 
 <li>
 <p class='ss nm'><img src=i/win-install-3a-disk-usage.png width=499 height=432 alt='[Python installer: disk space requirements]'>
-<p>If you&#8217;re unsure how much disk space you have, click the <code>Disk Usage</code> button. The installer will list your drive letters, compute how much space is available on each drive, and calculate how much would be left after installation.
-<p>Click the <code>OK</code> button to return to the &#8220;Customizing Python&#8221; page.
+<p>Si vous n&#8217;&ecirc;tes pas s&ucirc;r de combien d&#8217;espace disque vous disposez, cliquez sur le bouton <code>Espace Libre</code>. L&#8217;installeur fera la liste de vos lecteurs, calculera l&#8217;espace disponible sur chacun d&#8217;eux et l&#8217;espace qu&#8217;il resterait sur chacun d&#8217;eux apr&egrave;s l&#8217;installation.
+<p>Cliquez sur le bouton <code>OK</code> pour retourner sur la page de &#8220;Personnalisation de votre installation Python&#8221;.
 
 <li>
 <p class='ss nm'><img src=i/win-install-3b-test-suite.png width=499 height=432 alt='[Python installer: removing Test Suite option will save 7908KB on your hard drive]'>
-<p>If you decide to exclude an option, select the drop-down button before the option and select &#8220;Entire feature will be unavailable.&#8221; For example, excluding the test suite will save you a whopping 7908<abbr>KB</abbr> of disk space.
-<p>Click the <code>Next</code> button to accept your choice of options.
+<p>Si vous d&eacute;cidez de supprimer une option, il suffit de selectionner le menu d&eacute;roulant associ&eacute; &agrave; l&#8217;option et de s&eacute;lectionner &#8220;La fonctionnalit&eacute; enti&egrave;re sera indisponible.&#8221; Par exemple, exclure les outils de tests vous fera sauver quelques 7908<abbr>KB</abbr> d&#8217;espace disque.
+<p>Cliquez sur le bouton <code>Suivant</code> pour valider d&eacute;finitivement vos choix d&#8217;options.
 
 <li>
 <p class='ss nm'><img src=i/win-install-4-copying.png width=499 height=432 alt='[Python installer: progress meter]'>
-<p>The installer will copy all the necessary files to your chosen destination directory. (This happens so quickly, I had to try it three times to even get a screenshot of it!)
+<p>L&#8217;installeur va copier tous les fichiers n&eacute;cessaires dans votre dossier de destination. (C&#8217;est arriv&eacute; si vite chez moi que j&#8217;ai d&ucirc; m&#8217;y reprendre &agrave; trois fois juste pour avoir une copie d&#8217;&eacute;cran correcte !)
 
 <li>
 <p class='ss nm'><img src=i/win-install-5-finish.png width=499 height=432 alt='[Python installer: installation completed. Special Windows thanks to Mark Hammond, without whose years of freely shared Windows expertise, Python for Windows would still be Python for DOS.]'>
-<p>Click the <code>Finish</code> button to exit the installer.
+<p>Cliquez sur le bouton <code>Termin&eacute;</code> pour fermer l&#8217;installeur.
 
 <li>
 <p class='ss nm'><img src=i/win-interactive-shell.png width=677 height=715 alt='[Windows Python Shell, a graphical interactive shell for Python]'>
-<p>In your <code>Start</code> menu, there should be a new item called <code>Python 3.1</code>. Within that, there is a program called <abbr>IDLE</abbr>. Select this item to run the interactive Python Shell.
+<p>Dans votre menu <code>D&eacute;marrer</code> devrait se trouver maintenant un nouveau menu appel&eacute; <code>Python 3.1</code>. Avec &agrave; l&#8217;int&eacute;rieur, un programme appel&eacute; <abbr>IDLE</abbr>. S&eacute;lectionnez celui-ci pour lancer le shell interactif de Python.
 
 </ol>
 
-<p>[Skip to <a href=#idle>using the Python Shell</a>]
+<p>[Aller à la partie <a href=#idle>utilisation du shell Python</a>]
 
 <p class=a>&#x2042;
 
