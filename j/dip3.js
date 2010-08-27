@@ -91,7 +91,7 @@ POSSIBILITY OF SUCH DAMAGE.
 var HS = {'visible': 'hide', 'hidden': 'show'};
 
 function hideTOC() {
-    var toc = '<span class="nm u">&#8227;</span> <a href="javascript:showTOC()">show table of contents</a>';
+    var toc = '<span class="nm u">&#8227;</span> <a href="javascript:showTOC()">afficher le sommaire</a>';
     $("#toc").html(toc);
 }
 
@@ -113,7 +113,7 @@ function showTOC() {
 	toc += '</ol>';
 	level -= 1;
     }
-    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">hide table of contents</a><ol start=0><li><a href=table-of-contents.html><span class=u>&uarr;</span> Full table of contents</a></li>' + toc.substring(4);
+    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">cacher le sommaire</a><ol start=0><li><a href=table-of-contents.html><span class=u>&uarr;</span> Sommaire exhaustif</a></li>' + toc.substring(4);
     $("#toc").html(toc);
 }
 
@@ -141,9 +141,9 @@ $(document).ready(function() {
 
 		/* wrap code block in a div and insert widget block */
 		$(this).wrapInner('<div class=b></div>');
-		var widgetHTML = '<div class=w>[<a class=toggle href="javascript:toggleCodeBlock(\'' + this.id + '\')">' + HS.visible + '</a>] [<a href="javascript:plainTextOnClick(\'' + this.id + '\')">open in new window</a>]';
+		var widgetHTML = '<div class=w>[<a class=toggle href="javascript:toggleCodeBlock(\'' + this.id + '\')">' + HS.visible + '</a>] [<a href="javascript:plainTextOnClick(\'' + this.id + '\')">ouvrir dans une nouvelle fen&ecirc;tre</a>]';
 		if ($(this).hasClass('cmdline')) {
-		    widgetHTML += ' [<a href="troubleshooting.html#getting-to-the-command-line">command line help</a>]';
+		    widgetHTML += ' [<a href="troubleshooting.html#getting-to-the-command-line">aide de la ligne de commande</a>]';
 		}
 		widgetHTML += '</div>';
 		$(this).prepend(widgetHTML);
@@ -158,7 +158,7 @@ $(document).ready(function() {
 		var postelm = $(this).next().get(0);
 		var postid = postelm.id || ("postautopre" + i);
 		postelm.id = postid;
-		$(this).before('<p class=skip><a href=#' + postid + '>skip over this code listing</a>');
+		$(this).before('<p class=skip><a href=#' + postid + '>passer ce code source</a>');
 	    });
 
 	$("pre.screen.cmdline:not(.nd)").each(function(i) {
