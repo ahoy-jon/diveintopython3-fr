@@ -14,60 +14,63 @@ mark{display:inline}
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
-<p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#your-first-python-program>Dive Into Python 3</a> <span class=u>&#8227;</span>
+<p>Vous êtes ici : <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#your-first-python-program>Plongez Dans Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Difficulty level: <span class=u title=novice>&#x2666;&#x2662;&#x2662;&#x2662;&#x2662;</span>
-<h1>Your First Python Program</h1>
+<h1>Votre Premier Programme en Python</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Don&#8217;t bury your burden in saintly silence. You have a problem?  Great. Rejoice, dive in, and investigate. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
+<p><span class=u>&#x275D;</span> Don&rsquo;t bury your burden in saintly silence. You have a problem? Great. Rejoice, dive in, and investigate. <span class=u>&#x275E;</span><br>&mdash; <a href=http://fr.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
 </blockquote>
 <p id=toc>&nbsp;
-<h2 id=divingin>Diving In</h2>
-<p class=f>Convention dictates that I should bore you with the fundamental building blocks of programming, so we can slowly work up to building something useful. Let&#8217;s skip all that. Here is a complete, working Python program. It probably makes absolutely no sense to you. Don&#8217;t worry about that, because you&#8217;re going to dissect it line by line. But read through it first and see what, if anything, you can make of it.
-<p class=d>[<a href=examples/humansize.py>download <code>humansize.py</code></a>]
+<h2 id=divingin>En plongée</h2>
+<p class=f>La convention stipule que je dois vous ennuyer avec les blocs de construction fondamentaux de la programmation, afin que nous puissions travailler lentement &agrave; construire quelque chose d'utile. Passons tout cela. Voici un programme complet et fonctionnel en Python. Cela n'a pas forcement de sens pour vous. Ne vous inqui&#233;tez pas, parce que vous allez diss&eacute;quer ligne par ligne.
+
+Mais d'abord lisez-le et voyez ce que, si quelque chose, vous pouvez en faire.
+<p class=d>[<a href=examples/humansize.py>t&eacute;l&eacute;charger <code>humansize.py</code></a>]
 <pre class=pp><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
-def approximate_size(size, a_kilobyte_is_1024_bytes=True):
-    '''Convert a file size to human-readable form.
+def taille_approximative(taille, un_kilooctect_est_1024_octects=True):
+    '''Converti une taille de fichier en une forme lisible par un &ecirc;tre humain.
 
-    Keyword arguments:
-    size -- file size in bytes
-    a_kilobyte_is_1024_bytes -- if True (default), use multiples of 1024
-                                if False, use multiples of 1000
+    Arguments:
+    taille -- taille du fichier en octect
+    un_kilooctect_est_1024_octects -- si Vrai (par défaut), utilisation des multiples de 1024
+                                si Faux , utilisation des multiples de 1000
 
-    Returns: string
+    Retour: string (Cha&icirc;ne de charact&egrave;res)
 
     '''
-    if size &lt; 0:
-        raise ValueError('number must be non-negative')
+    if taille &lt; 0:
+        raise ValueError('la taille doit être positif')
 
-    multiple = 1024 if a_kilobyte_is_1024_bytes else 1000
+    multiple = 1024 if un_kilooctect_est_1024_octects else 1000
     for suffix in SUFFIXES[multiple]:
-        size /= multiple
+        taille /= multiple
         if size &lt; multiple:
-            return '{0:.1f} {1}'.format(size, suffix)
+            return '{0:.1f} {1}'.format(taille, suffix)
 
-    raise ValueError('number too large')
+    raise ValueError('la taille est trop grande (nombre trop grand)')
 
 if __name__ == '__main__':
-    print(approximate_size(1000000000000, False))
-    print(approximate_size(1000000000000))</code></pre>
-<p>Now let&#8217;s run this program on the command line. On Windows, it will look something like this:
+    print(taille_approximative(1000000000000, False))
+    print(taille_approximative(1000000000000))</code></pre>
+<p>Maintenant, nous allons ex&eacute;cuter ce programme avec la ligne de commande. Sur Windows, il ressemblera &agrave; quelque chose comme ceci :
 <pre class='nd screen'>
 <samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
-<p>On Mac OS X or Linux, it would look something like this:
+<p>Sur Mac OS X ou Linux, cela ressemblerait &agrave; quelque chose comme ceci:
 <pre class='nd screen cmdline'>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 
-<p>What just happened? You executed your first Python program. You called the Python interpreter on the command line, and you passed the name of the script you wanted Python to execute. The script defines a single function, the <code>approximate_size()</code> function, which takes an exact file size in bytes and calculates a &#8220;pretty&#8221; (but approximate) size. (You&#8217;ve probably seen this in Windows Explorer, or the Mac OS X Finder, or Nautilus or Dolphin or Thunar on Linux. If you display a folder of documents as a multi-column list, it will display a table with the document icon, the document name, the size, type, last-modified date, and so on. If the folder contains a 1093-byte file named <code>TODO</code>, your file manager won&#8217;t display <code>TODO 1093 bytes</code>; it&#8217;ll say something like <code>TODO 1 KB</code> instead. That&#8217;s what the <code>approximate_size()</code> function does.)
+<p>Qu'est ce qui vient de ce passer ? Vous avez ex&eacute;cut&eacute; votre premier programme Python. Vous avez appel&eacute; l'interpr&eacute;teur Python en ligne de commande, et vous avez pass&eacute; le nom du script que vous vouliez que Python &eacute;x&eacute;cute. Le script d&eacute;finit une fonction unique, la  fonction <code>taille_approximative()</code>, qui prend en entr&eacute;e une taille exacte de fichier en octect et calcule une &#8220;jolie&#8221; (mais approxim&eacute;e) taille. (Vous avez probablement vu dans l&rsquo;Explorateur Windows ou de Mac OS X Finder, ou Nautilus ou Dolphin ou Thunar sur Linux. Si vous affichez un dossier de documents sous forme de liste &agrave; plusieurs colonnes, il affichera un tableau avec l'ic&ocirc;ne du document, le nom du document, la taille, type, date de modification, etc. 
+   Si un dossier contient un fichier de 1093 octect nomm&eacute; <code>TODO</code>, votre gestionnaire de fichier ne va pas afficher <code>TODO 1093 octects</code>; Il va probablement afficher un texte du genre <code>TODO 1kb</code> &agrave; la place. C'est ce que la fonction <code>taille_approximative()</code> fait.)
 
-<p>Look at the bottom of the script, and you&#8217;ll see two calls to <code>print(approximate_size(<var>arguments</var>))</code>. These are function calls&nbsp;&mdash;&nbsp;first calling the <code>approximate_size()</code> function and passing a number of arguments, then taking the return value and passing it straight on to the <code>print()</code> function. The <code>print()</code> function is built-in; you&#8217;ll never see an explicit declaration of it. You can just use it, anytime, anywhere. (There are lots of built-in functions, and lots more functions that are separated into <i>modules</i>. Patience, grasshopper.)
+<p>Si vous regardez au bas du script, vous allez voir deux appels <code>print(taille_approximative(<var>arguments</var>))</code>. Ce sont des appels de fonction&nbsp;&mdash;&nbsp; Premi&egrave;rement il appelle la fonction <code>taille_approximative()</code> en passant les arguments, puis prennent la valeur de retour pour la passer directement &agrave; la fonction <code>print()</code>. La fonction <code>print()</code> est int&eacute;gr&eacute;e; Vous allez jamais avoir de d&eacute;claration explicite de cette fonction. Vous pouvez juste l'utiliser partout et tout le temps. (Il y a un paquet de fonction d&eacute;j&agrave; int&eacute;gr&eacute;e, et encore plus qui sont plac&eacute;es dans des <i>modules</i> s&eacute;par&eacute;s. Patience.)
 
-<p>So why does running the script on the command line give you the same output every time? We&#8217;ll get to that. First, let&#8217;s look at that <code>approximate_size()</code> function.
+<p>Alors, pourquoi ne l'ex&eacute;cution du script sur la ligne de commande vous donne le m&ecirc;me r&eacute;sultat &agrave; chaque fois? Nous y reviendrons. Tout d'abord, regardons cette fonction <code>taille_approximative()</code>.
 
 <p class=a>&#x2042;
 
