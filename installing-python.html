@@ -287,9 +287,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 <samp class=p>>>> </samp><kbd>help</kbd>
 <samp>Type help() for interactive help, or help(object) for help about object.</samp></pre>
 
-<p>Il y a deux modes d'aide. You can get help about a single object, which just prints out the documentation and returns you to the Python Shell prompt. You can also enter <i>help mode</i>, where instead of evaluating Python expressions, you just type keywords or command names and it will print out whatever it knows about that command.
+<p>Il y a deux modes d&#x27;aide. Vous pouvez obtenir de l&#x27;aide &agrave; propos d&#x27;un seul objet, ce qui va juste vous afficher la documentation et vous rendre imm&eacute;diatement la main. Vous pouvez aussi rentrer dans <i>le mode d&#x27;aide</i>, o&ugrave; au lieu d&#x27;&eacute;valuer des expressions Python, vous tapez des mot cl&eacute;s ou des noms de commandes et le shell affichera &agrave; l&#x27;&eacute;cran tout ce qu&#x27;il sait sur cette commande.
 
-<p>To enter the interactive help mode, type <kbd>help()</kbd> and press <kbd>ENTER</kbd>.
+<p>Pour entrer dans ce mode interactif, tapez <kbd>help()</kbd> et appuyez sur <kbd>ENTR&Eacute;E</kbd>.
 
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>help()</kbd>
@@ -309,7 +309,7 @@ such as "spam", type "modules spam".
 </samp>
 <samp class=p>help> </samp></pre>
 
-<p>Note how the prompt changes from <samp class=p>>>></samp> to <samp class=p>help></samp>. This reminds you that you&#8217;re in the interactive help mode. Now you can enter any keyword, command, module name, function name&nbsp;&mdash;&nbsp;pretty much anything Python understands&nbsp;&mdash;&nbsp;and read documentation on it.
+<p>On peut d&#x27;ailleurs voir que l&#x27;invite de commande change de forme passant de <samp class=p>>>></samp> &agrave; <samp class=p>help></samp>. Cela permet de bien vous rappeller que vous &ecirc;tes dans le mode d&#x27;aide interactive de Python et pas dans l&#x27;invite de commande normal. Maintenant vous pouvez entrer n&#x27;importe quel mot cl&eacute;, commande, nom de module, nom de fonction&nbsp;&mdash;&nbsp;en fait tout ce que Python peut arriver &agrave; comprendre&nbsp;&mdash;&nbsp;et obtenir directement la documentation associ&eacute;e.
 
 <pre class=screen>
 <a><samp class=p>help> </samp><kbd class=pp>print</kbd>                                                                 <span class=u>&#x2460;</span></a>
@@ -335,27 +335,27 @@ interpreter, you can type "help(object)".  Executing "help('string')"
 has the same effect as typing a particular string at the help> prompt.</samp>
 <a><samp class=p>>>> </samp>                                                                        <span class=u>&#x2463;</span></a></pre>
 <ol>
-<li>To get documentation on the <code>print()</code> function, just type <kbd>print</kbd> and press <kbd>ENTER</kbd>. The interactive help mode will display something akin to a man page: the function name, a brief synopsis, the function&#8217;s arguments and their default values, and so on. If the documentation seems opaque to you, don&#8217;t panic. You&#8217;ll learn more about all these concepts in the next few chapters.
-<li>Of course, the interactive help mode doesn&#8217;t know everything. If you type something that isn&#8217;t a Python command, module, function, or other built-in keyword, the interactive help mode will just shrug its virtual shoulders.
-<li>To quit the interactive help mode, type <kbd>quit</kbd> and press <kbd>ENTER</kbd>.
-<li>The prompt changes back to <samp class=p>>>></samp> to signal that you&#8217;ve left the interactive help mode and returned to the Python Shell.
+<li>Pour obtenir la documentation sur la fonction <code>print()</code>, il vous suffit de taper <kbd>print</kbd> et d&#x27;appuyer sur <kbd>ENTR&Eacute;E</kbd>. Le mode d&#x27;aide interactif va alors afficher une page d&#x27;aide ressemblant tr&egrave;s fortement &agrave; une page man sous Linux avec : le nom de la fonction, un l&eacute;ger r&eacute;sum&eacute; de ses fonctionnalit&eacute;s, les arguments d&#x27;entr&eacute;e de la fonction ainsi que leurs valeurs par d&eacute;fauts, et ainsi de suite. Si la documentation semble l&eacute;g&egrave;rement abstraite pour vous, ne paniquez pas. Vous apprenderez plus sur les concepts de base de Python dans les prochains chapitres.
+<li>Bien s&ucirc;r , le mode d&#x27;aide interactif ne sait pas tout. Si vous tapez quelque chose qui n&#x27;est pas une commande Python, un module, une function, or tout autre mot cl&eacute; du c&oelig;ur de Python, le mode d&#x27;aide interactive va juste s&#x27;avouer vaincu et dire qu&#x27;il ne peut rien pour vous.
+<li>Pour quitter le mode d&#x27;aide interactif , il suffit de taper <kbd>quit</kbd> et d&#x27;appuyer sur la touche <kbd>ENTR&Eacute;E</kbd>.
+<li>L&#x27;invite de commande reviendra &agrave; son &eacute;tat normal <samp class=p>>>></samp> pour vous confirmer que vous avez quitter le mode d&#x27;aide interactif et que vous &ecirc;tes maintenant de retour dans le shell Python.
 </ol>
 
-<p><abbr>IDLE</abbr>, the graphical Python Shell, also includes a Python-aware text editor.
+<p><abbr>IDLE</abbr>, le shell graphique de Python, inclue aussi un &eacute;diteur de texte adapt&eacute; &agrave; Python.
 
 <p class=a>&#x2042;
 
-<h2 id=editors>Python Editors and IDEs</h2>
+<h2 id=editors>Les &eacute;diteurs Python et IDEs</h2>
 
-<p><abbr>IDLE</abbr> is not the only game in town when it comes to writing programs in Python. While it&#8217;s useful to get started with learning the language itself, many developers prefer other text editors or Integrated Development Environments (<abbr>IDE</abbr>s). I won&#8217;t cover them here, but the Python community maintains <a href=http://wiki.python.org/moin/PythonEditors>a list of Python-aware editors</a> that covers a wide range of supported platforms and software licenses.
+<p><abbr>IDLE</abbr> n&#x27;est pas le seul logiciel utilisable quand il s&#x27;agit d'&eacute;crire des programmes en Python. Car si c&#x27;est un bon &eacute;diteur quand il s&#x27;agit d&#x27;apprendre sur le langage Python en lui-m&ecirc;me, de nombreux d&eacute;veloppeurs pr&eacute;f&egrave;rent utiliser d&#x27;autres &eacute;diteurs de texte ou d&#x27;autres Environnements de D&eacute;veloppement Int&eacute;gr&eacute;s (des <abbr>IDE</abbr> (Integrated Development Environments)). Je ne vais pas couvrir ce sujet ici, mais la communaut&eacute; Python maintient <a href=http://wiki.python.org/moin/PythonEditors>une liste des &eacute;diteurs de textes utilisables avec Python</a> qui permet de trouver son bonheur &agrave; la fois en terme de plateforme et en terme de licenses logicelles.
 
-<p>You might also want to check out the <a href=http://wiki.python.org/moin/IntegratedDevelopmentEnvironments>list of Python-aware <abbr>IDE</abbr>s</a>, although few of them support Python 3 yet. One that does is <a href=http://pydev.sourceforge.net/>PyDev</a>, a plugin for <a href=http://eclipse.org/>Eclipse</a> that turns Eclipse into a full-fledged Python <abbr>IDE</abbr>. Both Eclipse and PyDev are cross-platform and open source.
+<p>Vous voudrez aussi probablement regarder la <a href=http://wiki.python.org/moin/IntegratedDevelopmentEnvironments>liste des <abbr>IDE</abbr>s adapt&eacute;s &agrave; Python</a>, m&ecirc;me si tr&egrave;s peu d&#x27;entre eux &agrave; l&#x27;heure actuelle supportent Python 3. Par exemple <a href=http://pydev.sourceforge.net/>PyDev</a>, qui est un plugin pour <a href=http://eclipse.org/>Eclipse</a> et qui transforme Eclipse en un tr&egrave;s bon <abbr>IDE</abbr> pour Python, supporte maintenant Python 3. En plus &agrave; la fois Eclipse et PyDev sont multi-platformes et open source.
 
-<p>On the commercial front, there is ActiveState&#8217;s <a href=http://www.activestate.com/komodo/>Komodo <abbr>IDE</abbr></a>. It has per-user licensing, but students can get a discount, and a free time-limited trial version is available.
+<p>Du cot&eacute; commerciale, il y a l&#x27;<abbr>IDE</abbr> <a href=http://www.activestate.com/komodo/>Komodo</a> d&#x27;ActiveState. Sa license est disponible par utilisateur, mais les &eacute;tudiants peuvent obtenir un tarif r&eacute;duit, et une version gratuite limit&eacute;e dans le temps est disponible.
 
-<p>I&#8217;ve been programming in Python for nine years, and I edit my Python programs in <a href=http://www.gnu.org/software/emacs/>GNU Emacs</a> and debug them in the command-line Python Shell. There&#8217;s no right or wrong way to develop in Python. Find a way that works for you!
+<p>Je programme en Python depuis maintenant neuf ans, et je cr&eacute;&eacute; mes programmes Python principalement avec <a href=http://www.gnu.org/software/emacs/>GNU Emacs</a> en d&eacute;boggant avec le shell Python. Il y a pas de bonne ou de mauvaise fa&ccedil;on de d&eacute;velopper en Python. Trouvez celui qui vous convient !
 
-<p class=v><a href=whats-new.html rel=prev title='back to &#8220;What&#8217;s New In Dive Into Python 3&#8221;'><span class=u>&#x261C;</span></a> <a href=your-first-python-program.html rel=next title='onward to &#8220;Your First Python Program&#8221;'><span class=u>&#x261E;</span></a>
+<p class=v><a href=whats-new.html rel=prev title='retour &agrave; &#8220;Quoi de neuf dans Plongez au c&oelig;ur de Python 3&#8221;'><span class=u>&#x261C;</span></a> <a href=your-first-python-program.html rel=next title='vers &#8220;Votre premier programme en Python&#8221;'><span class=u>&#x261E;</span></a>
 
 <p class=c>&copy; 2001&ndash;10 <a href=about.html>Mark Pilgrim</a>
 <script src=j/jquery.js></script>
