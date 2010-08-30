@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Closures &amp; Generateurs - Plongez au c&oelig;ur de Python 3</title>
+<title>Closures &amp; G&eacute;n&eacute;rateurs - Plongez au c&oelig;ur de Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -10,30 +10,30 @@ body{counter-reset:h1 6}
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Rechercher></div></form>
-<p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#generators>Plongez au c&oelig;ur de Python 3</a> <span class=u>&#8227;</span>
+<p>Vous &ecirc;tes ici : <a href=index.html>Accueil</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#generators>Plongez au c&oelig;ur de Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Niveau de difficult&eacute; : <span class=u title=intermediate>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
-<h1>Closures <i class=baa>&amp;</i> Generators</h1>
+<h1>Closures <i class=baa>&amp;</i> G&eacute;n&eacute;rateurs</h1>
 <blockquote class=q>
 <p><span class=u>&#x275D;</span> My spelling is Wobbly. It&#8217;s good spelling but it Wobbles, and the letters get in the wrong places. <span class=u>&#x275E;</span><br>&mdash; Winnie-the-Pooh
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Lan&ccedil;ons Nous</h2>
-<p class=f>Having grown up the son of a librarian and an English major, I have always been fascinated by languages. Not programming languages. Well yes, programming languages, but also natural languages. Take English. English is a schizophrenic language that borrows words from German, French, Spanish, and Latin (to name a few). Actually, &#8220;borrows&#8221; is the wrong word; &#8220;pillages&#8221; is more like it. Or perhaps &#8220;assimilates&#8221;&nbsp;&mdash;&nbsp;like the Borg. Yes, I like that.
+<p class=f>&Eacute;tant le fils d&#x27;un libraire et d&#x27;une licenci&eacute;e en Anglais, j&#x27;ai toujours &eacute;t&eacute; fascin&eacute; par les langues. Pas les langages de programmation. Enfin si, aussi. Prenez l&#x27;anglais par exemple. L&#x27;anglais est un langage schizophr&egrave;ne qui empreinte des mots de l&#x27;Allemand, du Fran&ccedil;ais, de l&#x27;Espagnol, et du Latin (pour n&#x27;en nommer qu&#x27;un petit nombre). En fait, &#8220;emprunter&#8221; n&#x27;est pas le bon mot; &#8220;voler&#8221; est plus proche de la v&eacute;rit&eacute;. Ou encore &#8220;assimiler&#8221;&nbsp;&mdash;&nbsp;comme les Borgs. Oui, j&#x27;aime bien cette comparaison.
 <p class=c><code>We are the Borg. Your linguistic and etymological distinctiveness will be added to our own. Resistance is futile.</code>
-<p>In this chapter, you&#8217;re going to learn about plural nouns. Also, functions that return other functions, advanced regular expressions, and generators. But first, let&#8217;s talk about how to make plural nouns. (If you haven&#8217;t read <a href=regular-expressions.html>the chapter on regular expressions</a>, now would be a good time. This chapter assumes you understand the basics of regular expressions, and it quickly descends into more advanced uses.)
-<p>If you grew up in an English-speaking country or learned English in a formal school setting, you&#8217;re probably familiar with the basic rules:
+<p>Dans ce chapitre, vous allez apprendre &agrave; mettre des noms au pluriel en Anglais. Ah et puis aussi, &agrave; faire des fonctions qui retournent d&#x27;autres  fonctions, &agrave; construire des expressions r&eacute;guli&egrave;res avanc&eacute;es, et ce que sont les g&eacute;n&eacute;rateurs. Mais tout d&#x27;abord, parlons de comment mettre des noms au pluriel. (Si vous n&#x27;avez pas lu <a href=regular-expressions.html>le chapitre sur les expressions r&eacute;guli&egrave;res</a>, c&#x27;est maintenant ou jamais. Ce chapitre part du principe que vous connaissez les bases des expressions r&eacute;guli&egrave;res, et passe rapidement &agrave; des utilisations un peu plus avanc&eacute;es de celles-ci.)
+<p>Si vous avez grandi dans un pays Anglophone ou apprit l&#x27;Anglais à l&#x27;&eacute;cole, vous devez probablement avoir déjà entendu parlé des règles principlaes :
 <ul>
-<li>If a word ends in S, X, or Z, add ES. <i>Bass</i> becomes <i>basses</i>, <i>fax</i> becomes <i>faxes</i>, and <i>waltz</i> becomes <i>waltzes</i>.
-<li>If a word ends in a noisy H, add ES; if it ends in a silent H, just add S. What&#8217;s a noisy H? One that gets combined with other letters to make a sound that you can hear. So <i>coach</i> becomes <i>coaches</i> and <i>rash</i> becomes <i>rashes</i>, because you can hear the CH and SH sounds when you say them. But <i>cheetah</i> becomes <i>cheetahs</i>, because the H is silent.
-<li>If a word ends in Y that sounds like I, change the Y to IES; if the Y is combined with a vowel to sound like something else, just add S. So <i>vacancy</i> becomes <i>vacancies</i>, but <i>day</i> becomes <i>days</i>.
-<li>If all else fails, just add S and hope for the best.
+<li>Si un mot fini en S, X, ou Z, ajoutez ES. <i>Bass</i> devient <i>basses</i>, <i>fax</i> devient <i>faxes</i>, et <i>waltz</i> devient  <i>waltzes</i>.
+<li>Si un mot fini avec un H qui s&#x27;entend, ajoutez ES; s&#x27;il finit avec un H silencieux, ajoutez juste un S. Qu&#x27;est ce qu&#x27;un H qui s&#x27;entend ? C&#x27;est un H combin&eacute; &agrave; d&#x27;autres lettres pour former un son que l&#x27;on entend. Ainsi <i>coach</i> devient <i>coaches</i> et <i>rash</i> devient <i>rashes</i>, car on peut entendre les sons CH et SH quand on prononce ces noms. En revanche <i>cheetah</i> devient <i>cheetahs</i>, car le H est silencieux.
+<li>Si un mot finit par un Y qui sonne comme aïe, remplacez le Y  par IES; en revanche si le Y est combiné à une voyelle pour former un nouveau son, ajoutez juste un S. Donc <i>vacancy</i> devient <i>vacancies</i>, mais <i>day</i> devient <i>days</i>.
+<li>Quand i n&#x27;y a plus d&#x27;autre espoir, ajoutez un S et priez.
 </ul>
-<p>(I know, there are a lot of exceptions. <i>Man</i> becomes <i>men</i> and <i>woman</i> becomes <i>women</i>, but <i>human</i> becomes <i>humans</i>. <i>Mouse</i> becomes <i>mice</i> and <i>louse</i> becomes <i>lice</i>, but <i>house</i> becomes <i>houses</i>. <i>Knife</i> becomes <i>knives</i> and <i>wife</i> becomes <i>wives</i>, but <i>lowlife</i> becomes <i>lowlifes</i>. And don&#8217;t even get me started on words that are their own plural, like <i>sheep</i>, <i>deer</i>, and <i>haiku</i>.)
-<p>Other languages, of course, are completely different.
-<p>Let&#8217;s design a Python library that automatically pluralizes English nouns. We&#8217;ll start with just these four rules, but keep in mind that you&#8217;ll inevitably need to add more.
+<p>(Je sais, il y a beaucoup d&#x27;exceptions. <i>Man</i> devient <i>men</i> et <i>woman</i> devient <i>women</i>, mais <i>human</i> devient <i>humans</i>. <i>Mouse</i> devient <i>mice</i> et <i>louse</i> devient <i>lice</i>, mais <i>house</i> devient <i>houses</i>. <i>Knife</i> devient <i>knives</i> et <i>wife</i> devient <i>wives</i>, mais <i>lowlife</i> devient <i>lowlifes</i>. Et ne me lan&ccedil;er pas sur les mots qui sont leur propre pluriel, comme <i>sheep</i>, <i>deer</i>, et <i>haiku</i>.)
+<p>Les autres langues sont, bien s&ucirc;r, tr&egrave;s diff&eacute;rents.
+<p>Et si on cr&eacute;ait une biblioth&egrave;que Python qui mettrait au pluriel les noms Anglais. On va commencer avec juste ces quatre r&egrave;gles, mais gardez &agrave; l&#x27;esprit qu&#x27;il faudra in&eacute;vitablement rajouter des exceptions plus tard.
 <p class=a>&#x2042;
 
-<h2 id=i-know>I Know, Let&#8217;s Use Regular Expressions!</h2>
+<h2 id=i-know>J&#x27;ai une id&eacute;e, Utilisons des expressions r&eacute;guli&egrave;res !</h2>
 <p>So you&#8217;re looking at words, which, at least in English, means you&#8217;re looking at strings of characters. You have rules that say you need to find different combinations of characters, then do different things to them. This sounds like a job for regular expressions!
 <p class=d>[<a href=examples/plural1.py>download <code>plural1.py</code></a>]
 <pre class=pp><code>import re
