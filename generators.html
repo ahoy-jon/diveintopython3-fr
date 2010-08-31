@@ -34,8 +34,8 @@ body{counter-reset:h1 6}
 <p class=a>&#x2042;
 
 <h2 id=i-know>J&#x27;ai une id&eacute;e, Utilisons des expressions r&eacute;guli&egrave;res !</h2>
-<p>So you&#8217;re looking at words, which, at least in English, means you&#8217;re looking at strings of characters. You have rules that say you need to find different combinations of characters, then do different things to them. This sounds like a job for regular expressions!
-<p class=d>[<a href=examples/plural1.py>download <code>plural1.py</code></a>]
+<p>Donc nous allons regarder des mots, ce qui veut dire, au moins en Anglais, que nous allons &eacute;tudier des cha&icirc;nes de caract&egrave;res. Et nous avons des règles qui demandent de chercher des combinaisons précises de ces caractères, et de leur appliquer quelques opérations. &Ccedil;a, c'est un boulot pour des expressions régulières !
+<p class=d>[<a href=examples/plural1.py>t&eacute;l&eacute;chargez <code>plural1.py</code></a>]
 <pre class=pp><code>import re
 
 def plural(noun):          
@@ -48,11 +48,11 @@ def plural(noun):
     else:
         return noun + 's'</code></pre>
 <ol>
-<li>This is a regular expression, but it uses a syntax you didn&#8217;t see in <a href=regular-expressions.html><i>Regular Expressions</i></a>. The square brackets mean &#8220;match exactly one of these characters.&#8221; So <code>[sxz]</code> means &#8220;<code>s</code>, or <code>x</code>, or <code>z</code>&#8221;, but only one of them. The <code>$</code> should be familiar; it matches the end of string. Combined, this regular expression tests whether <var>noun</var> ends with <code>s</code>, <code>x</code>, or <code>z</code>.
-<li>This <code>re.sub()</code> function performs regular expression-based string substitutions.
+<li>Ceci est une expression régulière, mais elle utilise une syntaxe que vous n'avez pas vu dans le chapitre <a href=regular-expressions.html><i>Expression régulières</i></a>. Les crochets permettent de &#8220;repérer un et un seul de ces caractères.&#8221; Ainsi la chaîne <code>[sxz]</code> permet de repérer &#8220;<code>s</code>, ou <code>x</code>, ou encore <code>z</code>&#8221;, mais seulement un de ces caractères. Le symbole <code>$</code> doit maintenant vous être familier; il symbolise la fin de la string. En combinant ces symboles, on obtient une expression régulière qui test si la variable <var>noun</var> finit par un <code>s</code>, un <code>x</code>, ou un <code>z</code>.
+<li>La fonction <code>re.sub()</code> en elle-même permet de remplacer tout ce qui est repéré par l'expression régulière en entrée.
 </ol>
 
-<p>Let&#8217;s look at regular expression substitutions in more detail.
+<p>Voyons comment ces substitutions fonctionnent sur des cas concrets.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search('[abc]', 'Mark')</kbd>    <span class=u>&#x2460;</span></a>
@@ -64,13 +64,13 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd class=pp>re.sub('[abc]', 'o', 'caps')</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=pp>'oops'</samp></pre>
 <ol>
-<li>Does the string <code>Mark</code> contain <code>a</code>, <code>b</code>, or <code>c</code>? Yes, it contains <code>a</code>.
-<li>OK, now find <code>a</code>, <code>b</code>, or <code>c</code>, and replace it with <code>o</code>. <code>Mark</code> becomes <code>Mork</code>.
-<li>The same function turns <code>rock</code> into <code>rook</code>.
-<li>You might think this would turn <code>caps</code> into <code>oaps</code>, but it doesn&#8217;t. <code>re.sub</code> replaces <em>all</em> of the matches, not just the first one. So this regular expression turns <code>caps</code> into <code>oops</code>, because both the <code>c</code> and the <code>a</code> get turned into <code>o</code>.
+<li>Est ce que la string <code>Mark</code> contient un <code>a</code>, un <code>b</code>, ou un <code>c</code>? Oui, elle contient un <code>a</code>.
+<li>OK, donc maintenant trouve un caractère <code>a</code>, <code>b</code>, ou <code>c</code>, et replace le par un <code>o</code>. <code>Mark</code> devient alors <code>Mork</code>.
+<li>La même fonction transforme <code>rock</code> en <code>rook</code>.
+<li>Vous auriez pû croire que cette fonction allait transformer <code>caps</code> en <code>oaps</code>, mais en fait non. <code>re.sub</code> remplace <em>toutes</em> les occurences repérées, pas seulement la première. Donc cette expression régulière va transformer <code>caps</code> en <code>oops</code>, car à la fois le <code>c</code> et le <code>a</code> se transforment en <code>o</code>.
 </ol>
 
-<p>And now, back to the <code>plural()</code> function&hellip;
+<p>Maintenant, retournous à notre fonction <code>plural()</code>&hellip;
 
 <pre class=pp><code>def plural(noun):          
     if re.search('[sxz]$', noun):            
@@ -82,12 +82,12 @@ def plural(noun):
     else:
         return noun + 's'</code></pre>
 <ol>
-<li>Here, you&#8217;re replacing the end of the string (matched by <code>$</code>) with the string <code>es</code>. In other words, adding <code>es</code> to the string. You could accomplish the same thing with string concatenation, for example <code>noun + 'es'</code>, but I chose to use regular expressions for each rule, for reasons that will become clear later in the chapter.
-<li>Look closely, this is another new variation. The <code>^</code> as the first character inside the square brackets means something special: negation. <code>[^abc]</code> means &#8220;any single character <em>except</em> <code>a</code>, <code>b</code>, or <code>c</code>&#8221;. So <code>[^aeioudgkprt]</code> means any character except <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, <code>u</code>, <code>d</code>, <code>g</code>, <code>k</code>, <code>p</code>, <code>r</code>, or <code>t</code>. Then that character needs to be followed by <code>h</code>, followed by end of string. You&#8217;re looking for words that end in H where the H can be heard.
-<li>Same pattern here: match words that end in Y, where the character before the Y is <em>not</em> <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, or <code>u</code>. You&#8217;re looking for words that end in Y that sounds like I.
+<li>Ici, nous remplaçons la fin de la string (symbolisé par le <code>$</code>) avec la string <code>es</code>. Autrement dit, nous ajoutons <code>es</code> à la fin de la chaîne de caractères. Vous pouvez accomplir la même opération avec une simple concaténation de string, par exemple <code>noun + 'es'</code>, mais j'ai choisit d'utiliser les expressions régulières pour chacun des règles, pour des raisons qui vous apparaîtrons plus clair dans la suite de ce chapitre.
+<li>Regargez attentivement, il s'agit d'une nouvelle formulation. Le symbole <code>^</code> en tant que premier caractère à l'intérieur des crochets a un sens très différent : un sens d'exclusion. En effet <code>[^abc]</code> signifie &#8220;tout caractère <em>&agrave; l'exception</em> de <code>a</code>, <code>b</code>, ou <code>c</code>&#8221;. Donc <code>[^aeioudgkprt]</code> signifie tout caractère à l'exception de <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, <code>u</code>, <code>d</code>, <code>g</code>, <code>k</code>, <code>p</code>, <code>r</code>, ou <code>t</code>. Alors pour être repéré par l'expression régulière, ce caractère devra être suivi d'un <code>h</code>, lui-même étant le dernier caractère de la string. Tout bien considéré on recherche alors les mots qui finissent par un H où le H s'entend.
+<li>Le même motif est utilisé ici : repérer les mots qui finissent en Y, où le caractère juste avant le Y <em>n'est pas</em> un <code>a</code>, un <code>e</code>, un <code>i</code>, un <code>o</code>, ou un <code>u</code>. On recherche des mots qui finissent par un Y et produisent le son aïe.
 </ol>
 
-<p>Let&#8217;s look at negation regular expressions in more detail.
+<p>Analysons un peu plus en détails les exclusions dans les expressions régulières.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
@@ -100,9 +100,9 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd class=pp>re.search('[^aeiou]y$', 'pita')</kbd>     <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li><code>vacancy</code> matches this regular expression, because it ends in <code>cy</code>, and <code>c</code> is not <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, or <code>u</code>.
-<li><code>boy</code> does not match, because it ends in <code>oy</code>, and you specifically said that the character before the <code>y</code> could not be <code>o</code>. <code>day</code> does not match, because it ends in <code>ay</code>.
-<li><code>pita</code> does not match, because it does not end in <code>y</code>.
+<li>Le mot <code>vacancy</code> est bien reconnu par l'expression régulière, car il finit en <code>cy</code>, et que <code>c</code> n'est pas <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, ou <code>u</code>.
+<li><code>boy</code> n'est pas reconnu, car il finit en <code>oy</code>, et on a spécifiquement précisé que le caractère précédant le <code>y</code> ne pouvait pas être un <code>o</code>. <code>day</code> n'est pas reconnu non plus, car il finit en <code>ay</code>.
+<li><code>pita</code> n'est pas reconnu, car il ne finit pas en <code>y</code>.
 </ol>
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>re.sub('y$', 'ies', 'vacancy')</kbd>               <span class=u>&#x2460;</span></a>
@@ -112,8 +112,8 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd class=pp>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span class=u>&#x2461;</span></a>
 <samp class=pp>'vacancies'</samp></pre>
 <ol>
-<li>This regular expression turns <code>vacancy</code> into <code>vacancies</code> and <code>agency</code> into <code>agencies</code>, which is what you wanted. Note that it would also turn <code>boy</code> into <code>boies</code>, but that will never happen in the function because you did that <code>re.search</code> first to find out whether you should do this <code>re.sub</code>.
-<li>Just in passing, I want to point out that it is possible to combine these two regular expressions (one to find out if the rule applies, and another to actually apply it) into a single regular expression. Here&#8217;s what that would look like. Most of it should look familiar: you&#8217;re using a remembered group, which you learned in <a href=regular-expressions.html#phonenumbers>Case study: Parsing Phone Numbers</a>. The group is used to remember the character before the letter <code>y</code>. Then in the substitution string, you use a new syntax, <code>\1</code>, which means &#8220;hey, that first group you remembered? put it right here.&#8221; In this case, you remember the <code>c</code> before the <code>y</code>; when you do the substitution, you substitute <code>c</code> in place of <code>c</code>, and <code>ies</code> in place of <code>y</code>. (If you have more than one remembered group, you can use <code>\2</code> and <code>\3</code> and so on.)
+<li>Cette expression régulière transforme <code>vacancy</code> en <code>vacancies</code> et <code>agency</code> en <code>agencies</code>, ce qui est précisemment ce que l'on voulait. En revanche il est bon de noter que cette fonction transformerait <code>boy</code> en <code>boies</code>, mais cela n'arrivera jamais dans notre fonction <code>plural()</code> car on effectue tout d'abord un <code>re.search</code> pour déterminer si l'on doit (ou non) faire un remplacement avec <code>re.sub</code>.
+<li>En passant, j'aimerai signaler qu'il est possible de combiner ces deux expressions régulières (une pour déterminer si la règle s'applique, et l'autre pour faire effectivement le remplacement) dans une seule expression régulière. Voici à quoi une telle combinaison ressemblerait pour notre cas. En grande partie, cette expression régulière devrait vous être familière : on utilise un groupement, notion que l'on a appris dans <a href=regular-expressions.html#phonenumbers>l'étude de cas : Lire des numéros de téléphones</a>. Le groupement est utilisé pour se rappeller du caractère juste avant la lettre <code>y</code>. Ainsi dans la string de substitution, on peut utiliser une nouvelle syntaxe, <code>\1</code>, ce qui signifie &#8220;Dis, tu te souviens du premier groupe qu'on a définit précédemment ? mets ce que t'as récupéré ici.&#8221; Ce qui pour notre exemple se traduit par, tu te souviens du <code>c</code> avant le <code>y</code>; eh bien lors de la substitution, tu mets ce <code>c</code> à la place du <code>c</code>, et tu mets <code>ies</code> à la place de <code>y</code>. (Si vous utilisez plus d'un groupement, vous pouvez utiliser les symboles <code>\2</code> et <code>\3</code> etc.)
 </ol>
 <p>Regular expression substitutions are extremely powerful, and the <code>\1</code> syntax makes them even more powerful. But combining the entire operation into one regular expression is also much harder to read, and it doesn&#8217;t directly map to the way you first described the pluralizing rules. You originally laid out rules like &#8220;if the word ends in S, X, or Z, then add ES&#8221;. If you look at this function, you have two lines of code that say &#8220;if the word ends in S, X, or Z, then add ES&#8221;. It doesn&#8217;t get much more direct than that.
 
