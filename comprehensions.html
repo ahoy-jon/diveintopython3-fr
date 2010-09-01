@@ -1,129 +1,145 @@
-<!DOCTYPE html>
-<meta charset=utf-8>
-<title>Comprehensions - Dive Into Python 3</title>
-<!--[if IE]><script src=j/html5.js></script><![endif]-->
-<link rel=stylesheet href=dip3.css>
-<style>
-body{counter-reset:h1 3}
-</style>
-<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
-<link rel=stylesheet media=print href=print.css>
-<meta name=viewport content='initial-scale=1.0'>
-<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=root value=Search></div></form>
-<p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#comprehensions>Dive Into Python 3</a> <span class=u>&#8227;</span>
-<p id=level>Difficulty level: <span class=u title=beginner>&#x2666;&#x2666;&#x2662;&#x2662;&#x2662;</span>
-<h1>Comprehensions</h1>
-<blockquote class=q>
-<p><span class=u>&#x275D;</span> Our imagination is stretched to the utmost, not, as in fiction, to imagine things which are not really there, but just to comprehend those things which are. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Richard_Feynman>Richard Feynman</a>
-</blockquote>
-<p id=toc>&nbsp;
-<h2 id=divingin>Diving In</h2>
-<p class=f>Every programming language has that one feature, a complicated thing intentionally made simple. If you&#8217;re coming from another language, you could easily miss it, because your old language didn&#8217;t make that thing simple (because it was busy making something else simple instead). This chapter will teach you about list comprehensions, dictionary comprehensions, and set comprehensions: three related concepts centered around one very powerful technique. But first, I want to take a little detour into two modules that will help you navigate your local file system.
+<html>
+	<head>
+		<title>Compr&eacute;hensions - Plongez au c&oelig;ur de Python 3</title>
+		<!--[if IE]><script src="j/html5.js"></script><![endif]-->
+		<link rel="stylesheet" href="dip3.css"/>
+		<meta charset="utf-8"/>
+		<style type="text/css">
+			body{counter-reset:h1 3}
+		</style>
+		<link rel="stylesheet" media='only screen and (max-device-width: 480px)' href="mobile.css"/>
+		<link rel="stylesheet" media="print" href="print.css"/>
+		<meta name="viewport" content='initial-scale=1.0'/>
+		<script src="j/jquery.js"/>
+		<script src="j/prettify.js"/>
+		<script src="j/dip3.js"/>
+	</head>
+	
+	<body>
+		<form action="http://www.google.com/cse"><div><input type="hidden" name="cx" value="014021643941856155761:l5eihuescdw"/><input type="hidden" name="ie" value="UTF-8"/>&nbsp;<input type="search" name="q" size="25" placeholder="powered by Google&trade;"/>&nbsp;<input type="submit" name="root" value="Search"/></div></form>
+		<p>Vous &ecirc;tes ici: <a href="index.html">Accueil</a> <span class="u">&#8227;</span> <a href="table-of-contents.html#comprehensions">Plongez au c&oelig;ur de Python 3</a> <span class="u">&#8227;</span></p>
+					
+		<p id="level">Niveau de difficult&eacute;: <span class="u" title="beginner">&#x2666;&#x2666;&#x2662;&#x2662;&#x2662;</span></p>
+		<h1>Comprehensions</h1>
 
-<p class=a>&#x2042;
+		<blockquote class="q">
+			<p><span class="u">&#x275D;</span> Our imagination is stretched to the utmost, not, as in fiction, to imagine things which are not really there, but just to comprehend those things which are. <span class="u">&#x275E;</span></p><p>&mdash; <a href="http://en.wikiquote.org/wiki/Richard_Feynman">Richard Feynman</a></p>
+		</blockquote>
+		
+		<p id="toc">&nbsp;</p>
 
-<h2 id=os>Working With Files And Directories</h2>
+		<h2 id="divingin">Lan&ccedil;ons nous</h2>
+		<p class="f">Chaque langage de programmation poss&egrave;de sa fonctionnalit&eacute;, une chose compliqu&eacute; qu'il rend simple. Si vous venez d'un autre langage vous pourriez facilement manquer cette fonctionnalit&eacute;, tout simplement parce que votre ancien langage ne rendait pas cette chose compliqu&eacute; facile (tout simplement parce qu'il avait ses propres atouts ailleurs). Ce chapitre va vous en apprendre plus sur ce qu'on appelle les compr&eacute;hensions de liste (ainsi que pour les dictionnaires et les ensembles): trois concepts rassembl&eacute;s autour d'une seule et m&ecirc;me puissante technique. Mais pour commencer, je voudrais vous faire faire un petit d&eacute;tour par deux modules qui vont vous aider &agrave; naviguer dans votre syst&egrave;me de fichier.</p>
+		
+		<p class="a">&#x2042;</p>
+		
+		<h2 id="os">Travailler avec les fichiers et r&eacute;pertoires</h2>
 
-<p>Python 3 comes with a module called <code>os</code>, which stands for &#8220;operating system.&#8221; The <a href=http://docs.python.org/3.1/library/os.html><code>os</code> module</a> contains a plethora of functions to get information on&nbsp;&mdash;&nbsp;and in some cases, to manipulate&nbsp;&mdash;&nbsp;local directories, files, processes, and environment variables. Python does its best to offer a unified <abbr>API</abbr> across <a href=installing-python.html>all supported operating systems</a> so your programs can run on any computer with as little platform-specific code as possible.
-
-<h3 id=getcwd>The Current Working Directory</h3>
-
-<p>When you&#8217;re just getting started with Python, you&#8217;re going to spend a lot of time in <a href=installing-python.html#idle>the Python Shell</a>. Throughout this book, you will see examples that go like this:
-
-<ol>
-<li>Import one of the modules in the <a href=examples/><code>examples</code> folder</a>
-<li>Call a function in that module
-<li>Explain the result
-</ol>
-
-<aside>There is always a current working directory.</aside>
-
-<p>If you don&#8217;t know about the current working directory, step 1 will probably fail with an <code>ImportError</code>. Why? Because Python will look for the example module in <a href=your-first-python-program.html#importsearchpath>the import search path</a>, but it won&#8217;t find it because the <code>examples</code> folder isn&#8217;t one of the directories in the search path. To get past this, you can do one of two things:
-
-<ol>
-<li>Add the <code>examples</code> folder to the import search path
-<li>Change the current working directory to the <code>examples</code> folder
-</ol>
-
-<p>The current working directory is an invisible property that Python holds in memory at all times. There is always a current working directory, whether you&#8217;re in the Python Shell, running your own Python script from the command line, or running a Python <abbr>CGI</abbr> script on a web server somewhere.
-
-<p>The <code>os</code> module contains two functions to deal with the current working directory.
-
-<pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>import os</kbd>                                            <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.getcwd())</kbd>                                   <span class=u>&#x2461;</span></a>
+		<p>Python 3 poss&egrave;de un module appel&eacute; <code>os</code>, qui signifie &#8220;operating system&#8221; (syst&egrave;me d'exploitation). Le module  <a href="http://docs.python.org/3.1/library/os.html"><code>os</code></a> contient une pl&eacute;thore de fonctions nous permettant de r&eacute;cup&eacute;rer des informations&nbsp;&mdash;&nbsp;et dans certains cas de les manipuler&nbsp;&mdash;&nbsp;sur les r&eacute;pertoires, fichiers, processus et variables d'environnement. Python fais de son mieux pour proposer une <abbr>API</abbr> uniforme sur tous les <a href="installing-python.html">syst&egrave;mes d'exploitation support&eacute;s</a>, pour que vos programmes puissent fonctionner sur n'importe quel ordinateur et ce sans avoir &agrave; &eacute;crire trop de code sp&eacute;cifique.
+		</p>
+		
+		<h3 id="getcwd">Le r&eacute;pertoire de travail</h3>
+		
+		<p>Lorsqu'on d&eacute;bute avec Python, on est amen&eacute; &agrave; passer beaucoup de temps dans le <a href="installing-python.html#idle">shell de Python</a>. Tout au long de ce livre, vous verrez de nombreux exemples comme ceux-ci:</p>
+		
+		<ol>
+			<li>Importer un des modules du r&eacute;pertoire <a href="examples/"><code>examples</code></a></li>
+			<li>Appeler une fonction de ce module</li>
+			<li>Expliquer le r&eacute;sultat</li>
+		</ol>
+		
+		<aside>Il y a toujours un r&eacute;pertoire de travail.</aside>
+		
+		<p>Si vous ne connaissez pas le r&eacute;pertoire de travail, l'&eacute;tape 1 &eacute;chouera probablement avec le message <code>ImportError</code>. Pourquoi ? Parce que Python va chercher le module 'exemple' dans les <a href="your-first-python-program.html#importsearchpath">chemins de recherche d'imports</a>, mais il ne le trouvera pas parce que le r&eacute;pertoire <code>examples</code> ne fais pas partie de cette liste de chemins. Pour contourner ce probl&egrave;me vous pouvez faire l'une des choses suivantes:</p>
+		
+		<ol>
+			<li>Ajouter le r&eacute;pertoire <code>examples</code> &agrave; la liste des chemins d'imports</li>
+			<li>Changer le r&eacute;pertoire de travail pour qu'il devienne le r&eacute;pertoire <code>examples</code></li>
+		</ol>
+		
+		<p>Le r&eacute;pertoire de travail est une propri&eacute;t&eacute; invisible que le shell Python garde en m&eacute;moire constamment. Il y a toujours un r&eacute;pertoire de travail, que vous vous trouviez dans un shell Python, que vous lanciez vos propres scripts Python depuis la ligne de commande, ou que vous utilisiez un script <abbr>CGI</abbr> Python sur un serveur web.</p>
+		
+		<p>Le module <code>os</code> contient deux fonctions pour r&eacute;cup&eacute;rer et modifier le r&eacute;pertoire de travail.</p>
+		
+		<pre class="screen">
+<a><samp class="p">>>> </samp><kbd class="pp">import os</kbd>                                            <span class="u">&#x2460;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.getcwd())</kbd>                                   <span class="u">&#x2461;</span></a>
 <samp>C:\Python31</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>os.chdir('/Users/pilgrim/diveintopython3/examples')</kbd>  <span class=u>&#x2462;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.getcwd())</kbd>                                   <span class=u>&#x2463;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">os.chdir('/Users/pilgrim/diveintopython3/examples')</kbd>  <span class="u">&#x2462;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.getcwd())</kbd>                                   <span class="u">&#x2463;</span></a>
 <samp>C:\Users\pilgrim\diveintopython3\examples</samp></pre>
-<ol>
-<li>The <code>os</code> module comes with Python; you can import it anytime, anywhere.
-<li>Use the <code>os.getcwd()</code> function to get the current working directory. When you run the graphical Python Shell, the current working directory starts as the directory where the Python Shell executable is. On Windows, this depends on where you installed Python; the default directory is <code>c:\Python31</code>. If you run the Python Shell from the command line, the current working directory starts as the directory you were in when you ran <code>python3</code>.
-<li>Use the <code>os.chdir()</code> function to change the current working directory.
-<li>When I called the <code>os.chdir()</code> function, I used a Linux-style pathname (forward slashes, no drive letter) even though I&#8217;m on Windows. This is one of the places where Python tries to paper over the differences between operating systems.
-</ol>
+		
+		<ol>
+			<li>Le module <code>os</code> est standard dans Python; vous pouvez l'importer n'importe quand, n'importe o&ugrave;.</li>
+			
+			<li>Utilisez la fonction <code>os.getcwd()</code> pour r&eacute;cup&eacute;rer le r&eacute;pertoire de travail. Lorsque vous lancez le Shell Python graphique, le r&eacute;pertoire de travail est initialis&eacute; avec le r&eacute;pertoire d'o&ugrave; est lanc&eacute; l'ex&eacute;cutable du Shell Python. Sur Windows cela d&eacute;pends d'o&ugrave; vous avez install&eacute; Python, le r&eacute;pertoire par d&eacute;faut est <code>C:\Python31</code>. Si vous avez lanc&eacute; le Shell Python depuis la ligne de commande, le r&eacute;pertoire de travail est celui dans lequel vous &eacute;tiez avec la ligne de commande avant d'ex&eacute;cuter le Shell Python avec <code>python3</code>.</li>
+			
+			<li>Utilisez la fonction <code>os.chdir()</code> pour changer la valeur du r&eacute;pertoire de travail.</li>
+			<li>Lorsque j'ai appel&eacute; la fonction <code>os.chdir()</code>, j'ai utilis&eacute; un style de chemin Linux (slashes (non invers&eacute;s), pas d'indication de partition) alors que je suis sur Windows. C'est une des fonctions de Python, qui essaye au mieux de s'adapter au syst&egrave;me, en d&eacute;tectant que <code>/Users/pilgrim/</code> sur Windows n'est autre que <code>C:\Users\pilgrim\</code>.</li>
+		</ol>
+		
+		<h3 id="ospath">Travailler avec les noms de fichiers et de r&eacute;pertoires</h3>
+		
+		<p>Tant qu'on parle de r&eacute;pertoires, je voudrais vous parler du module <code>os.path</code> qui contient des fonctions vous permettant de manipuler les noms de fichiers et r&eacute;pertoires.</p>
 
-<h3 id=ospath>Working With Filenames and Directory Names</h3>
-
-<p>While we&#8217;re on the subject of directories, I want to point out the <code>os.path</code> module. <code>os.path</code> contains functions for manipulating filenames and directory names.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.path.join('/Users/pilgrim/diveintopython3/examples/', 'humansize.py'))</kbd>              <span class=u>&#x2460;</span></a>
+<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.path.join('/Users/pilgrim/diveintopython3/examples/', 'humansize.py'))</kbd>              <span class="u">&#x2460;</span></a>
 <samp>/Users/pilgrim/diveintopython3/examples/humansize.py</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.path.join('/Users/pilgrim/diveintopython3/examples', 'humansize.py'))</kbd>               <span class=u>&#x2461;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.path.join('/Users/pilgrim/diveintopython3/examples', 'humansize.py'))</kbd>               <span class="u">&#x2461;</span></a>
 <samp>/Users/pilgrim/diveintopython3/examples\humansize.py</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.path.expanduser('~'))</kbd>                                                               <span class=u>&#x2462;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.path.expanduser('~'))</kbd>                                                               <span class="u">&#x2462;</span></a>
 <samp>c:\Users\pilgrim</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.path.join(os.path.expanduser('~'), 'diveintopython3', 'examples', 'humansize.py'))</kbd>  <span class=u>&#x2463;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.path.join(os.path.expanduser('~'), 'diveintopython3', 'examples', 'humansize.py'))</kbd>  <span class="u">&#x2463;</span></a>
 <samp>c:\Users\pilgrim\diveintopython3\examples\humansize.py</samp></pre>
-<ol>
-<li>The <code>os.path.join()</code> function constructs a pathname out of one or more partial pathnames. In this case, it simply concatenates strings.
-<li>In this slightly less trivial case, calling the <code>os.path.join()</code> function will add an extra slash to the pathname before joining it to the filename. It&#8217;s a backslash instead of a forward slash, because I constructed this example on Windows. If you replicate this example on Linux or Mac OS X, you&#8217;ll see a forward slash instead. Don&#8217;t fuss with slashes; always use <code>os.path.join()</code> and let Python do the right thing.
-<li>The <code>os.path.expanduser()</code> function will expand a pathname that uses <code>~</code> to represent the current user&#8217;s home directory. This works on any platform where users have a home directory, including Linux, Mac OS X, and Windows. The returned path does not have a trailing slash, but the <code>os.path.join()</code> function doesn&#8217;t mind.
-<li>Combining these techniques, you can easily construct pathnames for directories and files in the user&#8217;s home directory. The <code>os.path.join()</code> function can take any number of arguments. I was overjoyed when I discovered this, since <code>addSlashIfNecessary()</code> is one of the stupid little functions I always need to write when building up my toolbox in a new language. <em>Do not</em> write this stupid little function in Python; smart people have already taken care of it for you.
-</ol>
 
-<p><code>os.path</code> also contains functions to split full pathnames, directory names, and filenames into their constituent parts.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>pathname = '/Users/pilgrim/diveintopython3/examples/humansize.py'</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>os.path.split(pathname)</kbd>                                        <span class=u>&#x2460;</span></a>
-<samp class=pp>('/Users/pilgrim/diveintopython3/examples', 'humansize.py')</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>(dirname, filename) = os.path.split(pathname)</kbd>                  <span class=u>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>dirname</kbd>                                                        <span class=u>&#x2462;</span></a>
-<samp class=pp>'/Users/pilgrim/diveintopython3/examples'</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>filename</kbd>                                                       <span class=u>&#x2463;</span></a>
-<samp class=pp>'humansize.py'</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>(shortname, extension) = os.path.splitext(filename)</kbd>            <span class=u>&#x2464;</span></a>
-<samp class=p>>>> </samp><kbd class=pp>shortname</kbd>
-<samp class=pp>'humansize'</samp>
-<samp class=p>>>> </samp><kbd class=pp>extension</kbd>
-<samp class=pp>'.py'</samp></pre>
-<ol>
-<li>The <code>split</code> function splits a full pathname and returns a tuple containing the path and filename.
-<li>Remember when I said you could use <a href=native-datatypes.html#multivar>multi-variable assignment</a> to return multiple values from a function? The <code>os.path.split()</code> function does exactly that. You assign the return value of the <code>split</code> function into a tuple of two variables. Each variable receives the value of the corresponding element of the returned tuple.
-<li>The first variable, <var>dirname</var>, receives the value of the first element of the tuple returned from the <code>os.path.split()</code> function, the file path.
-<li>The second variable, <var>filename</var>, receives the value of the second element of the tuple returned from the <code>os.path.split()</code> function, the filename.
-<li><code>os.path</code> also contains the <code>os.path.splitext()</code> function, which splits a filename and returns a tuple containing the filename and the file extension.  You use the same technique to assign each of them to separate variables.
-</ol>
-
-<h3 id=glob>Listing Directories</h3>
-
-<p>The <code>glob</code> module is another tool in the Python standard library. It&#8217;s an easy way to get the contents of a directory programmatically, and it uses the sort of wildcards that you may already be familiar with from working on the command line.
-
-<aside>The <code>glob</code> module uses shell-like wildcards.</aside>
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>os.chdir('/Users/pilgrim/diveintopython3/')</kbd>
-<samp class=p>>>> </samp><kbd class=pp>import glob</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>glob.glob('examples/*.xml')</kbd>                  <span class=u>&#x2460;</span></a>
-<samp class=pp>['examples\\feed-broken.xml',
+		<ol>
+			<li>La fonction <code>os.path.join()</code> permet de construire un chemin &agrave; partir de plusieurs chaines de caract&egrave;res. Dans l'exemple pr&eacute;sent elle concat&egrave;ne simplement les deux chaines.</li>
+			<li>Dans ce cas un peu moins trivial, l'appel &agrave; la fonction <code>os.path.join()</code> ajoutera un slash suppl&eacute;mentaire avant d'ajouter en fin la deuxi&egrave;me chaine de caract&egrave;res. C'est un backslash au lieu d'un slash car cet exemple est ex&eacute;cut&eacute; sur Windows. Si vous essayez ce bout de code sur Linux ou Mac OS X vous verrez que la m&eacute;thode ajoute bien un slash en lieu et place du backslash ci-pr&eacute;sent. Mais ne vous occupez pas des conventions de slashs, utilisez toujours <code>os.path.join()</code> et Python fera le reste pour vous.</li>
+			<li>La fonction <code>os.path.expanduser()</code> remplacera le caract&egrave;re <code>~</code> par le chemin vers le r&eacute;pertoire d'accueil de l'utilisateur actuel. Cela fonctionne sur n'importe quelle plateforme o&ugrave; les utilisateurs ont un r&eacute;pertoire d'accueil, ce qui inclus Linux, Mac OS X et Windows. Le r&eacute;sultat de la fonction ne se finis pas par un slash, mais la fonction <code>os.path.join()</code> n'en a pas besoin.</li>
+			<li>En combinant ces techniques, vous pouvez facilement construire des chemins vers des r&eacute;pertoires et fichiers situ&eacute;s dans votre r&eacute;pertoire d'accueil. La fonction <code>os.path.join()</code> peut prendre un nombre variable d'arguments. J'&eacute;tais ravi quand j'ai d&eacute;couvert &ccedil;a pour la premi&egrave;re fois, puisque jusqu'alors je devais souvent &eacute;crire une fonction similaire <code>addSlashIfNecessary()</code> dans chaque nouveau langage. <em>N'&eacute;crivez pas</em> cette fonction stupide en Python, des gens intelligents l'ont d&eacute;j&agrave; fait pour vous.</li>
+		</ol>
+		
+		<p>Le module <code>os.path</code> contient &eacute;galement des fonctions pour d&eacute;couper des chemins d'acc&egrave;s en diff&eacute;rentes parties les constituants (disque, liste de r&eacute;pertoires, nom de fichier, extension, etc.).</p>
+		
+<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">pathname = '/Users/pilgrim/diveintopython3/examples/humansize.py'</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">os.path.split(pathname)</kbd>                                        <span class="u">&#x2460;</span></a>
+<samp class="pp">('/Users/pilgrim/diveintopython3/examples', 'humansize.py')</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">(dirname, filename) = os.path.split(pathname)</kbd>                  <span class="u">&#x2461;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">dirname</kbd>                                                        <span class="u">&#x2462;</span></a>
+<samp class="pp">'/Users/pilgrim/diveintopython3/examples'</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">filename</kbd>                                                       <span class="u">&#x2463;</span></a>
+<samp class="pp">'humansize.py'</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">(shortname, extension) = os.path.splitext(filename)</kbd>            <span class="u">&#x2464;</span></a>
+<samp class="p">>>> </samp><kbd class="pp">shortname</kbd>
+<samp class="pp">'humansize'</samp>
+<samp class="p">>>> </samp><kbd class="pp">extension</kbd>
+<samp class="pp">'.py'</samp></pre>
+		<ol>
+			<li>La fonction <code>split()</code> permet de d&eacute;couper un chemin d'acc&egrave;s et retourne un n-uplet contenant l'emplacement (liste de r&eacute;pertoires) et le nom du fichier.</li>
+			<li>Vous souvenez-vous lorsque j'ai dis pouvoir utiliser <a href="native-datatypes.html#multivar">l'assignement de plusieurs variables</a> pour retourner plusieurs r&eacute;sultats d'une seule et m&ecirc;me fonction ? La fonction <code>os.path.split()</code> utilise ce m&ecirc;me m&eacute;canisme. On assigne le r&eacute;sultat de la fonction <code>split</code> &agrave; une paire de variables. Chaque variable re&ccedil;oit la valeur correspondant &agrave; son emplacement dans le n-uplet.</li>
+			<li>La premi&egrave;re variable, <var>dirname</var>, re&ccedil;oit la valeur du premier &eacute;l&eacute;ment du n-uplet retourn&eacute; par la fonction <code>os.path.split()</code>, l'emplacement du fichier.</li>
+			<li>La seconde variable, <var>filename</var>, re&ccedil;oit la valeur du second &eacute;l&eacute;ment du n-uplet retourn&eacute; par la fonction <code>os.path.split()</code>, le nom du fichier.</li>
+			<li>Le module <code>os.path</code> contient &eacute;galement la fonction <code>os.path.splitext()</code>, qui permet de d&eacute;couper un nom de fichier en deux composantes qui sont le nom du fichier ainsi que son extension. L&agrave; encore on peut utiliser la m&ecirc;me technique pour assigner ces deux r&eacute;sultats &agrave; deux diff&eacute;rentes variables.</li>
+		</ol>
+		
+		<h3 id="glob">Lister des r&eacute;pertoires</h3>
+		
+		<p>Le module <code>glob</code> est un autre fameux outil de la librairie standard Python. C'est un moyen facile de r&eacute;cup&eacute;rer le contenu d'un r&eacute;pertoire programmatiquement, et qui permet d'utiliser des caract&egrave;res joker semblables &agrave; ceux que vous connaissez d&eacute;j&agrave; en utilisant la ligne de commande de votre syst&egrave;me d'exploitation.</p>
+		
+		<aside>Le module <code>glob</code> comprends les jokers, comme un shell.</aside>
+		
+<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">os.chdir('/Users/pilgrim/diveintopython3/')</kbd>
+<samp class="p">>>> </samp><kbd class="pp">import glob</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">glob.glob('examples/*.xml')</kbd>                  <span class="u">&#x2460;</span></a>
+<samp class="pp">['examples\\feed-broken.xml',
  'examples\\feed-ns0.xml',
  'examples\\feed.xml']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>os.chdir('examples/')</kbd>                        <span class=u>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>glob.glob('*test*.py')</kbd>                       <span class=u>&#x2462;</span></a>
-<samp class=pp>['alphameticstest.py',
+<a><samp class="p">>>> </samp><kbd class="pp">os.chdir('examples/')</kbd>                        <span class="u">&#x2461;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">glob.glob('*test*.py')</kbd>                       <span class="u">&#x2462;</span></a>
+<samp class="pp">['alphameticstest.py',
  'pluraltest1.py',
  'pluraltest2.py',
  'pluraltest3.py',
@@ -140,243 +156,254 @@ body{counter-reset:h1 3}
  'romantest7.py',
  'romantest8.py',
  'romantest9.py']</samp></pre>
-<ol>
-<li>The <code>glob</code> module takes a wildcard and returns the path of all files and directories matching the wildcard. In this example, the wildcard is a directory path plus &#8220;<code>*.xml</code>&#8221;, which will match all <code>.xml</code> files in the <code>examples</code> subdirectory.
-<li>Now change the current working directory to the <code>examples</code> subdirectory. The <code>os.chdir()</code> function can take relative pathnames.
-<li>You can include multiple wildcards in your glob pattern. This example finds all the files in the current working directory that end in a <code>.py</code> extension and contain the word <code>test</code> anywhere in their filename.
-</ol>
+		
+		<ol>
+			<li>Le module <code>glob</code> prends un joker et retourne le chemin d'acc&egrave;s de chaque fichier et r&eacute;pertoires qui ont un nom similaire au joker. Dans cet exemple, le joker est un emplacement de r&eacute;pertoire plus &#8220;<code>*.xml</code>&#8221;, ce qui englobe donc tous les fichiers d'extension <code>.xml</code> dans le r&eacute;pertoire <code>examples</code>.</li>
+			<li>Ici on change the r&eacute;pertoire de travail vers le sous-r&eacute;pertoire <code>examples</code>. La fonction <code>os.chdir()</code> accepte &eacute;galement les chemins relatifs.</li>
+			<li>Vous pouvez utiliser plusieurs jokers dans votre recherche. Cet exemple trouve tous les fichiers dans le r&eacute;pertoire de travail qui ont <code>.py</code> comme extension et dont le nom contient <code>test</code>.</li>
+		</ol>
+		
+		<h3 id="osstat">R&eacute;cup&eacute;rer les m&eacute;ta-donn&eacute;es d'un fichier</h3>
+		
+		<p>Tous les syst&egrave;mes de fichiers modernes enregistrent des m&eacute;ta-donn&eacute;es accompagnant chaque fichier, comme par exemple sa date de cr&eacute;ation, la derni&egrave;re fois que le fichier a &eacute;t&eacute; modifi&eacute;, ainsi que sa taille, et tout un tas d'informations suppl&eacute;mentaires. Python nous fournit une <abbr>API</abbr> pour acc&eacute;der &agrave; cex m&eacute;ta-donn&eacute;es, sans m&ecirc;me ouvrir le fichier en question, le nom du fichier est l'unique param&egrave;tre dont Python &agrave; besoin.</p>
 
-<h3 id=osstat>Getting File Metadata</h3>
-
-<p>Every modern file system stores metadata about each file: creation date, last-modified date, file size, and so on. Python provides a single <abbr>API</abbr> to access this metadata. You don&#8217;t need to open the file; all you need is the filename.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>print(os.getcwd())</kbd>                 <span class=u>&#x2460;</span></a>
-<samp class=pp>c:\Users\pilgrim\diveintopython3\examples</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata = os.stat('feed.xml')</kbd>     <span class=u>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata.st_mtime</kbd>                  <span class=u>&#x2462;</span></a>
-<samp class=pp>1247520344.9537716</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>import time</kbd>                        <span class=u>&#x2463;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>time.localtime(metadata.st_mtime)</kbd>  <span class=u>&#x2464;</span></a>
-<samp class=pp>time.struct_time(tm_year=2009, tm_mon=7, tm_mday=13, tm_hour=17,
+<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">print(os.getcwd())</kbd>                 <span class="u">&#x2460;</span></a>
+<samp class="pp">c:\Users\pilgrim\diveintopython3\examples</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata = os.stat('feed.xml')</kbd>     <span class="u">&#x2461;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata.st_mtime</kbd>                  <span class="u">&#x2462;</span></a>
+<samp class="pp">1247520344.9537716</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">import time</kbd>                        <span class="u">&#x2463;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">time.localtime(metadata.st_mtime)</kbd>  <span class="u">&#x2464;</span></a>
+<samp class="pp">time.struct_time(tm_year=2009, tm_mon=7, tm_mday=13, tm_hour=17,
   tm_min=25, tm_sec=44, tm_wday=0, tm_yday=194, tm_isdst=1)</samp>
 </pre>
-<ol>
-<li>The current working directory is the <code>examples</code> folder.
-<li><code>feed.xml</code> is a file in the <code>examples</code> folder. Calling the <code>os.stat()</code> function returns an object that contains several different types of metadata about the file.
-<li><code>st_mtime</code> is the modification time, but it&#8217;s in a format that isn&#8217;t terribly useful. (Technically, it&#8217;s the number of seconds since the Epoch, which is defined as the first second of January 1st, 1970. Seriously.)
-<li>The <code>time</code> module is part of the Python standard library. It contains functions to convert between different time representations, format time values into strings, and fiddle with timezones.
-<li>The <code>time.localtime()</code> function converts a time value from seconds-since-the-Epoch (from the <code>st_mtime</code> property returned from the <code>os.stat()</code> function) into a more useful structure of year, month, day, hour, minute, second, and so on. This file was last modified on July 13, 2009, at around 5:25 PM.
-</ol>
+		
+		<ol>
+			<li>Le r&eacute;pertoire de travail est fix&eacute; &agrave; <code>examples</code>.</li>
+			<li><code>feed.xml</code> est un fichier du r&eacute;pertoire <code>examples</code>. L'appel &agrave; la fonction <code>os.stat()</code> retourne un objet qui contiens diff&eacute;rentes m&eacute;ta-donn&eacute;es &agrave; propos du fichier.</li>
+			<li><code>st_mtime</code> est la date de derni&egrave;re modification dans un format pas directement utilisable. (Techniquement, la valeur correspond au nombre de secondes depuis Epoch, c'est &agrave; dire la premi&egrave;re seconde du 1er Janvier 1970. Sans rire.)</li>
+			<li>Le module <code>time</code> fais partie dans la librairie standard Python. Il contiens des fonctions permettant de convertir des temps entre diff&eacute;rents syst&egrave;mes de repr&eacute;sentations, de formater des dates en cha&icirc;nes de caract&egrave;res et de travailler avec les zones horaires.</li>
+			<li>La fonction <code>time.localtime()</code> permet de convertir un temps Epoch (par exemple la valeur de la propri&eacute;t&eacute; <code>st_mtime</code> de l'objet retourn&eacute; par la fonction <code>os.stat()</code>) en une structure plus utile contenant l'ann&eacute;e, le mois, la date, l'heure, les minutes, les secondes, etc. Ce fichier a &eacute;t&eacute; modifi&eacute; pour la derni&egrave;re fois le 13 Juillet 2009 &agrave; 17h25 et 44 secondes.</li>
+		</ol>
 
-<pre class=screen>
+<pre class="screen">
 # continued from the previous example
-<a><samp class=p>>>> </samp><kbd class=pp>metadata.st_size</kbd>                              <span class=u>&#x2460;</span></a>
-<samp class=pp>3070</samp>
-<samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>humansize.approximate_size(metadata.st_size)</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=pp>'3.0 KiB'</samp></pre>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata.st_size</kbd>                              <span class="u">&#x2460;</span></a>
+<samp class="pp">3070</samp>
+<samp class="p">>>> </samp><kbd class="pp">import humansize</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">humansize.approximate_size(metadata.st_size)</kbd>  <span class="u">&#x2461;</span></a>
+<samp class="pp">'3.0 KiB'</samp></pre>
+		
 <ol>
-<li>The <code>os.stat()</code> function also returns the size of a file, in the <code>st_size</code> property. The file <code>feed.xml</code> is <code>3070</code> bytes.
-<li>You can pass the <code>st_size</code> property to the <a href=your-first-python-program.html#divingin><code>approximate_size()</code> function</a>.
+<li>La fonction <code>os.stat()</code> retourne &eacute;galement la taille du fichier, stock&eacute; dans la propri&eacute;t&eacute; <code>st_size</code>. Le fichier <code>feed.xml</code> a une taille de <code>3070</code> bytes.</li>
+<li>On peut passer la valeur de <code>st_size</code> &agrave; la fonction <a href="your-first-python-program.html#divingin"><code>approximate_size()</code></a>.</li>
 </ol>
 
-<h3 id=abspath>Constructing Absolute Pathnames</h3>
+		<h3 id="abspath">Construire des chemins d'acc&egrave;s absolus</h3>
+		
+		<p>Dans la <a href="#osstat">partie pr&eacute;c&eacute;dente</a>, la fonction <code>glob.glob()</code> retournais une liste de chemins relatifs. Le premier exemple renvoyais des chemins comme <code>'examples\feed.xml'</code>, et le second avais m&ecirc;me des chemins plus court comme <code>'romantest1.py'</code>. Tant que vous restez dans le m&ecirc;me r&eacute;pertoire de travail ces chemins d'acc&egrave;s seront toujours valides pour ouvrir des fichiers ou r&eacute;cup&eacute;rer leurs m&eacute;ta-donn&eacute;es. Mais si vous voulez construire des chemins absolus &nbsp;&mdash;&nbsp;<i>i.e.</i> un chemin qui inclut tous les r&eacute;pertoires remontant jusqu'&agrave; la racine de votre syst&egrave;me de fichier ou jusqu'&agrave; la lettre de votre disque dur&nbsp;&mdash;&nbsp;alors vous aurez besoin de la fonction <code>os.path.realpath()</code>.</p>
+		
+<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os</kbd>
+<samp class="p">>>> </samp><kbd class="pp">print(os.getcwd())</kbd>
+<samp class="pp">c:\Users\pilgrim\diveintopython3\examples</samp>
+<samp class="p">>>> </samp><kbd class="pp">print(os.path.realpath('feed.xml'))</kbd>
+<samp class="pp">c:\Users\pilgrim\diveintopython3\examples\feed.xml</samp></pre>
 
-<p>In <a href=#osstat>the previous section</a>, the <code>glob.glob()</code> function returned a list of relative pathnames. The first example had pathnames like <code>'examples\feed.xml'</code>, and the second example had even shorter relative pathnames like <code>'romantest1.py'</code>. As long as you stay in the same current working directory, these relative pathnames will work for opening files or getting file metadata. But if you want to construct an absolute pathname&nbsp;&mdash;&nbsp;<i>i.e.</i> one that includes all the directory names back to the root directory or drive letter&nbsp;&mdash;&nbsp;then you&#8217;ll need the <code>os.path.realpath()</code> function.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os</kbd>
-<samp class=p>>>> </samp><kbd class=pp>print(os.getcwd())</kbd>
-<samp class=pp>c:\Users\pilgrim\diveintopython3\examples</samp>
-<samp class=p>>>> </samp><kbd class=pp>print(os.path.realpath('feed.xml'))</kbd>
-<samp class=pp>c:\Users\pilgrim\diveintopython3\examples\feed.xml</samp></pre>
-
-<p class=a>&#x2042;
-
-<h2 id=listcomprehension>List Comprehensions</h2>
-
-<aside>You can use any Python expression in a list comprehension.</aside>
-
-<p>A <dfn>list comprehension</dfn> provides a compact way of mapping a list into another list by applying a function to each of the elements of the list.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>a_list = [1, 9, 8, 4]</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>[elem * 2 for elem in a_list]</kbd>           <span class=u>&#x2460;</span></a>
-<samp class=pp>[2, 18, 16, 8]</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list</kbd>                                  <span class=u>&#x2461;</span></a>
-<samp class=pp>[1, 9, 8, 4]</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list = [elem * 2 for elem in a_list]</kbd>  <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp class=pp>[2, 18, 16, 8]</samp></pre>
-<ol>
-<li>To make sense of this, look at it from right to left. <var>a_list</var> is the list you&#8217;re mapping. The Python interpreter loops through <var>a_list</var> one element at a time, temporarily assigning the value of each element to the variable <var>elem</var>. Python then applies the function <code><var>elem</var> * 2</code> and appends that result to the returned list.
-<li>A list comprehension creates a new list; it does not change the original list.
-<li>It is safe to assign the result of a list comprehension to the variable that you&#8217;re mapping. Python constructs the new list in memory, and when the list comprehension is complete, it assigns the result to the original variable.
-</ol>
-
-<p>You can use any Python expression in a list comprehension, including the functions in the <code>os</code> module for manipulating files and directories.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>glob.glob('*.xml')</kbd>                                 <span class=u>&#x2460;</span></a>
-<samp class=pp>['feed-broken.xml', 'feed-ns0.xml', 'feed.xml']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>[os.path.realpath(f) for f in glob.glob('*.xml')]</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=pp>['c:\\Users\\pilgrim\\diveintopython3\\examples\\feed-broken.xml',
+		<p class="a">&#x2042;</p>
+		
+		<h2 id="listcomprehension">Les compr&eacute;hensions de liste</h2>
+		
+		<aside>Toute expression Python est valide pour construire des compr&eacute;hension de liste.</aside>
+		
+		<p>Les <dfn>compr&eacute;hensions de liste</dfn> fournissent une mani&egrave;re compacte de cr&eacute;er une liste &agrave; partir d'une autre, en appliquant une fonction &agrave; chaque &eacute;l&eacute;ment de la liste originale.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">a_list = [1, 9, 8, 4]</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">[elem * 2 for elem in a_list]</kbd>           <span class="u">&#x2460;</span></a>
+<samp class="pp">[2, 18, 16, 8]</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">a_list</kbd>                                  <span class="u">&#x2461;</span></a>
+<samp class="pp">[1, 9, 8, 4]</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">a_list = [elem * 2 for elem in a_list]</kbd>  <span class="u">&#x2462;</span></a>
+<samp class="p">>>> </samp><kbd>a_list</kbd>
+<samp class="pp">[2, 18, 16, 8]</samp></pre>
+		
+		<ol>
+			<li>Pour comprendre cet exemple, lisez le de droite &agrave; gauche. <var>a_list</var> est la liste de d&eacute;part. L'interpr&egrave;te Python boucle sur tous les &eacute;l&eacute;ments de la liste <var>a_list</var> un par un, tout en assignant temporairement la valeur de chaque &eacute;l&eacute;ment &agrave; la variable <var>elem</var>. Python applique ensuite la fonction <code><var>elem</var> * 2</code> et ajoute le r&eacute;sultat &agrave; la liste retourn&eacute;e en r&eacute;sultat.</li>
+			<li>Une compr&eacute;hension de liste cr&eacute;e une nouvelle liste; elle ne change pas la liste de d&eacute;part.</li>
+			<li>Assigner le r&eacute;sultat d'une compr&eacute;hension de liste &agrave; la liste de d&eacute;part est valide. Python construit la nouvelle liste en m&eacute;moire, et lorsque la compr&eacute;hension de liste est compl&egrave;te, elle assigne le r&eacute;sultat &agrave; la liste de d&eacute;part, &eacute;crasant ainsi l'ancienne liste.</li>
+		</ol>
+		
+		<p>Vous pouvez utiliser n'importe quelle expression Python lors de la construction d'une compr&eacute;hension de liste, cela veut dire qu'on peut &eacute;galement utiliser les fonctions du module <code>os</code> pour manipuler les fichiers et r&eacute;pertoires.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">glob.glob('*.xml')</kbd>                                 <span class="u">&#x2460;</span></a>
+<samp class="pp">['feed-broken.xml', 'feed-ns0.xml', 'feed.xml']</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">[os.path.realpath(f) for f in glob.glob('*.xml')]</kbd>  <span class="u">&#x2461;</span></a>
+<samp class="pp">['c:\\Users\\pilgrim\\diveintopython3\\examples\\feed-broken.xml',
  'c:\\Users\\pilgrim\\diveintopython3\\examples\\feed-ns0.xml',
  'c:\\Users\\pilgrim\\diveintopython3\\examples\\feed.xml']</samp>
 </pre>
-<ol>
-<li>This returns a list of all the <code>.xml</code> files in the current working directory.
-<li>This list comprehension takes that list of <code>.xml</code> files and transforms it into a list of full pathnames.
-</ol>
-
-<p>List comprehensions can also filter items, producing a result that can be smaller than the original list.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>[f for f in glob.glob('*.py') if os.stat(f).st_size > 6000]</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=pp>['pluraltest6.py',
+		
+		<ol>
+			<li>Ici, on retourne une liste de tous les fichiers d'extension <code>.xml</code> du r&eacute;pertoire de travail.</li>
+			<li>Cette compr&eacute;hension de liste prends tous les fichiers d'extension <code>.xml</code> et les transforme en une liste contenant des chemins absolus vers ces fichiers.</li>
+		</ol>
+		
+		<p>Les compr&eacute;hensions de liste peuvent &eacute;galement filtrer des &eacute;l&eacute;ments, produisant ainsi un r&eacute;sultat qui peut &ecirc;tre plus court que l'original.</p>
+		
+<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">[f for f in glob.glob('*.py') if os.stat(f).st_size > 6000]</kbd>  <span class="u">&#x2460;</span></a>
+<samp class="pp">['pluraltest6.py',
  'romantest10.py',
  'romantest6.py',
  'romantest7.py',
  'romantest8.py',
  'romantest9.py']</samp>
 </pre>
-<ol>
-<li>To filter a list, you can include an <code>if</code> clause at the end of the list comprehension. The expression after the <code>if</code> keyword will be evaluated for each item in the list. If the expression evaluates to <code>True</code>, the item will be included in the output. This list comprehension looks at the list of all <code>.py</code> files in the current directory, and the <code>if</code> expression filters that list by testing whether the size of each file is greater than <code>6000</code> bytes. There are six such files, so the list comprehension returns a list of six filenames.
-</ol>
-
-<p>All the examples of list comprehensions so far have featured simple expressions&nbsp;&mdash;&nbsp;multiply a number by a constant, call a single function, or simply return the original list item (after filtering). But there&#8217;s no limit to how complex a list comprehension can be.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>[(os.stat(f).st_size, os.path.realpath(f)) for f in glob.glob('*.xml')]</kbd>            <span class=u>&#x2460;</span></a>
-<samp class=pp>[(3074, 'c:\\Users\\pilgrim\\diveintopython3\\examples\\feed-broken.xml'),
+		
+		<ol>
+			<li>Pour filtrer une liste, on peut utiliser une clause <code>if</code> &agrave; la fin de la compr&eacute;hension de liste. L'expression apr&egrave;s le mot cl&eacute; <code>if</code> sera &eacute;valu&eacute;e pour chaque &eacute;l&eacute;ment de la liste. Si cette expression vaut <code>True</code>, l'&eacute;l&eacute;ment sera inclus dans le r&eacute;sultat final. Cette compr&eacute;hension de liste recherche tous les fichiers d'extension <code>.py</code> situ&eacute;s dans le r&eacute;pertoire de travail, et l'expression <code>if</code> filtre les fichiers dont la taille est sup&eacute;rieure &agrave; <code>6000</code> bytes. Il y a six fichiers corr&eacute;spondants &agrave; ces crit&egrave;res, c'est pourquoi la liste r&eacute;sultant du filtrage contient six &eacute;l&eacute;ments.</li>
+		</ol>
+		
+		<p>Tous les exemples jusqu'&agrave; pr&eacute;sent ont montr&eacute; de simples expressions&nbsp;&mdash;&nbsp;multiplier un nombre par une constante, appeler une fonction, ou simplement retourner l'&eacute;l&eacute;ment de d&eacute;part (apr&egrave;s filtrage). Mais il n'y a pas de limites &agrave; la compl&eacute;xit&eacute; que peut avoir une compr&eacute;hension de liste.</p>
+			
+			<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">[(os.stat(f).st_size, os.path.realpath(f)) for f in glob.glob('*.xml')]</kbd>            <span class="u">&#x2460;</span></a>
+<samp class="pp">[(3074, 'c:\\Users\\pilgrim\\diveintopython3\\examples\\feed-broken.xml'),
  (3386, 'c:\\Users\\pilgrim\\diveintopython3\\examples\\feed-ns0.xml'),
  (3070, 'c:\\Users\\pilgrim\\diveintopython3\\examples\\feed.xml')]</samp>
-<samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>[(humansize.approximate_size(os.stat(f).st_size), f) for f in glob.glob('*.xml')]</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=pp>[('3.0 KiB', 'feed-broken.xml'),
+<samp class="p">>>> </samp><kbd class="pp">import humansize</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">[(humansize.approximate_size(os.stat(f).st_size), f) for f in glob.glob('*.xml')]</kbd>  <span class="u">&#x2461;</span></a>
+<samp class="pp">[('3.0 KiB', 'feed-broken.xml'),
  ('3.3 KiB', 'feed-ns0.xml'),
  ('3.0 KiB', 'feed.xml')]</samp></pre>
-<ol>
-<li>This list comprehension finds all the <code>.xml</code> files in the current working directory, gets the size of each file (by calling the <code>os.stat()</code> function), and constructs a tuple of the file size and the absolute path of each file (by calling the <code>os.path.realpath()</code> function).
-<li>This comprehension builds on the previous one to call the <a href=your-first-python-program.html#divingin><code>approximate_size()</code> function</a> with the file size of each <code>.xml</code> file.
-</ol>
+		
+		<ol>
+			<li>Cette compr&eacute;hension de liste trouve tous les fichiers d'extension <code>.xml</code> dans le r&eacute;pertoire de travail, r&eacute;cup&egrave;re la taille de chaque fichier (&agrave; l'aide la fonction <code>os.stat()</code>), et construit une paire constitu&eacute;e de la taille du fichier ainsi que de son emplacement (chemin absolu, &agrave; l'aide de la fonction <code>os.path.realpath()</code>).</li>
+			<li>Cette compr&eacute;hension de liste construite &agrave; partir de l'exemple pr&eacute;c&eacute;dent, fait &eacute;galement appel &agrave; la <a href="your-first-python-program.html#divingin">fonction <code>approximate_size()</code></a>.</li>
+		</ol>
 
-<p class=a>&#x2042;
-
-<h2 id=dictionarycomprehension>Dictionary Comprehensions</h2>
-
-<p>A <dfn>dictionary comprehension</dfn> is like a list comprehension, but it constructs a dictionary instead of a list.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata = [(f, os.stat(f)) for f in glob.glob('*test*.py')]</kbd>    <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata[0]</kbd>                                                     <span class=u>&#x2461;</span></a>
-<samp class=pp>('alphameticstest.py', nt.stat_result(st_mode=33206, st_ino=0, st_dev=0,
+		<p class="a">&#x2042;</p>
+		
+		<h2 id="dictionarycomprehension">Les compr&eacute;hensions de dictionnaire</h2>
+		
+		<p>Une <dfn>compr&eacute;hension de dictionnaire</dfn> est similaire &agrave; une compr&eacute;hension de liste, mais celle-ci construit un dictionnaire &agrave; la place d'une liste.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata = [(f, os.stat(f)) for f in glob.glob('*test*.py')]</kbd>    <span class="u">&#x2460;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata[0]</kbd>                                                     <span class="u">&#x2461;</span></a>
+<samp class="pp">('alphameticstest.py', nt.stat_result(st_mode=33206, st_ino=0, st_dev=0,
  st_nlink=0, st_uid=0, st_gid=0, st_size=2509, st_atime=1247520344,
  st_mtime=1247520344, st_ctime=1247520344))</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata_dict = {f:os.stat(f) for f in glob.glob('*test*.py')}</kbd>  <span class=u>&#x2462;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>type(metadata_dict)</kbd>                                             <span class=u>&#x2463;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata_dict = {f:os.stat(f) for f in glob.glob('*test*.py')}</kbd>  <span class="u">&#x2462;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">type(metadata_dict)</kbd>                                             <span class="u">&#x2463;</span></a>
 <samp>&lt;class 'dict'></samp>
-<a><samp class=p>>>> </samp><kbd class=pp>list(metadata_dict.keys())</kbd>                                      <span class=u>&#x2464;</span></a>
-<samp class=pp>['romantest8.py', 'pluraltest1.py', 'pluraltest2.py', 'pluraltest5.py',
+<a><samp class="p">>>> </samp><kbd class="pp">list(metadata_dict.keys())</kbd>                                      <span class="u">&#x2464;</span></a>
+<samp class="pp">['romantest8.py', 'pluraltest1.py', 'pluraltest2.py', 'pluraltest5.py',
  'pluraltest6.py', 'romantest7.py', 'romantest10.py', 'romantest4.py',
  'romantest9.py', 'pluraltest3.py', 'romantest1.py', 'romantest2.py',
  'romantest3.py', 'romantest5.py', 'romantest6.py', 'alphameticstest.py',
  'pluraltest4.py']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata_dict['alphameticstest.py'].st_size</kbd>                     <span class=u>&#x2465;</span></a>
-<samp class=pp>2509</samp></pre>
-<ol>
-<li>This is not a dictionary comprehension; it&#8217;s a <a href=#listcomprehension>list comprehension</a>. It finds all <code>.py</code> files with <code>test</code> in their name, then constructs a tuple of the filename and the file metadata (from calling the <code>os.stat()</code> function).
-<li>Each item of the resulting list is a tuple.
-<li>This is a dictionary comprehension. The syntax is similar to a list comprehension, with two differences. First, it is enclosed in curly braces instead of square brackets. Second, instead of a single expression for each item, it contains two expressions separated by a colon. The expression before the colon (<code>f</code> in this example) is the dictionary key; the expression after the colon (<code>os.stat(f)</code> in this example) is the value.
-<li>A dictionary comprehension returns a dictionary.
-<li>The keys of this particular dictionary are simply the filenames returned from the call to <code>glob.glob('*test*.py')</code>.
-<li>The value associated with each key is the return value from the <code>os.stat()</code> function. That means we can &#8220;look up&#8221; a file by name in this dictionary to get its file metadata. One of the pieces of metadata is <code>st_size</code>, the file size. The file <code>alphameticstest.py</code> is <code>2509</code> bytes long.
-</ol>
-
-<p>Like list comprehensions, you can include an <code>if</code> clause in a dictionary comprehension to filter the input sequence based on an expression which is evaluated with each item.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>import os, glob, humansize</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>metadata_dict = {f:os.stat(f) for f in glob.glob('*')}</kbd>                                  <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>humansize_dict = {os.path.splitext(f)[0]:humansize.approximate_size(meta.st_size) \     </kbd>
-<samp class=p>... </samp><kbd class=pp>                  for f, meta in metadata_dict.items() if meta.st_size > 6000}</kbd>          <span class=u>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>list(humansize_dict.keys())</kbd>                                                             <span class=u>&#x2462;</span></a>
-<samp class=pp>['romantest9', 'romantest8', 'romantest7', 'romantest6', 'romantest10', 'pluraltest6']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>humansize_dict['romantest9']</kbd>                                                            <span class=u>&#x2463;</span></a>
-<samp class=pp>'6.5 KiB'</samp></pre>
-<ol>
-<li>This dictionary comprehension constructs a list of all the files in the current working directory (<code>glob.glob('*')</code>), gets the file metadata for each file (<code>os.stat(f)</code>), and constructs a dictionary whose keys are filenames and whose values are the metadata for each file.
-<li>This dictionary comprehension builds on the previous comprehension, filters out files smaller than <code>6000</code> bytes (<code>if meta.st_size > 6000</code>), and uses that filtered list to construct a dictionary whose keys are the filename minus the extension (<code>os.path.splitext(f)[0]</code>) and whose values are the approximate size of each file (<code>humansize.approximate_size(meta.st_size)</code>).
-<li>As you saw in a previous example, there are six such files, thus there are six items in this dictionary.
-<li>The value of each key is the string returned from the <code>approximate_size()</code> function.
-</ol>
-
-<h3 id=stupiddicttricks>Other Fun Stuff To Do With Dictionary Comprehensions</h3>
-
-<p>Here&#8217;s a trick with dictionary comprehensions that might be useful someday: swapping the keys and values of a dictionary.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>a_dict = {'a': 1, 'b': 2, 'c': 3}</kbd>
-<samp class=p>>>> </samp><kbd class=pp>{value:key for key, value in a_dict.items()}</kbd>
-<samp class=pp>{1: 'a', 2: 'b', 3: 'c'}</samp></pre>
-
-<p>Of course, this only works if the values of the dictionary are immutable, like strings or tuples. If you try this with a dictionary that contains lists, it will fail most spectacularly.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>a_dict = {'a': [1, 2, 3], 'b': 4, 'c': 5}</kbd>
-<samp class=p>>>> </samp><kbd class=pp>{value:key for key, value in a_dict.items()}</kbd>
-<samp class=traceback>Traceback (most recent call last):
+<a><samp class="p">>>> </samp><kbd class="pp">metadata_dict['alphameticstest.py'].st_size</kbd>                     <span class="u">&#x2465;</span></a>
+<samp class="pp">2509</samp></pre>
+		
+		<ol>
+			<li>Ceci n'est pas une compr&eacute;hension de dictionnaire, c'est une <a href="#listcomprehension">compr&eacute;hension de liste</a> qui recherche les fichiers d'extension <code>.py</code> dont le nom contient <code>test</code>, et construit une paire constitu&eacute;e du nom de fichier et de ses m&eacute;ta-donn&eacute;es (&agrave; l'aide de la fonction <code>os.stat()</code>).</li>
+			<li>Chaque &eacute;l&eacute;ment de la liste est une paire.</li>
+			<li>Ceci est une compr&eacute;hension de dictionnaire. La syntaxe est similaire &agrave; celle d'une compr&eacute;hension de liste, &agrave; deux diff&eacute;rences pr&egrave;s. Premi&egrave;rement, elle est entour&eacute;e d'accolades et non pas de crochets. Deuxi&egrave;mement, au lieu d'une seule expression pour chaque &eacute;l&eacute;ment, elle contient deux expressions s&eacute;par&eacute;es par le caract&egrave;re double points. L'expression avant les double points (<code>f</code> dans l'exemple) sera la cl&eacute; du dictionnaire; l'autre expression (<code>os.stat(f)</code> dans l'exemple) sera la valeur associ&eacute;e.</li>
+			<li>Une compr&eacute;hension de dictionnaire retourne un dictionnaire.</li>
+			<li>Les cl&eacute;s de ce dictionnaire sont les noms de fichiers retourn&eacute;s par l'appel &agrave; la fonction <code>glob.glob('*test*.py')</code>.</li>
+			<li>La valeur associ&eacute;e &agrave; chaque cl&eacute; est le r&eacute;sultat de la fonction <code>os.stat()</code> sur cette cl&eacute; (le fichier). Ce la veut dire qu'on peut rechercher un fichier par son nom dans ce dictionnaire, et y trouver ses m&eacute;ta-donn&eacute;es. Une des m&eacute;ta-donn&eacute;es est la taille du fichier, repr&eacute;sent&eacute;e par <code>st_size</code>. Le fichier <code>alphameticstest.py</code> a une taille de <code>2509</code> bytes.</li>
+		</ol>
+		
+		<p>Tout comme pour les listes, les compr&eacute;hensions de dictionnaire permettent d'utiliser une clause <code>if</code> pour filtrer la s&eacute;quence en entr&eacute;e.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">import os, glob, humansize</kbd>
+<a><samp class="p">>>> </samp><kbd class="pp">metadata_dict = {f:os.stat(f) for f in glob.glob('*')}</kbd>                                  <span class="u">&#x2460;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">humansize_dict = {os.path.splitext(f)[0]:humansize.approximate_size(meta.st_size) \     </kbd>
+<samp class="p">... </samp><kbd class="pp">                  for f, meta in metadata_dict.items() if meta.st_size > 6000}</kbd>          <span class="u">&#x2461;</span></a>
+<a><samp class="p">>>> </samp><kbd class="pp">list(humansize_dict.keys())</kbd>                                                             <span class="u">&#x2462;</span></a>
+<samp class="pp">['romantest9', 'romantest8', 'romantest7', 'romantest6', 'romantest10', 'pluraltest6']</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">humansize_dict['romantest9']</kbd>                                                            <span class="u">&#x2463;</span></a>
+<samp class="pp">'6.5 KiB'</samp></pre>
+		
+		<ol>
+			<li>Cette compr&eacute;hension de dictionnaire construit une liste de tous les fichiers du r&eacute;pertoire de travail (<code>glob.glob('*')</code>), r&eacute;cup&egrave;re les m&eacute;ta-données de chaque fichier (<code>os.stat(f)</code>), et construit un dictionnaire qui a pour cl&eacute;s les noms de fichiers et pour valeurs les m&eacute;ta-donn&eacute;es de chaque fichier.</li>
+			<li>Cette compr&eacute;hension de dictionnaire bas&eacute;e sur l'exemple pr&eacute;c&eacute;dent filtre les fichiers dont la taille est inf&eacute;rieure &agrave; <code>6000</code> bytes (<code>if meta.st_size > 6000</code>), et utilise cette liste filtr&eacute;e pour construire un dictionnaire dont les cl&eacute;s sont les noms de fichiers sans leur extension (<code>os.path.splitext(f)[0]</code>) et dont les valeurs sont la taille approximative de chaque fichier (<code>humansize.approximate_size(meta.st_size)</code>).</li>
+			<li>Comme on l'a vu auparavant, il y a six fichiers correspondant à ces crit&eacute;res, il y a donc 6 entrées dans le dictionnaire.</li>
+			<li>La valeur de chaque cl&eacute; est la cha&icirc;ne de caractère r&eacute;sultant de l'appel &agrave; la fonction <code>approximate_size()</code>.</li>
+		</ol>
+		
+		<h3 id="stupiddicttricks">Un autre truc cool avec les compr&eacute;hension de dictionnaire</h3>
+		
+		<p>Voici une astuce sur les compr&eacute;hension de dictionnaire qui pourrait bien vous servir un jour: intervertir les cl&eacute;s et valeurs d'un dictionnaire.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">a_dict = {'a': 1, 'b': 2, 'c': 3}</kbd>
+<samp class="p">>>> </samp><kbd class="pp">{value:key for key, value in a_dict.items()}</kbd>
+<samp class="pp">{1: 'a', 2: 'b', 3: 'c'}</samp></pre>
+		
+		<p>Biensur, &ccedil;a ne fonctionne que si les valeurs du dictionnaire sont immuables, comme des cha&icirc;nes de caract&egrave;res ou des n-uplet. Si vous essayez avec un dictionnaire dont les valeurs sont des listes, &ccedil;a ne fonctionnera pas du tout.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">a_dict = {'a': [1, 2, 3], 'b': 4, 'c': 5}</kbd>
+<samp class="p">>>> </samp><kbd class="pp">{value:key for key, value in a_dict.items()}</kbd>
+<samp class="traceback">Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
   File "&lt;stdin>", line 1, in &lt;dictcomp>
 TypeError: unhashable type: 'list'</samp></pre>
-
-<p class=a>&#x2042;
-
-<h2 id=setcomprehension>Set Comprehensions</h2>
-
-<p>Not to be left out, sets have their own comprehension syntax as well. It is remarkably similar to the syntax for dictionary comprehensions. The only difference is that sets just have values instead of key:value pairs.
-
-<pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>a_set = set(range(10))</kbd>
-<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
-<samp class=pp>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>{x ** 2 for x in a_set}</kbd>           <span class=u>&#x2460;</span></a>
-<samp class=pp>{0, 1, 4, 81, 64, 9, 16, 49, 25, 36}</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>{x for x in a_set if x % 2 == 0}</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=pp>{0, 8, 2, 4, 6}</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>{2**x for x in range(10)}</kbd>         <span class=u>&#x2462;</span></a>
-<samp class=pp>{32, 1, 2, 4, 8, 64, 128, 256, 16, 512}</samp>
+		
+		<p class="a">&#x2042;</p>
+		
+		<h2 id="setcomprehension">Compr&eacute;hensions d'ensemble</h2>
+		
+		<p>Pour ne pas l'oublier, les ensembles ont aussi leur syntaxe de compr&eacute;hension. Elle est presque identique &agrave; celle des dictionnaires, &agrave; ceci pr&egrave;s qu'un ensemble ne contient que des valeurs et non des paires de cl&eacute;:valeur.</p>
+		
+		<pre class="screen">
+<samp class="p">>>> </samp><kbd class="pp">a_set = set(range(10))</kbd>
+<samp class="p">>>> </samp><kbd class="pp">a_set</kbd>
+<samp class="pp">{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">{x ** 2 for x in a_set}</kbd>           <span class="u">&#x2460;</span></a>
+<samp class="pp">{0, 1, 4, 81, 64, 9, 16, 49, 25, 36}</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">{x for x in a_set if x % 2 == 0}</kbd>  <span class="u">&#x2461;</span></a>
+<samp class="pp">{0, 8, 2, 4, 6}</samp>
+<a><samp class="p">>>> </samp><kbd class="pp">{2**x for x in range(10)}</kbd>         <span class="u">&#x2462;</span></a>
+<samp class="pp">{32, 1, 2, 4, 8, 64, 128, 256, 16, 512}</samp>
 </pre>
-<ol>
-<li>Set comprehensions can take a set as input. This set comprehension calculates the squares of the set of numbers from 0 to <code>9</code>.
-<li>Like list comprehensions and dictionary comprehensions, set comprehensions can contain an <code>if</code> clause to filter each item before returning it in the result set.
-<li>Set comprehensions do not need to take a set as input; they can take any sequence.
-</ol>
-
-<p class=a>&#x2042;
-
-<h2 id=furtherreading>Further Reading</h2>
-<ul>
-<li><a href=http://docs.python.org/3.1/library/os.html><code>os</code> module</a>
-<li><a href=http://www.doughellmann.com/PyMOTW/os/><code>os</code>&nbsp;&mdash;&nbsp;Portable access to operating system specific features</a>
-<li><a href=http://docs.python.org/3.1/library/os.path.html><code>os.path</code> module</a>
-<li><a href=http://www.doughellmann.com/PyMOTW/ospath/><code>os.path</code>&nbsp;&mdash;&nbsp;Platform-independent manipulation of file names</a>
-<li><a href=http://docs.python.org/3.1/library/glob.html><code>glob</code> module</a>
-<li><a href=http://www.doughellmann.com/PyMOTW/glob/><code>glob</code>&nbsp;&mdash;&nbsp;Filename pattern matching</a>
-<li><a href=http://docs.python.org/3.1/library/time.html><code>time</code> module</a>
-<li><a href=http://www.doughellmann.com/PyMOTW/time/><code>time</code>&nbsp;&mdash;&nbsp;Functions for manipulating clock time</a>
-<li><a href=http://docs.python.org/3.1/tutorial/datastructures.html#list-comprehensions>List comprehensions</a>
-<li><a href=http://docs.python.org/3.1/tutorial/datastructures.html#nested-list-comprehensions>Nested list comprehensions</a>
-<li><a href=http://docs.python.org/3.1/tutorial/datastructures.html#looping-techniques>Looping techniques</a>
-</ul>
-<p class=v><a href=native-datatypes.html rel=prev title='back to &#8220;Native Datatypes&#8221;'><span class=u>&#x261C;</span></a> <a href=strings.html rel=next title='onward to &#8220;Strings&#8221;'><span class=u>&#x261E;</span></a>
-<p class=c>&copy; 2001&ndash;10 <a href=about.html>Mark Pilgrim</a>
-<script src=j/jquery.js></script>
-<script src=j/prettify.js></script>
-<script src=j/dip3.js></script>
+		
+		<ol>
+			<li>Les compr&eacute;hensions d'ensemble peuvent prendre un autre ensemble en s&eacute;quence d'entr&eacute;e. Cette compr&eacute;hension d'ensemble calcule les carr&eacute;s des nombres de <code>0</code> &agrave; <code>9</code>.</li>
+			<li>Comme pour les compr&eacute;hensions de liste et de dictionnaire, les compr&eacute;hensions d'ensemble peuvent utiliser une clause <code>if</code> pour filtrer chaque &eacute;l&eacute;ment avant de l'inclure dans l'ensemble de r&eacute;sultats.</li>
+			<li>Les compr&eacute;hension d'ensemble ne prennent pas exclusivement des ensembles en s&eacute;quence d'entr&eacute;e; elles peuvent prendre n'importe quelle s&eacute;quence.</li>
+		</ol>
+		
+		<p class="a">&#x2042;</p>
+		
+		<h2 id="furtherreading">Pour aller plus loin</h2>
+		<ul>
+			<li><a href="http://docs.python.org/3.1/library/os.html">Le module <code>os</code></a></li>
+			<li><a href="http://www.doughellmann.com/PyMOTW/os/"><code>os</code>&nbsp;&mdash;&nbsp;Acc&egrave;s portable aux fonctionnalit&eacute;s sp&eacute;cifiques des syst&egrave;mes</a></li>
+			<li><a href="http://docs.python.org/3.1/library/os.path.html">Le module <code>os.path</code></a></li>
+			<li><a href="http://www.doughellmann.com/PyMOTW/ospath/"><code>os.path</code>&nbsp;&mdash;&nbsp;Manipulation de noms de fichiers ind&eacute;pendantes de la plate-forme</a></li>
+			<li><a href="http://docs.python.org/3.1/library/glob.html">Le module <code>glob</code></a></li>
+			<li><a href="http://www.doughellmann.com/PyMOTW/glob/"><code>glob</code>&nbsp;&mdash;&nbsp;Filtrage par motifs de noms de fichiers</a></li>
+			<li><a href="http://docs.python.org/3.1/library/time.html">Le module <code>time</code></a></li>
+			<li><a href="http://www.doughellmann.com/PyMOTW/time/"><code>time</code>&nbsp;&mdash;&nbsp;Fonctions pour manipuler les heures</a></li>
+			<li><a href="http://docs.python.org/3.1/tutorial/datastructures.html#list-comprehensions">Compr&eacute;hensions de liste</a></li>
+			<li><a href="http://docs.python.org/3.1/tutorial/datastructures.html#nested-list-comprehensions">Compr&eacute;hensions de liste imbriqu&eacute;es</a></li>
+			<li><a href="http://docs.python.org/3.1/tutorial/datastructures.html#looping-techniques">Techniques de boucles</a></li>
+		</ul>
+		
+		<p class="v"><a href="native-datatypes.html" rel="prev" title='back to &#8220;Native Datatypes&#8221;'><span class="u">&#x261C;</span></a> <a href="strings.html" rel="next" title='onward to &#8220;Strings&#8221;'><span class="u">&#x261E;</span></a></p>
+		<p class="c">&copy; 2001&ndash;10 <a href="about.html">Mark Pilgrim</a></p>
+		<p class="c">&copy; 2010 <a href="http://bitbucket.org/ogirardot/diveintopython3-fr">Equipe de traduction fran&ccedil;aise</a></p>	
+	</body>
+</html>

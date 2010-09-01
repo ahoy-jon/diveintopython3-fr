@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<title>Classes &amp; Iterators - Dive Into Python 3</title>
-<!--[if IE]><script src=j/html5.js></script><![endif]-->
-<link rel=stylesheet href=dip3.css>
+<meta charset="utf-8">
+<title>Classes &amp; Itérateurs - Plongez au cœur de Python 3</title>
+<!--[if IE]><script src="j/html5.js"></script><![endif]-->
+<link rel=stylesheet href="dip3.css">
 <style>
 body{counter-reset:h1 7}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
-<link rel=stylesheet media=print href=print.css>
+<link rel=stylesheet media="print" href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
-<p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#iterators>Dive Into Python 3</a> <span class=u>&#8227;</span>
-<p id=level>Difficulty level: <span class=u title=intermediate>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
-<h1>Classes <i class=baa>&amp;</i> Iterators</h1>
+<p>Vous êtes ici: <a href="index.html">Accueil</a> <span class=u>&#8227;</span> <a href="table-of-contents.html#iterators">Plongez au cœur de Python 3</a> <span class=u>&#8227;</span>
+<p id="level">Niveau de difficulté: <span class=u title="intermediate">&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
+<h1>Classes <i class="baa">&amp;</i> Itérateurs</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> East is East, and West is West, and never the twain shall meet. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Rudyard_Kipling>Rudyard Kipling</a>
+<p><span class=u>&#x275D;</span> East is East, and West is West, and never the twain shall meet. <span class=u>&#x275E;</span><br>&mdash; <a href="http://en.wikiquote.org/wiki/Rudyard_Kipling">Rudyard Kipling</a>
 </blockquote>
-<p id=toc>&nbsp;
-<h2 id=divingin>Diving In</h2>
-<p class=f>Iterators are the &#8220;secret sauce&#8221; of Python 3. They&#8217;re everywhere, underlying everything, always just out of sight. <a href=comprehensions.html>Comprehensions</a> are just a simple form of <i>iterators</i>. Generators are just a simple form of <i>iterators</i>. A function that <code>yield</code>s values is a nice, compact way of building an iterator without building an iterator. Let me show you what I mean by that.
+<p id="toc">&nbsp;
+<h2 id="divingin">Lançons nous</h2>
+<p class="f">Les itérateurs sont &#8220;l'ingrédient secret&#8221; de Python 3. Ils sont partout, à la base de tout, mais toujours invisibles. <a href="comprehensions.html">Les compréhensions</a> sont une simple forme d'<i>itérateurs</i>. Les générateurs également sont de simples <i>itérateurs</i>. Une fonction qui produit (<code>yield</code>) des valeurs est une façon compacte de construire un itérateur, sans vraiment en construire un. Laissez-moi vous montrer ce que j'entends par là.
 
-<p>Remember <a href=generators.html#a-fibonacci-generator>the Fibonacci generator</a>? Here it is as a built-from-scratch iterator:
+<p>Vous Souvenez-vous <a href="generators.html#a-fibonacci-generator">du générateur de nombres de Fibonacci</a> ? 
+Le voici construit à partir d'un itérateur:
 
-<p class=d>[<a href=examples/fibonacci2.py>download <code>fibonacci2.py</code></a>]
+<p class=d>[<a href=examples/fibonacci2.py>télécharger <code>fibonacci2.py</code></a>]
 <pre class=pp><code>class Fib:
     '''iterator that yields numbers in the Fibonacci sequence'''
 
@@ -41,55 +42,57 @@ body{counter-reset:h1 7}
         self.a, self.b = self.b, self.a + self.b
         return fib</code></pre>
 
-<p>Let&#8217;s take that one line at a time.
+<p>Regardons ça ligne par ligne.
 
 <pre class='nd pp'><code>class Fib:</code></pre>
 
-<p><code>class</code>? What&#8217;s a class?
+<p><code>class</code> ? Qu'est ce qu'une classe ?
 
-<p class=a>&#x2042;
+<p class=a>&#x2042;</p>
 
-<h2 id=defining-classes>Defining Classes</h2>
+<h2 id="defining-classes">Définition de Classes</h2>
 
-<p>Python is fully object-oriented: you can define your own classes, inherit from your own or built-in classes, and instantiate the classes you&#8217;ve defined.
+<p>Python est totalement objet, vous pouvez définir vos propres classes, hériter de vos classes ou même de classes standards, et créer une instance des classes que vous avez définies.</p>
 
-<p>Defining a class in Python is simple. As with functions, there is no separate interface definition. Just define the class and start coding. A Python class starts with the reserved word <code>class</code>, followed by the class name. Technically, that&#8217;s all that&#8217;s required, since a class doesn&#8217;t need to inherit from any other class.
+<p>Définir une classe en Python est simple. Tout comme pour une fonction il n'y a pas d'interface à définir où que ce soit, commencez juste par définir votre classe et commencez à l'implémenter. Une classe commence dès le mot clé <code>class</code> suivi par un nom de classe. Techniquement c'est tout ce qui est requis, puisqu'une classe n'a pas besoin d'hériter de quoi que ce soit pour exister.</p>
 
 <pre class=pp><code><a>class PapayaWhip:  <span class=u>&#x2460;</span></a>
 <a>    pass           <span class=u>&#x2461;</span></a></code></pre>
+
 <ol>
-<li>The name of this class is <code>PapayaWhip</code>, and it doesn&#8217;t inherit from any other class. Class names are usually capitalized, <code>EachWordLikeThis</code>, but this is only a convention, not a requirement.
-<li>You probably guessed this, but everything in a class is indented, just like the code within a function, <code>if</code> statement, <code>for</code> loop, or any other block of code. The first line not indented is outside the class.
+<li>Le nom de cette classe est <code>PapayaWhip</code>, et elle n'hérite d'aucune autre classe. Les noms de classes ont pour habitude d'avoir chaque mot commençant par une majuscule, <code>ChaqueMotCommeCeci</code>, mais c'est une simple convention et non une obligation</li>
+<li>Vous l'avez peut-être deviné, mais le corps d'une classe est indenté, comme pour le corps d'une fonction, le corps d'une condition  (<code>if</code>), d'une boucle <code>for</code>, ou de tout autre bloc de code. La première ligne non indentée ne fais plus partie du corps de la classe.</li>
 </ol>
 
-<p>This <code>PapayaWhip</code> class doesn&#8217;t define any methods or attributes, but syntactically, there needs to be something in the definition, thus the <code>pass</code> statement. This is a Python reserved word that just means &#8220;move along, nothing to see here&#8221;. It&#8217;s a statement that does nothing, and it&#8217;s a good placeholder when you&#8217;re stubbing out functions or classes.
+<p>La classe <code>PapayaWhip</code> ne définis aucune méthode ou attribut, mais syntaxiquement parlant, il faut qu'il y ai quelque chose dans la définition de la classe, c'est pourquoi on utilise l'instruction <code>pass</code>. C'est un mot clé réservé de Python qui signifie &#8220;circulez, il n'y a rien à voir&#8221;. C'est une instruction qui ne fait strictement rien, et elle est de ce fait très utile lorsque vous êtes en train de créer des prototypes de vos classes et fonctions.</p>
 
 <blockquote class='note compare java'>
-<p><span class=u>&#x261E;</span>The <code>pass</code> statement in Python is like a empty set of curly braces (<code>{}</code>) in Java or C.
+<p><span class=u>&#x261E;</span>L'instruction <code>pass</code> de Python est l'équivalent d'accolades vides (<code>{}</code>) en Java ou C.
 </blockquote>
 
-<p>Many classes are inherited from other classes, but this one is not. Many classes define methods, but this one does not. There is nothing that a Python class absolutely must have, other than a name. In particular, C++ programmers may find it odd that Python classes don&#8217;t have explicit constructors and destructors. Although it&#8217;s not required, Python classes <em>can</em> have something similar to a constructor: the <code>__init__()</code> method.
+<p>De nombreuses classes héritent d'autres classes, mais celle-ci non. De nombreuses classes définissent des méthodes, mais celle-ci non. Il n'y a rien qu'une classe Python est obligée de définir, si ce n'est un nom. Plus particulièrement, les programmeurs C++ peuvent trouver bizarre que Python permette de créer des classes sans devoir explicitement définir un constructeur ainsi qu'un destructeur. Même si ce n'est pas requis, les classes Python <em>peuvent</em> avoir une instruction similaire au constructeur: la méthode <code>__init__()</code>.</p>
 
-<h3 id=init-method>The <code>__init__()</code> Method</h3>
+<h3 id="init-method">La méthode <code>__init__()</code></h3>
 
-<p>This example shows the initialization of the <code>Fib</code> class using the <code>__init__</code> method.
+<p>Cette exemple détaille l'initialisation de la class <code>Fib</code> en utilisant la méthode <code>__init__</code>.</p>
 
 <pre class=pp><code>class Fib:
 <a>    '''iterator that yields numbers in the Fibonacci sequence'''  <span class=u>&#x2460;</span></a>
 
 <a>    def __init__(self, max):                                      <span class=u>&#x2461;</span></a></code></pre>
+
 <ol>
-<li>Classes can (and should) have <code>docstring</code>s too, just like modules and functions.
-<li>The <code>__init__()</code> method is called immediately after an instance of the class is created. It would be tempting&nbsp;&mdash;&nbsp;but technically incorrect&nbsp;&mdash;&nbsp;to call this the &#8220;constructor&#8221; of the class. It&#8217;s tempting, because it looks like a C++ constructor (by convention, the <code>__init__()</code> method is the first method defined for the class), acts like one (it&#8217;s the first piece of code executed in a newly created instance of the class), and even sounds like one. Incorrect, because the object has already been constructed by the time the <code>__init__()</code> method is called, and you already have a valid reference to the new instance of the class.
+<li>Une classe peut (et devrait) être documenté à l'aide d'une <code>docstring</code>, tout comme les modules et les fonctions</li>
+<li>La méthode <code>__init__()</code> est appelée immédiatement après que l'instance de classe soit créée. On pourrait dire&nbsp;&mdash;&nbsp;même si techniquement incorrect&nbsp;&mdash;&nbsp; que la méthode <code>__init__()</code> est le constructeur de la classe, parce qu'elle ressemble à un constructeur C++ (par convention la méthode <code>__init__()</code> est définie la première), elle agit de la même façon (c'est le premier bout de code à être exécuté lors de la création d'une nouvelle instance), et elle a un nom révélateur. Mais c'est incorrect puisque l'objet est déjà construit avant l'appel de la méthode <code>__init__()</code>, et une référence valide vers cette nouvelle instance existe et est déjà disponible.</li>
 </ol>
 
-<p>The first argument of every class method, including the <code>__init__()</code> method, is always a reference to the current instance of the class. By convention, this argument is named <var>self</var>. This argument fills the role of the reserved word <code>this</code> in <abbr>C++</abbr> or Java, but <var>self</var> is not a reserved word in Python, merely a naming convention. Nonetheless, please don&#8217;t call it anything but <var>self</var>; this is a very strong convention.
+<p>Le premier argument de chaque méthode de classe, y compris pour la méthode <code>__init__()</code> est toujours une référence vers l'instance courante de la classe. Par convention, cet argument est nommé <var>self</var>. Cet argument remplace le mot clé <code>this</code> en <abbr>C++</abbr> ou Java, mais <var>self</var> n'est pas un mot clé réservé, c'est juste une convention de nommage. Néanmoins, ne l'appelez pas autrement que <var>self</var>, c'est une convention utilisée par tous.</p>
 
-<p>In the <code>__init__()</code> method, <var>self</var> refers to the newly created object; in other class methods, it refers to the instance whose method was called. Although you need to specify <var>self</var> explicitly when defining the method, you do <em>not</em> specify it when calling the method; Python will add it for you automatically.
+<p>Dans la méthode <code>__init__()</code>, <var>self</var> fait référence à l'objet qui viens d'être crée, alors que dans les méthodes de classe il fait référence à l'instance sur laquelle la méthode a été appelée. Bien que vous deviez spécifier <code>self</code> explicitement lorsque vous déclarez vos méthodes, vous ne devez <em>pas</em> le passer en paramètre lorsque vous les appelez. Python le fera pour vous automatiquement.</p>
 
 <p class=a>&#x2042;
 
-<h2 id=instantiating-classes>Instantiating Classes</h2>
+<h2 id="instantiating-classes">Créer des instances de classes</h2>
 
 <p>Instantiating classes in Python is straightforward. To instantiate a class, simply call the class as if it were a function, passing the arguments that the <code>__init__()</code> method requires. The return value will be the newly created object.
 <pre class=screen>
