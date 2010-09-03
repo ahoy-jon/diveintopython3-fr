@@ -203,7 +203,7 @@
 
 		<h3 id="abspath">Construire des chemins d&#x27;acc&egrave;s absolus</h3>
 		
-		<p>Dans la <a href="#osstat">partie pr&eacute;c&eacute;dente</a>, la fonction <code>glob.glob()</code> retournais une liste de chemins relatifs. Le premier exemple renvoyais des chemins comme <code>'examples\feed.xml'</code>, et le second avais m&ecirc;me des chemins plus court comme <code>'romantest1.py'</code>. Tant que vous restez dans le m&ecirc;me r&eacute;pertoire de travail ces chemins d'acc&egrave;s seront toujours valides pour ouvrir des fichiers ou r&eacute;cup&eacute;rer leurs m&eacute;ta-donn&eacute;es. Mais si vous voulez construire des chemins absolus &nbsp;&mdash;&nbsp;<i>i.e.</i> un chemin qui inclut tous les r&eacute;pertoires remontant jusqu'&agrave; la racine de votre syst&egrave;me de fichier ou jusqu'&agrave; la lettre de votre disque dur&nbsp;&mdash;&nbsp;alors vous aurez besoin de la fonction <code>os.path.realpath()</code>.</p>
+		<p>Dans la <a href="#osstat">partie pr&eacute;c&eacute;dente</a>, la fonction <code>glob.glob()</code> retournait une liste de chemins relatifs. Le premier exemple renvoyait des chemins comme <code>&#x27;examples\feed.xml&#x27;</code>, et le second avais m&ecirc;me des chemins plus court comme <code>&#x27;romantest1.py&#x27;</code>. Tant que vous restez dans le m&ecirc;me r&eacute;pertoire de travail ces chemins d&#x27;acc&egrave;s seront toujours valides pour ouvrir des fichiers ou r&eacute;cup&eacute;rer leurs m&eacute;ta-donn&eacute;es. Mais si vous voulez construire des chemins absolus &nbsp;&mdash;&nbsp;<i>i.e.</i> un chemin qui inclut tous les r&eacute;pertoires remontant jusqu&#x27;&agrave; la racine de votre syst&egrave;me de fichier ou jusqu&#x27;&agrave; la lettre de votre disque dur&nbsp;&mdash;&nbsp;alors vous aurez besoin de la fonction <code>os.path.realpath()</code>.</p>
 		
 <pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os</kbd>
@@ -214,11 +214,11 @@
 
 		<p class="a">&#x2042;</p>
 		
-		<h2 id="listcomprehension">Les compr&eacute;hensions de liste</h2>
+		<h2 id="listcomprehension">La compr&eacute;hension de liste</h2>
 		
-		<aside>Toute expression Python est valide pour construire des compr&eacute;hension de liste.</aside>
+		<aside>Toute expression Python est valide pour construire des compr&eacute;hensions de liste.</aside>
 		
-		<p>Les <dfn>compr&eacute;hensions de liste</dfn> fournissent une mani&egrave;re compacte de cr&eacute;er une liste &agrave; partir d'une autre, en appliquant une fonction &agrave; chaque &eacute;l&eacute;ment de la liste originale.</p>
+		<p>Les <dfn>compr&eacute;hensions de liste</dfn> fournissent une mani&egrave;re compacte de cr&eacute;er une liste &agrave; partir d&#x27;une autre, en appliquant une fonction &agrave; chaque &eacute;l&eacute;ment de la liste originale.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">a_list = [1, 9, 8, 4]</kbd>
@@ -231,12 +231,12 @@
 <samp class="pp">[2, 18, 16, 8]</samp></pre>
 		
 		<ol>
-			<li>Pour comprendre cet exemple, lisez le de droite &agrave; gauche. <var>a_list</var> est la liste de d&eacute;part. L'interpr&egrave;te Python boucle sur tous les &eacute;l&eacute;ments de la liste <var>a_list</var> un par un, tout en assignant temporairement la valeur de chaque &eacute;l&eacute;ment &agrave; la variable <var>elem</var>. Python applique ensuite la fonction <code><var>elem</var> * 2</code> et ajoute le r&eacute;sultat &agrave; la liste retourn&eacute;e en r&eacute;sultat.</li>
+			<li>Pour comprendre cet exemple, lisez le de droite &agrave; gauche. <var>a_list</var> est la liste de d&eacute;part. L&#x27;interpr&egrave;te Python boucle sur tous les &eacute;l&eacute;ments de la liste <var>a_list</var> un par un, tout en assignant temporairement la valeur de chaque &eacute;l&eacute;ment &agrave; la variable <var>elem</var>. Python applique ensuite la fonction <code><var>elem</var> * 2</code> et ajoute le r&eacute;sultat &agrave; la liste retourn&eacute;e en r&eacute;sultat.</li>
 			<li>Une compr&eacute;hension de liste cr&eacute;e une nouvelle liste; elle ne change pas la liste de d&eacute;part.</li>
-			<li>Assigner le r&eacute;sultat d'une compr&eacute;hension de liste &agrave; la liste de d&eacute;part est valide. Python construit la nouvelle liste en m&eacute;moire, et lorsque la compr&eacute;hension de liste est compl&egrave;te, elle assigne le r&eacute;sultat &agrave; la liste de d&eacute;part, &eacute;crasant ainsi l'ancienne liste.</li>
+			<li>Assigner le r&eacute;sultat d&#x27;une compr&eacute;hension de liste &agrave; la liste de d&eacute;part est valide. Python construit la nouvelle liste en m&eacute;moire, et lorsque la compr&eacute;hension de liste est compl&egrave;te, elle assigne le r&eacute;sultat &agrave; la liste de d&eacute;part, &eacute;crasant ainsi l&#x27;ancienne liste.</li>
 		</ol>
 		
-		<p>Vous pouvez utiliser n'importe quelle expression Python lors de la construction d'une compr&eacute;hension de liste, cela veut dire qu'on peut &eacute;galement utiliser les fonctions du module <code>os</code> pour manipuler les fichiers et r&eacute;pertoires.</p>
+		<p>Vous pouvez utiliser n&#x27;importe quelle expression Python lors de la construction d&#x27;une compr&eacute;hension de liste, cela veut dire qu&#x27;on peut &eacute;galement utiliser les fonctions du module <code>os</code> pour manipuler les fichiers et r&eacute;pertoires.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
@@ -249,11 +249,11 @@
 </pre>
 		
 		<ol>
-			<li>Ici, on retourne une liste de tous les fichiers d'extension <code>.xml</code> du r&eacute;pertoire de travail.</li>
-			<li>Cette compr&eacute;hension de liste prends tous les fichiers d'extension <code>.xml</code> et les transforme en une liste contenant des chemins absolus vers ces fichiers.</li>
+			<li>Ici, on retourne une liste de tous les fichiers d&#x27;extension <code>.xml</code> du r&eacute;pertoire de travail.</li>
+			<li>Cette compr&eacute;hension de liste prends tous les fichiers d&#x27;extension <code>.xml</code> et les transforme en une liste contenant les chemins absolus vers ces fichiers.</li>
 		</ol>
 		
-		<p>Les compr&eacute;hensions de liste peuvent &eacute;galement filtrer des &eacute;l&eacute;ments, produisant ainsi un r&eacute;sultat qui peut &ecirc;tre plus court que l'original.</p>
+		<p>Les compr&eacute;hensions de liste peuvent &eacute;galement filtrer des &eacute;l&eacute;ments, produisant ainsi un r&eacute;sultat qui peut &ecirc;tre plus court que l&#x27;original.</p>
 		
 <pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
@@ -267,10 +267,10 @@
 </pre>
 		
 		<ol>
-			<li>Pour filtrer une liste, on peut utiliser une clause <code>if</code> &agrave; la fin de la compr&eacute;hension de liste. L'expression apr&egrave;s le mot cl&eacute; <code>if</code> sera &eacute;valu&eacute;e pour chaque &eacute;l&eacute;ment de la liste. Si cette expression vaut <code>True</code>, l'&eacute;l&eacute;ment sera inclus dans le r&eacute;sultat final. Cette compr&eacute;hension de liste recherche tous les fichiers d'extension <code>.py</code> situ&eacute;s dans le r&eacute;pertoire de travail, et l'expression <code>if</code> filtre les fichiers dont la taille est sup&eacute;rieure &agrave; <code>6000</code> bytes. Il y a six fichiers corr&eacute;spondants &agrave; ces crit&egrave;res, c'est pourquoi la liste r&eacute;sultant du filtrage contient six &eacute;l&eacute;ments.</li>
+			<li>Pour filtrer une liste, on peut utiliser une clause <code>if</code> &agrave; la fin de la compr&eacute;hension de liste. L&#x27;expression apr&egrave;s le mot cl&eacute; <code>if</code> sera &eacute;valu&eacute;e pour chaque &eacute;l&eacute;ment de la liste. Si cette expression vaut <code>True</code>, l&#x27;&eacute;l&eacute;ment sera inclus dans le r&eacute;sultat final. Cette compr&eacute;hension de liste recherche tous les fichiers d&#x27;extension <code>.py</code> situ&eacute;s dans le r&eacute;pertoire de travail, et l&#x27;expression <code>if</code> filtre les fichiers dont la taille est sup&eacute;rieure &agrave; <code>6000</code> bytes. Il y a six fichiers corr&eacute;spondants &agrave; ces crit&egrave;res, c&#x27;est pourquoi la liste r&eacute;sultante du filtrage contient six &eacute;l&eacute;ments.</li>
 		</ol>
 		
-		<p>Tous les exemples jusqu'&agrave; pr&eacute;sent ont montr&eacute; de simples expressions&nbsp;&mdash;&nbsp;multiplier un nombre par une constante, appeler une fonction, ou simplement retourner l'&eacute;l&eacute;ment de d&eacute;part (apr&egrave;s filtrage). Mais il n'y a pas de limites &agrave; la compl&eacute;xit&eacute; que peut avoir une compr&eacute;hension de liste.</p>
+		<p>Tous les exemples jusqu&#x27;&agrave; pr&eacute;sent ont montr&eacute; de simples expressions&nbsp;&mdash;&nbsp;multiplier un nombre par une constante, appeler une fonction, ou simplement retourner l&#x27;&eacute;l&eacute;ment de d&eacute;part (apr&egrave;s filtrage). Mais il n&#x27;y a pas de limites &agrave; la compl&eacute;xit&eacute; que peut avoir une compr&eacute;hension de liste.</p>
 			
 			<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
@@ -285,15 +285,15 @@
  ('3.0 KiB', 'feed.xml')]</samp></pre>
 		
 		<ol>
-			<li>Cette compr&eacute;hension de liste trouve tous les fichiers d'extension <code>.xml</code> dans le r&eacute;pertoire de travail, r&eacute;cup&egrave;re la taille de chaque fichier (&agrave; l'aide la fonction <code>os.stat()</code>), et construit une paire constitu&eacute;e de la taille du fichier ainsi que de son emplacement (chemin absolu, &agrave; l'aide de la fonction <code>os.path.realpath()</code>).</li>
-			<li>Cette compr&eacute;hension de liste construite &agrave; partir de l'exemple pr&eacute;c&eacute;dent, fait &eacute;galement appel &agrave; la <a href="your-first-python-program.html#divingin">fonction <code>approximate_size()</code></a>.</li>
+			<li>Cette compr&eacute;hension de liste trouve tous les fichiers d&#x27;extension <code>.xml</code> dans le r&eacute;pertoire de travail, r&eacute;cup&egrave;re la taille de chaque fichier (&agrave; l&#x27;aide de la fonction <code>os.stat()</code>), et construit une paire constitu&eacute;e de la taille du fichier ainsi que de son emplacement (en chemin absolu, &agrave; l&#x27;aide de la fonction <code>os.path.realpath()</code>).</li>
+			<li>Cette compr&eacute;hension de liste construite &agrave; partir de l&#x27;exemple pr&eacute;c&eacute;dent, fait &eacute;galement appel &agrave; la <a href="your-first-python-program.html#divingin">fonction <code>approximate_size()</code></a>.</li>
 		</ol>
 
 		<p class="a">&#x2042;</p>
 		
-		<h2 id="dictionarycomprehension">Les compr&eacute;hensions de dictionnaire</h2>
+		<h2 id="dictionarycomprehension">La compr&eacute;hension de dictionnaire</h2>
 		
-		<p>Une <dfn>compr&eacute;hension de dictionnaire</dfn> est similaire &agrave; une compr&eacute;hension de liste, mais celle-ci construit un dictionnaire &agrave; la place d'une liste.</p>
+		<p>Une <dfn>compr&eacute;hension de dictionnaire</dfn> est similaire &agrave; une compr&eacute;hension de liste, mais celle-ci construit un dictionnaire &agrave; la place d&#x27;une liste.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os, glob</kbd>
@@ -315,15 +315,15 @@
 <samp class="pp">2509</samp></pre>
 		
 		<ol>
-			<li>Ceci n'est pas une compr&eacute;hension de dictionnaire, c'est une <a href="#listcomprehension">compr&eacute;hension de liste</a> qui recherche les fichiers d'extension <code>.py</code> dont le nom contient <code>test</code>, et construit une paire constitu&eacute;e du nom de fichier et de ses m&eacute;ta-donn&eacute;es (&agrave; l'aide de la fonction <code>os.stat()</code>).</li>
+			<li>Ceci n&#x27;est pas une compr&eacute;hension de dictionnaire, c&#x27;est une <a href="#listcomprehension">compr&eacute;hension de liste</a> qui recherche les fichiers d&#x27;extension <code>.py</code> dont le nom contient <code>test</code>, et construit une paire constitu&eacute;e du nom de fichier et de ses m&eacute;ta-donn&eacute;es (&agrave; l&#x27;aide de la fonction <code>os.stat()</code>).</li>
 			<li>Chaque &eacute;l&eacute;ment de la liste est une paire.</li>
-			<li>Ceci est une compr&eacute;hension de dictionnaire. La syntaxe est similaire &agrave; celle d'une compr&eacute;hension de liste, &agrave; deux diff&eacute;rences pr&egrave;s. Premi&egrave;rement, elle est entour&eacute;e d'accolades et non pas de crochets. Deuxi&egrave;mement, au lieu d'une seule expression pour chaque &eacute;l&eacute;ment, elle contient deux expressions s&eacute;par&eacute;es par le caract&egrave;re double points. L'expression avant les double points (<code>f</code> dans l'exemple) sera la cl&eacute; du dictionnaire; l'autre expression (<code>os.stat(f)</code> dans l'exemple) sera la valeur associ&eacute;e.</li>
+			<li>Ceci est une compr&eacute;hension de dictionnaire. La syntaxe est similaire &agrave; celle d&#x27;une compr&eacute;hension de liste, &agrave; deux diff&eacute;rences pr&egrave;s. Premi&egrave;rement, elle est entour&eacute;e d&#x27;accolades et non pas de crochets. Deuxi&egrave;mement, au lieu d&#x27;une seule expression pour chaque &eacute;l&eacute;ment, elle contient deux expressions s&eacute;par&eacute;es par le caract&egrave;re deux-points. L&#x27;expression avant les deux-points (<code>f</code> dans l&#x27;exemple) sera la cl&eacute; du dictionnaire; l&#x27;autre expression (<code>os.stat(f)</code> dans l&#x27;exemple) sera la valeur associ&eacute;e.</li>
 			<li>Une compr&eacute;hension de dictionnaire retourne un dictionnaire.</li>
-			<li>Les cl&eacute;s de ce dictionnaire sont les noms de fichiers retourn&eacute;s par l'appel &agrave; la fonction <code>glob.glob('*test*.py')</code>.</li>
-			<li>La valeur associ&eacute;e &agrave; chaque cl&eacute; est le r&eacute;sultat de la fonction <code>os.stat()</code> sur cette cl&eacute; (le fichier). Ce la veut dire qu'on peut rechercher un fichier par son nom dans ce dictionnaire, et y trouver ses m&eacute;ta-donn&eacute;es. Une des m&eacute;ta-donn&eacute;es est la taille du fichier, repr&eacute;sent&eacute;e par <code>st_size</code>. Le fichier <code>alphameticstest.py</code> a une taille de <code>2509</code> bytes.</li>
+			<li>Les cl&eacute;s de ce dictionnaire sont les noms de fichiers retourn&eacute;s par l&#x27;appel &agrave; la fonction <code>glob.glob(&#x27;*test*.py&#x27;)</code>.</li>
+			<li>La valeur associ&eacute;e &agrave; chaque cl&eacute; est le r&eacute;sultat de la fonction <code>os.stat()</code> sur cette cl&eacute; (le fichier). Cela veut dire qu&#x27;on peut rechercher un fichier par son nom dans ce dictionnaire, et y trouver ses m&eacute;ta-donn&eacute;es. Une des m&eacute;ta-donn&eacute;es est la taille du fichier, repr&eacute;sent&eacute;e par <code>st_size</code>. Le fichier <code>alphameticstest.py</code> a une taille de <code>2509</code> bytes.</li>
 		</ol>
 		
-		<p>Tout comme pour les listes, les compr&eacute;hensions de dictionnaire permettent d'utiliser une clause <code>if</code> pour filtrer la s&eacute;quence en entr&eacute;e.</p>
+		<p>Tout comme pour les listes, les compr&eacute;hensions de dictionnaire permettent d&#x27;utiliser une clause <code>if</code> pour filtrer la s&eacute;quence en entr&eacute;e.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os, glob, humansize</kbd>
@@ -336,22 +336,22 @@
 <samp class="pp">'6.5 KiB'</samp></pre>
 		
 		<ol>
-			<li>Cette compr&eacute;hension de dictionnaire construit une liste de tous les fichiers du r&eacute;pertoire de travail (<code>glob.glob('*')</code>), r&eacute;cup&egrave;re les m&eacute;ta-données de chaque fichier (<code>os.stat(f)</code>), et construit un dictionnaire qui a pour cl&eacute;s les noms de fichiers et pour valeurs les m&eacute;ta-donn&eacute;es de chaque fichier.</li>
-			<li>Cette compr&eacute;hension de dictionnaire bas&eacute;e sur l'exemple pr&eacute;c&eacute;dent filtre les fichiers dont la taille est inf&eacute;rieure &agrave; <code>6000</code> bytes (<code>if meta.st_size > 6000</code>), et utilise cette liste filtr&eacute;e pour construire un dictionnaire dont les cl&eacute;s sont les noms de fichiers sans leur extension (<code>os.path.splitext(f)[0]</code>) et dont les valeurs sont la taille approximative de chaque fichier (<code>humansize.approximate_size(meta.st_size)</code>).</li>
-			<li>Comme on l'a vu auparavant, il y a six fichiers correspondant à ces crit&eacute;res, il y a donc 6 entrées dans le dictionnaire.</li>
-			<li>La valeur de chaque cl&eacute; est la cha&icirc;ne de caractère r&eacute;sultant de l'appel &agrave; la fonction <code>approximate_size()</code>.</li>
+			<li>Cette compr&eacute;hension de dictionnaire construit une liste de tous les fichiers du r&eacute;pertoire de travail (<code>glob.glob('*')</code>), r&eacute;cup&egrave;re les m&eacute;ta-donn&eacute;es de chaque fichier (<code>os.stat(f)</code>), et construit un dictionnaire qui a pour cl&eacute;s les noms de fichiers et pour valeurs les m&eacute;ta-donn&eacute;es de chaque fichier.</li>
+			<li>Cette compr&eacute;hension de dictionnaire bas&eacute;e sur l&#x27;exemple pr&eacute;c&eacute;dent filtre les fichiers dont la taille est inf&eacute;rieure &agrave; <code>6000</code> bytes (<code>if meta.st_size > 6000</code>), et utilise cette liste filtr&eacute;e pour construire un dictionnaire dont les cl&eacute;s sont les noms de fichiers sans leur extension (<code>os.path.splitext(f)[0]</code>) et dont les valeurs sont la taille approximative de chaque fichier (<code>humansize.approximate_size(meta.st_size)</code>).</li>
+			<li>Comme on l&#x27;a vu auparavant, il y a six fichiers correspondant &agrave;� ces crit&eacute;res, il y a donc 6 entr&eacute;es dans le dictionnaire.</li>
+			<li>La valeur de chaque cl&eacute; est la cha&icirc;ne de caract&egrave;re r&eacute;sultant de l&#x27;appel &agrave; la fonction <code>approximate_size()</code>.</li>
 		</ol>
 		
 		<h3 id="stupiddicttricks">Un autre truc cool avec les compr&eacute;hension de dictionnaire</h3>
 		
-		<p>Voici une astuce sur les compr&eacute;hension de dictionnaire qui pourrait bien vous servir un jour: intervertir les cl&eacute;s et valeurs d'un dictionnaire.</p>
+		<p>Voici une astuce sur les compr&eacute;hension de dictionnaire qui pourrait bien vous servir un jour : intervertir les cl&eacute;s et valeurs d&#x27;un dictionnaire.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">a_dict = {'a': 1, 'b': 2, 'c': 3}</kbd>
 <samp class="p">>>> </samp><kbd class="pp">{value:key for key, value in a_dict.items()}</kbd>
 <samp class="pp">{1: 'a', 2: 'b', 3: 'c'}</samp></pre>
 		
-		<p>Biensur, &ccedil;a ne fonctionne que si les valeurs du dictionnaire sont immuables, comme des cha&icirc;nes de caract&egrave;res ou des n-uplet. Si vous essayez avec un dictionnaire dont les valeurs sont des listes, &ccedil;a ne fonctionnera pas du tout.</p>
+		<p>Bien s&ucirc;r, &ccedil;a ne fonctionne que si les valeurs du dictionnaire sont immuables, comme des cha&icirc;nes de caract&egrave;res ou des n-uplet. Si vous essayez avec un dictionnaire dont les valeurs sont des listes, &ccedil;a ne fonctionnera pas du tout.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">a_dict = {'a': [1, 2, 3], 'b': 4, 'c': 5}</kbd>
@@ -363,9 +363,9 @@ TypeError: unhashable type: 'list'</samp></pre>
 		
 		<p class="a">&#x2042;</p>
 		
-		<h2 id="setcomprehension">Compr&eacute;hensions d'ensemble</h2>
+		<h2 id="setcomprehension">La compr&eacute;hension d&#x27;ensemble</h2>
 		
-		<p>Pour ne pas l'oublier, les ensembles ont aussi leur syntaxe de compr&eacute;hension. Elle est presque identique &agrave; celle des dictionnaires, &agrave; ceci pr&egrave;s qu'un ensemble ne contient que des valeurs et non des paires de cl&eacute;:valeur.</p>
+		<p>Pour ne pas l&#x27;oublier, les ensembles ont aussi leur syntaxe de compr&eacute;hension. Elle est presque identique &agrave; celle des dictionnaires, &agrave; ceci pr&egrave;s qu&#x27;un ensemble ne contient que des valeurs et non des paires de cl&eacute;:valeur.</p>
 		
 		<pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">a_set = set(range(10))</kbd>
@@ -380,9 +380,9 @@ TypeError: unhashable type: 'list'</samp></pre>
 </pre>
 		
 		<ol>
-			<li>Les compr&eacute;hensions d'ensemble peuvent prendre un autre ensemble en s&eacute;quence d'entr&eacute;e. Cette compr&eacute;hension d'ensemble calcule les carr&eacute;s des nombres de <code>0</code> &agrave; <code>9</code>.</li>
-			<li>Comme pour les compr&eacute;hensions de liste et de dictionnaire, les compr&eacute;hensions d'ensemble peuvent utiliser une clause <code>if</code> pour filtrer chaque &eacute;l&eacute;ment avant de l'inclure dans l'ensemble de r&eacute;sultats.</li>
-			<li>Les compr&eacute;hension d'ensemble ne prennent pas exclusivement des ensembles en s&eacute;quence d'entr&eacute;e; elles peuvent prendre n'importe quelle s&eacute;quence.</li>
+			<li>Les compr&eacute;hensions d&#x27;ensembles peuvent prendre un autre ensemble en s&eacute;quence d&#x27;entr&eacute;e. Cette compr&eacute;hension d&#x27;ensemble calcule les carr&eacute;s des nombres de <code>0</code> &agrave; <code>9</code>.</li>
+			<li>Comme pour les compr&eacute;hensions de liste et de dictionnaire, les compr&eacute;hensions d&#x27;ensemble peuvent utiliser une clause <code>if</code> pour filtrer chaque &eacute;l&eacute;ment avant de l&#x27;inclure dans l&#x27;ensemble de r&eacute;sultats.</li>
+			<li>Les compr&eacute;hensions d&#x27;ensemble ne prennent pas exclusivement des ensembles en s&eacute;quence d&#x27;entr&eacute;e; elles peuvent prendre n&#x27;importe quelle s&eacute;quence.</li>
 		</ol>
 		
 		<p class="a">&#x2042;</p>
