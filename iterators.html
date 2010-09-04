@@ -342,12 +342,12 @@ n'a pas changée d'un octet.</li>
         .</code></pre>
 
 <ol>
-<li>A bit of advanced file trickery here. The <code>readline()</code> method (note: singular, not the plural <code>readlines()</code>) reads exactly one line from an open file. Specifically, the next line. (<em>File objects are iterators too! It&#8217;s iterators all the way down&hellip;</em>)
-<li>If there was a line for <code>readline()</code> to read, <var>line</var> will not be an empty string. Even if the file contained a blank line, <var>line</var> would end up as the one-character string <code>'\n'</code> (a carriage return). If <var>line</var> is really an empty string, that means there are no more lines to read from the file.
-<li>When we reach the end of the file, we should close the file and raise the magic <code>StopIteration</code> exception. Remember, we got to this point because we needed a match and apply function for the next rule. The next rule comes from the next line of the file&hellip; but there is no next line! Therefore, we have no value to return. The iteration is over. (<span class="u">&#x266B;</span> The party&#8217;s over&hellip; <span class="u">&#x266B;</span>)
+<li>La méthode <code>readline()</code> (attention: readline et non <code>readline<b>s</b>()</code>) lis exactement une ligne d'un fichier. En fait, elle lis la prochaine ligne. <em>Les objets fichiers sont aussi des itérateurs ! Ils sont partout !&hellip;</em></li>
+<li>Si il reste une ligne à lire pour <code>readline()</code> alors la variable <var>line</var> sera non vide. Même si le fichier contient une ligne vide, la variable <var>line</var> serait égale à <code>'\n'</code> (un retour charriot). Si <var>line</var> est vraiment vide, cela veut dire qu'on a déjà lu toutes les lignes du fichier.</li>
+<li>Lorsqu'on atteint la fin du fichier, on le ferme et on jette l'exception <code>StopIteration</code>. Souvenez-vous que nous sommes à la recherche de motifs pour le prochain pluriel. Ce pluriel est récupéré en lisant la prochaine ligne du fichier, mais il n'y a plus de lignes à lire, donc nous n'avons plus de valeur à retourner. L'itération est donc terminée.</li>
 </ol>
 
-<p>Moving backwards all the way to the start of the <code>__next__()</code> method&hellip;
+<p>Montons encore un peu, jusqu'au début de la méthode <code>__next__()</code>&hellip;</p>
 
 <pre class="pp"><code>    def __next__(self):
         self.cache_index += 1
