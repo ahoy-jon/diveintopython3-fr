@@ -217,56 +217,52 @@ clients ne le permettent.
 <p>Les librairies <abbr>HTTP</abbr> de Python ne supportent pas la mise en cache, mais <code>httplib2</code> le fait.
 </p>
 
-<h3 id="last-modified">Last-Modified Checking</h3>
+<h3 id="last-modified">La vérification de dernière modification<br>
+</h3>
 
-<p>Some data never changes, while other data changes all the time. In
-between, there is a vast field of data that <em>might</em> have
-changed, but hasn’t. CNN.com’s feed is updated every few minutes, but
-my weblog’s feed may not change for days or weeks at a time. In the
-latter case, I don’t want to tell clients to cache my feed for weeks at
-a time, because then when I do actually post something, people may not
-read it for weeks (because they’re respecting my cache headers which
-said “don’t bother checking this feed for weeks”). On the other hand, I
-don’t want clients downloading my entire feed once an hour if it hasn’t
-changed!
-<aside><code>304: Not Modified</code> means “same shit, different day.”</aside>
+<p>Certaines données ne changent jamais. D'autres changent tout le temps. Entre les deux, il y a un large éventail de données qui <span style="font-style: italic;">pourraient</span>
+avoir changé, mais n'ont pas changé. Le flux de CNN.com est mis à jour
+presque chaque minute, mais celui de mon blog peut ne pas changer
+pendant des jours, voire des semaines. Dans ce dernier cas, il ne faut
+pourtant pas dire aux clients de mettre ce flux en cache pour des
+semaines. Autrement, lorsque je publierai quelque chose, les gens
+pourraient ne pas le lire pendant des semaines (parce qu'ils respectent
+mes en-têtes de cache qui disaient « ne prenez pas la peine de vérifier
+ce flux pendant des semaines »). D'un autre côté, je n'ai pas envie que
+des clients téléchargent l'entièreté de mon flux toutes les heures s'il
+n'a pas changé!
+<aside><code>304: Not Modified</code> signifie “même merde, autre jour.”</aside>
 </p>
-
-<p><abbr>HTTP</abbr> has a solution to this, too. When you request data
-for the first time, the server can send back a <code>Last-Modified</code>
-header. This is exactly what it sounds like: the date that the data was
-changed. That background image referenced from <code>diveintomark.org</code>
-included a <code>Last-Modified</code> header.
+<p><abbr>HTTP</abbr> a une solution pour ça aussi. Quand vois demandez des données pour la première fois, le serveur peut vous renvoyer une en-tête <code>Last-Modified</code>
+(dernière modification). C'est exactement ce que ça dit: la date à
+laquelle ces données ont été modifiées pour la dernière fois. Cette
+image de fond référencée depuis <code>diveintomark.org</code> incluait une en-tête <code>Last-Modified</code>.
 </p>
-
 <pre class="nd"><code>HTTP/1.1 200 OK<br>Date: Sun, 31 May 2009 17:14:04 GMT<br>Server: Apache<br><mark>Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT</mark><br>ETag: "3075-ddc8d800"<br>Accept-Ranges: bytes<br>Content-Length: 12405<br>Cache-Control: max-age=31536000, public<br>Expires: Mon, 31 May 2010 17:14:04 GMT<br>Connection: close<br>Content-Type: image/jpeg<br></code></pre>
 
-<p>When you request the same data a second (or third or fourth) time,
-you can send an <code>If-Modified-Since</code> header with your
-request, with the date you got back from the server last time. If the
-data has changed since then, then the server ignores the <code>If-Modified-Since</code>
-header and just gives you the new data with a <code>200</code> status
-code. But if the data <em>hasn’t</em> changed since then, the server
-sends back a special <abbr>HTTP</abbr> <code>304</code> status code,
-which means “this data hasn’t changed since the last time you asked for
-it.” You can test this on the command line, using <a href="http://curl.haxx.se/">curl</a>:
+<p>Quand vous demandez ces données une deuxième (ou troisième ou quatrième) fois, vous pouvez envoyer une en-tête <code>If-Modified-Since</code>
+avec votre requête, accompagné de la date que vous avez reçu du serveur
+la dernière fois. Si les donées ont changé depuis, le serveur ignore
+l'en-tête <code>If-Modified-Since</code>
+et vous donne simplement les nouvelles données avec un code de statut <code>200</code>. Mais si les données n'ont pas changé, le serveur renvoie le code de statut <abbr>HTTP</abbr> <code>304</code>,
+qui signifie « ces données n'ont pas changé depuis la dernière fois que
+vous les avez demandées ». Vous pouvez tester ça en ligne de comande,
+en utilisant <a href="http://curl.haxx.se/">curl</a>:
 </p>
 
 <pre class="nd screen"><samp class="p">you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-Modified-Since: Fri, 22 Aug 2008 04:28:16 GMT"</mark> http://wearehugh.com/m.jpg</kbd><br><samp>HTTP/1.1 304 Not Modified<br>Date: Sun, 31 May 2009 18:04:39 GMT<br>Server: Apache<br>Connection: close<br>ETag: "3075-ddc8d800"<br>Expires: Mon, 31 May 2010 18:04:39 GMT<br>Cache-Control: max-age=31536000, public</samp></pre>
 
-<p>Why is this an improvement? Because when the server sends a <code>304</code>,
-<em>it doesn’t re-send the data</em>. All you get is the status code.
-Even after your cached copy has expired, last-modified checking ensures
-that you won’t download the same data twice if it hasn’t changed. (As
-an extra bonus, this <code>304</code> response also includes caching
-headers. Proxies will keep a copy of data even after it officially
-“expires,” in the hopes that the data hasn’t <em>really</em> changed
-and the next request responds with a <code>304</code> status code and
-updated cache information.)
+<p>Pourquoi est-ce une amélioration ? Parce que quand le serveur envoie un <code>304</code>, <span style="font-style: italic;">il ne renvoie pas les données</span>.
+Tout ce que vous recevez est le code de statut. Même après que votre
+copie en cache ait expiré, la vérification de dernière modification
+assure que vous ne téléchargiez pas deux fois les mêmes données si
+elles n'ont pas changé. (En bonus, cette réponse <code>304</code>
+inclut également des en-têtes de mise en cache. Les proxys garderont
+une copie des données&nbsp; même après qu'elles aient officiellement «
+expiré », dans l'espoir que les données n'aient pas <span style="font-style: italic;">réellement</span> changé et que la requête suivante réponde avec un code de statut <code>304</code> et des informations de mise en cache à jour.)
 </p>
 
-<p>Python’s <abbr>HTTP</abbr> libraries do not support last-modified
-date checking, but <code>httplib2</code> does.
+<p>Les librairies <abbr>HTTP</abbr> de Python ne supportent pas la vérification de dernière modification, mais <code>httplib2</code> le fait.
 </p>
 
 <h3 id="etags">ETag Checking</h3>
