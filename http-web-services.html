@@ -265,11 +265,9 @@ expiré », dans l'espoir que les données n'aient pas <span style="font-style: 
 <p>Les librairies <abbr>HTTP</abbr> de Python ne supportent pas la vérification de dernière modification, mais <code>httplib2</code> le fait.
 </p>
 
-<h3 id="etags">ETag Checking</h3>
+<h3 id="etags">Vérification de l'ETag</h3>
 
-<p>ETags are an alternate way to accomplish the same thing as the <a href="#last-modified">last-modified checking</a>. With Etags, the
-server sends a hash code in an <code>ETag</code> header along with the
-data you requested. (Exactly how this hash is determined is entirely up
+<p>Les ETags sont une autre manière de faire la même chose que la <a href="#last-modified">vérification de dernière modification</a>. Avec les Etags, le serveur envoie un hash dans une en-tête <code>ETag</code> en plus des données que vous avez demandé. (Exactly how this hash is determined is entirely up
 to the server. The only requirement is that it changes when the data
 changes.) That background image referenced from <code>diveintomark.org</code>
 had an <code>ETag</code> header.
