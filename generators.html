@@ -191,19 +191,19 @@ def plural(noun):
 <li>Elle ne convient pas ? Alors repart à l'étape n°1.
 </ol>
 
-<p>Les règles pourraient être définies n'import où, et de n'importe quelle façon. La fonction <code>plural()</code> s'en fiche.
+<p>Les règles pourraient être définies n'importe où, et de n'importe quelle façon. La fonction <code>plural()</code> s'en fiche.
 
-<p>Maintenant, est-ce que l'ajout d'un niveau d'abstraction en valait la peine ? En fait, pas encore. Let&#8217;s consider what it would take to add a new rule to the function. In the first example, it would require adding an <code>if</code> statement to the <code>plural()</code> function. In this second example, it would require adding two functions, <code>match_foo()</code> and <code>apply_foo()</code>, and then updating the <var>rules</var> sequence to specify where in the order the new match and apply functions should be called relative to the other rules.
+<p>Maintenant, est-ce que l'ajout d'un niveau d'abstraction en valait la peine ? En fait, pas encore. Voyons voir ce que nous devons faire pour ajouter une nouvelle règle à la fonction. Dans le premier exemple, il faudrait ajouter un <code>if</code> à la fonction <code>plural()</code>. Dans le second exemple, il faudrait ajouter deux fonctions, <code>match_foo()</code> et <code>apply_foo()</code>, et enfin mettre à jour la liste <var>rules</var> pour spécifier, dans l'ordre des priorités des différentes règles, où se place ces deux nouvelles fonctions.
 
-<p>But this is really just a stepping stone to the next section. Let&#8217;s move on&hellip;
+<p>Mais tout ceci n'est qu'une introduction à la prochaine section. Je vous propose donc d'avancer&hellip;
 
 <p class=a>&#x2042;
 
-<h2 id=a-list-of-patterns>A List Of Patterns</h2>
+<h2 id=a-list-of-patterns>Une liste de patrons</h2>
 
-<p>Defining separate named functions for each match and apply rule isn&#8217;t really necessary. You never call them directly; you add them to the <var>rules</var> sequence and call them through there. Furthermore, each function follows one of two patterns. All the match functions call <code>re.search()</code>, and all the apply functions call <code>re.sub()</code>. Let&#8217;s factor out the patterns so that defining new rules can be easier.
+<p>Définir des fonctions séparées pour chaque phase de recherche et de remplacement n'est pas vraiment nécessaire. Pourquoi ? Tout d'abord parce qu'on ne les appelle jamais directement; on les ajoute à la liste <var>rules</var> et on les appelle depuis celle-ci. De plus, chaque fonction suit un ou deux patrons de conception. Toutes les fonctions de recherche appellent <code>re.search()</code>, et toutes les fonctions de remplacement appellent <code>re.sub()</code>. Essayons de trouver les points communs entre chaque déclarations pour enfin définir de nouvelles règles plus facilement.
 
-<p class=d>[<a href=examples/plural3.py>download <code>plural3.py</code></a>]
+<p class=d>[<a href=examples/plural3.py>télécharger <code>plural3.py</code></a>]
 <pre class=pp><code>import re
 
 def build_match_and_apply_functions(pattern, search, replace):
@@ -213,12 +213,12 @@ def build_match_and_apply_functions(pattern, search, replace):
         return re.sub(search, replace, word)
 <a>    return (matches_rule, apply_rule)                           <span class=u>&#x2462;</span></a></code></pre>
 <ol>
-<li><code>build_match_and_apply_functions()</code> is a function that builds other functions dynamically. It takes <var>pattern</var>, <var>search</var> and <var>replace</var>, then defines a <code>matches_rule()</code> function which calls <code>re.search()</code> with the <var>pattern</var> that was passed to the <code>build_match_and_apply_functions()</code> function, and the <var>word</var> that was passed to the <code>matches_rule()</code> function you&#8217;re building. Whoa.
-<li>Building the apply function works the same way. The apply function is a function that takes one parameter, and calls <code>re.sub()</code> with the <var>search</var> and <var>replace</var> parameters that were passed to the <code>build_match_and_apply_functions()</code> function, and the <var>word</var> that was passed to the <code>apply_rule()</code> function you&#8217;re building. This technique of using the values of outside parameters within a dynamic function is called <em>closures</em>. You&#8217;re essentially defining constants within the apply function you&#8217;re building: it takes one parameter (<var>word</var>), but it then acts on that plus two other values (<var>search</var> and <var>replace</var>) which were set when you defined the apply function.
-<li>Finally, the <code>build_match_and_apply_functions()</code> function returns a tuple of two values: the two functions you just created. The constants you defined within those functions (<var>pattern</var> within the <code>matches_rule()</code> function, and <var>search</var> and <var>replace</var> within the <code>apply_rule()</code> function) stay with those functions, even after you return from <code>build_match_and_apply_functions()</code>. That&#8217;s insanely cool.
+<li><code>build_match_and_apply_functions()</code> est une fonction qui va construire de nouvelles fonctions dynamiquement. Elle prend en paramètres d'entrée les variables <var>pattern</var>, <var>search</var> and <var>replace</var>, et définit une fonction <code>matches_rule()</code> qui appelle <code>re.search()</code> avec la paramètre d'entrée <var>pattern</var> de la fonction <code>build_match_and_apply_functions()</code>, et le paramètre d'entrée <var>word</var> de la fonction  <code>matches_rule()</code> que nous sommes en train de construire. Whoa.
+<li>La construction de la fonction <code>apply()</code> se base sur le même raisonnement. La fonction apply est une fonction qui ne prend qu'un seul paramètre, et appelle <code>re.sub()</code> avec les paramètres <var>search</var> et <var>replace</var> qui ont été donné à la fonction <code>build_match_and_apply_functions()</code>,  et la variable <var>word</var> qui a été passé à la fonction <code>apply_rule()</code> que nous sommes en train de construire. Cette technique permettant d'utiliser les valeurs de paramètres extérieurs au sein d'une fonction dynamique est appelé <em>closures</em>. En somme on définit des constantes au sein de la fonction apply  que l'on construit : elle ne prend qu'un seul paramètre (<var>word</var>), mais elle agit en fonction de ce paramètre et de deux autres valeurs (<var>search</var> and <var>replace</var>) qui ont été définies lors de la création de la fonction apply.
+<li>Finalement, la fonction <code>build_match_and_apply_functions()</code> renvoit un couple de deux valeurs : les deux fonctions que l'on vient de créer. Les constantes utilisées dans ces fonction (<var>pattern</var> au sein de <code>matches_rule()</code>, et <var>search</var> et <var>replace</var> au sein de la fonction  <code>apply_rule()</code>) restent dans ces fonctions, même une fois sortie de la fonction <code>build_match_and_apply_functions()</code>. Ce qui est franchement superbe.
 </ol>
 
-<p>If this is incredibly confusing (and it should be, this is weird stuff), it may become clearer when you see how to use it.
+<p>Si c'est confus dans votre esprit (c'est tout à fait normal, vu combien c'est étrange), ça devrait devenir plus clair avec cet exemple.
 
 <pre class=pp><code><a>patterns = \                                                        <span class=u>&#x2460;</span></a>
   (
@@ -230,7 +230,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 <a>rules = [build_match_and_apply_functions(pattern, search, replace)  <span class=u>&#x2462;</span></a>
          for (pattern, search, replace) in patterns]</code></pre>
 <ol>
-<li>Our pluralization &#8220;rules&#8221; are now defined as a tuple of tuples of <em>strings</em> (not functions). The first string in each group is the regular expression pattern that you would use in <code>re.search()</code> to see if this rule matches. The second and third strings in each group are the search and replace expressions you would use in <code>re.sub()</code> to actually apply the rule to turn a noun into its plural.
+<li>Nos &#8220;règles&#8221; de pluralisations sont maintenant définies sous la forme d'un tuple de tuples de <em>strings</em> (et non de fonctions). La première  string de chaque groupe est l'expression régulière que l'on utiliserait avec <code>re.search()</code> pour voir si la règle s'applique. La seconde et troisième string dans chaque groupe sont les expressions de recherche et de remplacement que l'on utiliserait comme paramètre à la fonction <code>re.sub()</code> pour effectivement appliquer la règle permettant de transformer un nom en son pluriel.
 <li>There&#8217;s a slight change here, in the fallback rule. In the previous example, the <code>match_default()</code> function simply returned <code>True</code>, meaning that if none of the more specific rules matched, the code would simply add an <code>s</code> to the end of the given word. This example does something functionally equivalent. The final regular expression asks whether the word has an end (<code>$</code> matches the end of a string). Of course, every string has an end, even an empty string, so this expression always matches. Thus, it serves the same purpose as the <code>match_default()</code> function that always returned <code>True</code>: it ensures that if no more specific rule matches, the code adds an <code>s</code> to the end of the given word.
 <li>This line is magic. It takes the sequence of strings in <var>patterns</var> and turns them into a sequence of functions. How? By &#8220;mapping&#8221; the strings to the <code>build_match_and_apply_functions()</code> function. That is, it takes each triplet of strings and calls the <code>build_match_and_apply_functions()</code> function with those three strings as arguments. The <code>build_match_and_apply_functions()</code> function returns a tuple of two functions. This means that <var>rules</var> ends up being functionally equivalent to the previous example: a list of tuples, where each tuple is a pair of functions. The first function is the match function that calls <code>re.search()</code>, and the second function is the apply function that calls <code>re.sub()</code>.
 </ol>
