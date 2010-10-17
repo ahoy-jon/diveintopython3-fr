@@ -247,25 +247,25 @@ body{counter-reset:h1 5}
 <p>Nous allons maintenant explorer une syntaxe alternative qui permet de faciliter la maintenance de vos expressions r&eacute;guli&egrave;res.
 <p class=a>&#x2042;
 
-<h2 id=verbosere>Verbose Regular Expressions</h2>
-<p>So far you&#8217;ve just been dealing with what I&#8217;ll call &#8220;compact&#8221; regular expressions. As you&#8217;ve seen, they are difficult to read, and even if you figure out what one does, that&#8217;s no guarantee that you&#8217;ll be able to understand it six months later. What you really need is inline documentation.
-<p>Python allows you to do this with something called <i>verbose regular expressions</i>. A verbose regular expression is different from a compact regular expression in two ways:
+<h2 id=verbosere>Expressions R&eacute;guli&egrave;res Verbeuses</h2>
+<p>Jusqu&#8217;ici vous n&#8217;avez eu affaire qu&#8217;&agrave; ce que j&#8217;appelerais des expressions r&eacute;guli&egrave;res &#8220;compactes&#8221;. Comme vous l&#8217;avez vu, elles sont difficiles &agrave; lire et m&ecirc;me si vous comprenez ce que fait l&#8217;une d&#8217;entre elles, il n&#8217;y a pas de garanties que vous serez encore capable de le comprendre six mois plus tard. Ce dont vous avez r&eacute;llement besoin, c&#8217;est d&#8217;une documentation int&eacute;gr&eacute;e.
+<p>Python vous permet de le faire avec ce qu&#8217;on appelle  des <i>expressions r&eacute;guli&egrave;res verbeuses</i>. Une expression r&eacute;guli&egrave;re verbeuse est diff&eacute;rente d&#8217;une expression r&eacute;guli&egrave;re compacte de deux mani&egrave;res:
 <ul>
-<li>Whitespace is ignored. Spaces, tabs, and carriage returns are not matched as spaces, tabs, and carriage returns. They&#8217;re not matched at all. (If you want to match a space in a verbose regular expression, you&#8217;ll need to escape it by putting a backslash in front of it.)
-<li>Comments are ignored. A comment in a verbose regular expression is just like a comment in Python code: it starts with a <code>#</code> character and goes until the end of the line. In this case it&#8217;s a comment within a multi-line string instead of within your source code, but it works the same way.
+<li>Les espaces blancs sont ignor&eacute;s. Les espaces, les tabulations et les retours chariot ne sont pas reconnus en tant qu&#8217;espaces, tabulations et retours chariot. Ils ne sont pas reconnus du tous. (Si vous voulez reconna&icirc;tre un espace dans une expression r&eacute;guli&egrave;re verbeuse, vous aurez &agrave; &eacute;chapper ce caract&egrave;re en rajoutant un antislash devant celui-ci.)
+<li>Les commentaires sont ignor&eacute;s. Un commentaire dans une expression r&eacute;guli&egrave;re verbeuse est exactement comme un commentaire dans du code Python: il commence par un caract&egrave;re <code>#</code> et se poursuit jusqu&#8217;&agrave; la fin de la ligne. Dans ce cas, il s&#8217;agit d&#8217;un commentaire dans une cha&icirc;ne multi-lignes plut&ocirc;t que dans votre code source, mais il fonctionne de la m&egrave;me mani&egrave;re.
 </ul>
-<p>This will be more clear with an example. Let&#8217;s revisit the compact regular expression you&#8217;ve been working with, and make it a verbose regular expression. This example shows how.
+<p>Ce sera plus clair avec un exemple. Allons revisiter l&#8217;expression r&eacute;guli&egrave;re compacte avec laquelle vous avez travaill&eacute;, et transformons la en expression r&eacute;guli&egrave;re verbeuse. Cet exemple montre comment.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>pattern = '''
-    ^                   # beginning of string
-    M{0,3}              # thousands - 0 to 3 Ms
-    (CM|CD|D?C{0,3})    # hundreds - 900 (CM), 400 (CD), 0-300 (0 to 3 Cs),
-                        #            or 500-800 (D, followed by 0 to 3 Cs)
-    (XC|XL|L?X{0,3})    # tens - 90 (XC), 40 (XL), 0-30 (0 to 3 Xs),
-                        #        or 50-80 (L, followed by 0 to 3 Xs)
-    (IX|IV|V?I{0,3})    # ones - 9 (IX), 4 (IV), 0-3 (0 to 3 Is),
-                        #        or 5-8 (V, followed by 0 to 3 Is)
-    $                   # end of string
+    ^                   # d&eacute;but de la cha&icirc;ne
+    M{0,3}              # milliers - de 0 &agrave; 3 M
+    (CM|CD|D?C{0,3})    # centaines - 900 (CM), 400 (CD), 0-300 (de 0 &agrave; 3 C),
+                        #             ou 500-800 (D, suivi de 0 &agrave; 3 C)
+    (XC|XL|L?X{0,3})    # dizaines - 90 (XC), 40 (XL), 0-30 (de 0 &agrave; 3 X),
+                        #            ou 50-80 (L, suivi de 0 &agrave; 3 X)
+    (IX|IV|V?I{0,3})    # unit&eacute;s - 9 (IX), 4 (IV), 0-3 (de 0 &agrave; 3 I),
+                        #          5-8 (V, suivi de 0 &agrave; 3 Is)
+    $                   # fin de la cha&icirc;ne
     '''</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'M', re.VERBOSE)</kbd>                 <span class=u>&#x2460;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
@@ -275,10 +275,10 @@ body{counter-reset:h1 5}
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'M')</kbd>                             <span class=u>&#x2463;</span></a></pre>
 <ol>
-<li>The most important thing to remember when using verbose regular expressions is that you need to pass an extra argument when working with them: <code>re.VERBOSE</code> is a constant defined in the <code>re</code> module that signals that the pattern should be treated as a verbose regular expression. As you can see, this pattern has quite a bit of whitespace (all of which is ignored), and several comments (all of which are ignored). Once you ignore the whitespace and the comments, this is exactly the same regular expression as you saw in the previous section, but it&#8217;s a lot more readable.
-<li>Ceci correspond au d&eacute;but de la cha&icirc;ne, then one of a possible three <code>M</code>, then <code>CM</code>, then <code>L</code> and three of a possible three <code>X</code>, then <code>IX</code>, then the end of the string.
-<li>Ceci correspond au d&eacute;but de la cha&icirc;ne, then three of a possible three <code>M</code>, then <code>D</code> and three of a possible three <code>C</code>, then <code>L</code> and three of a possible three <code>X</code>, then <code>V</code> and three of a possible three <code>I</code>, then the end of the string.
-<li>This does not match. Why?  Because it doesn&#8217;t have the <code>re.VERBOSE</code> flag, so the <code>re.search</code> function is treating the pattern as a compact regular expression, with significant whitespace and literal hash marks. Python can&#8217;t auto-detect whether a regular expression is verbose or not. Python assumes every regular expression is compact unless you explicitly state that it is verbose.
+<li>La chose la plus importante &agrave; retenir lors de l&#8217;utilisation des expressions r&eacute;guli&egrave;res verbeuses est que vous avez besoin de passer un argument suppl&eacute;mentaire lorsque vous travaillez avec celles-ci: <code>re.VERBOSE</code> est une constante d&eacute;finie dans le module <code>re</code> qui signale que le pattern doit &ecirc;tre trait&eacute; comme une expression r&eacute;guli&egrave;re verbeuse. Comme vous pouvez le constater, ce pattern comporte quelques espaces blancs (qui sont tous ignor&eacute;s), et plusieurs commentaires (qui sont tous ignor&eacute;s). Une fois que vous avez ignor&eacute; les espaces et les commentaires, c&#8217;est exactement la m&ecirc;me expression r&eacute;guli&egrave;re que vous avez vu dans la section pr&eacute;c&eacute;dente, mais en beaucoup plus lisible.
+<li>Ceci correspond au d&eacute;but de la cha&icirc;ne, puis &agrave; l&#8217;un des trois <code>M</code> possibles, puis &agrave; <code>CM</code>, puis &agrave; <code>L</code> et &agrave; trois des trois <code>X</code> possibles, puis &agrave; <code>IX</code>, puis &agrave; la fin de la cha&icirc;ne.
+<li>Ceci correspond au d&eacute;but de la cha&icirc;ne, puis &agrave; trois des trois <code>M</code> possibles, puis &agrave; <code>D</code> et &agrave; trois des trois  <code>C</code> possibles, puis &agrave; <code>L</code> et &agrave; trois des trois <code>X</code> possibles, puis &agrave; <code>V</code> et &agrave; trois des trois  <code>I</code> possibles, puis &agrave; la fin de la cha&icirc;ne.
+<li>Cela ne correspond pas. Pourquoi? Parce qu'il n'a pas  l&#8217;appel <code>re.VERBOSE</code>,  de sorte que la fonction <code>re.search</code> traite le pattern comme une expression r&eacute;guli&egrave;re compacte, avec un espace blanc important et des marques de hachage litt&eacute;rale. Python ne peut pas d&eacute;tecter automatiquement si une expression r&eacute;guli&egrave;re est verbeuse ou non. Python consid&egrave;re que chaque expression r&eacute;guli&egrave;re est compacte, &agrave; moins que vous ne pr&eacute;cisiez explicitement qu&#8217;elle est verbeuse.
 </ol>
 <p class=a>&#x2042;
 
