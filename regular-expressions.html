@@ -27,7 +27,7 @@ body{counter-reset:h1 5}
 </blockquote>
 <p class=a>&#x2042;
 
-<h2 id=streetaddresses>Cas d&#8217;&eacute;tude: Adresses de rues</h2>
+<h2 id=streetaddresses>&Eacute;tude de cas: Adresses de rues</h2>
 <p>Ces s&eacute;ries d&#8217;exemples sont inspir&eacute;es par un probl&egrave;me de la vraie vie que j&#8217;ai rencontr&eacute; dans mon travail quotidien il y a quelques ann&eacute;es de cela, alors que j&#8217;eus besoin de briquer et de standardiser des adresses de rues export&eacute;es d'un syst&egrave;me re&ccedil;u en h&eacute;ritage avant de les importer dans un nouveau syst&egrave;me. (Regardez, je n&#8217;ai pas juste maquill&eacute; cette mati&egrave;re; elle est maintenant fonctionnelle.)  Cette exemple montre de quelle mani&egrave;re j'ai approch&eacute; le probl&egrave;me.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>s = '100 NORTH MAIN ROAD'</kbd>
@@ -71,7 +71,7 @@ body{counter-reset:h1 5}
 </ol>
 <p class=a>&#x2042;
 
-<h2 id=romannumerals>Cas d&#8217;&eacute;tude: Nombres Romains</h2>
+<h2 id=romannumerals>&Eacute;tude de cas: Nombres Romains</h2>
 <p>Vous avez probablement vu des chiffres romains, m&ecirc;me si vous ne les avez pas reconnu. Vous pouvez les avoir vus dans les droits d&#8217;auteur de vieux films et &eacute;missions de télévision  (&#8220;Copyright <code>MCMXLVI</code>&#8221; au lieu de &#8220;Copyright <code>1946</code>&#8221;), ou sur les murs de d&eacute;dicaces des biblioth&egrave;ques ou des universit&eacute;s (&#8220;fond&eacute;e en <code>MDCCCLXXXVIII</code>&#8221; &agrave; la place de &#8220;fond&eacute;e en <code>1888</code>&#8221;). Vous pourriez aussi les avoir vu dans les sommaires et les r&eacute;f&eacute;rences bibliographiques. C&#8217;est un syst&egrave;me de repr&eacute;sentation des nombres qui remonte vraiment &agrave; l&#8217;ancien empire Romain (d&#8217;o&ugrave; le nom).
 <p>Dans la num&eacute;ration Romaine, il y a sept chiffres qui sont r&eacute;p&eacute;t&eacute;s et combin&eacute;s de diff&eacute;rentes fa&ccedil;ons afin de repr&eacute;senter tous les nombres.
 <ul>
@@ -282,11 +282,11 @@ body{counter-reset:h1 5}
 </ol>
 <p class=a>&#x2042;
 
-<h2 id=phonenumbers>Case study: Parsing Phone Numbers</h2>
-<aside>\d matches any numeric digit (0&ndash;9). \D matches anything but digits.</aside>
-<p>So far you&#8217;ve concentrated on matching whole patterns. Either the pattern matches, or it doesn&#8217;t. But regular expressions are much more powerful than that. When a regular expression <em>does</em> match, you can pick out specific pieces of it. You can find out what matched where.
-<p>This example came from another real-world problem I encountered, again from a previous day job. The problem: parsing an American phone number. The client wanted to be able to enter the number free-form (in a single field), but then wanted to store the area code, trunk, number, and optionally an extension separately in the company&#8217;s database. I scoured the Web and found many examples of regular expressions that purported to do this, but none of them were permissive enough.
-<p>Here are the phone numbers I needed to be able to accept:
+<h2 id=phonenumbers>&Eacute;tude de cas: Analyse Syntaxique de Num&eacute;ros de t&eacute;l&eacute;phone </h2>
+<aside>\d correspond &agrave; tout chiffre numérique (0&ndash;9). \D correspond &agrave; tout sauf &agrave; des chiffres. </aside>
+<p>Jusqu&#8217;ici, vous vous &ecirc;tes concentr&eacute;s sur la reconnaissance de pattern complets. Soit le pattern est reconnu, soit il ne l&#8217;est pas. Mais les expressions r&eacute;guli&egrave;res sont beaucoup plus puissantes que cela. Quand une expression r&eacute;guli&egrave;re correspond <em>bien</em>, vous pouvez s&eacute;lectionner certaines parties sp&eacute;cifiques de celles-ci. Vous pouvez d&eacute;couvrir ce qui correspond et o&ugrave; cela correspond.
+<p>Cet exemple est venu d&#8217;un autre probl&egrave;me r&eacute;el que j&#8217;ai rencontr&eacute;, issu une fois plus de mon experience professionnelle. Le probl&egrave;me: l&#8217;analyse syntaxique d&#8217;un num&eacute;ro de t&eacute;l&eacute;phone am&eacute;ricain. Le client voulait &ecirc;tre en mesure de saisir le num&eacute;ro sans contrainte de forme (dans un seul champ de saisie), mais voulait ensuite stocker le code r&eacute;gional, l&#8217;indicatif, le nombre, et &eacute;ventuellement une extension s&eacute;par&eacute;e dans la base de donn&eacute;es de l&#8217;entreprise. J&#8217;ai parcouru le Web et trouv&eacute; de nombreux exemples d&#8217;expressions r&eacute;guli&egrave;res qui visait &agrave; le faire, mais aucune d&#8217;entre elles n&#8217;était assez souple.
+<p>Voici les numéros de t&eacute;l&eacute;phone que je devais &ecirc;tre en mesure d&#8217;accepter:
 <ul>
 <li><code>800-555-1212</code>
 <li><code>800 555 1212</code>
@@ -298,8 +298,8 @@ body{counter-reset:h1 5}
 <li><code>800-555-1212 ext. 1234</code>
 <li><code>work 1-(800) 555.1212 #1234</code>
 </ul>
-<p>Quite a variety! In each of these cases, I need to know that the area code was <code>800</code>, the trunk was <code>555</code>, and the rest of the phone number was <code>1212</code>. For those with an extension, I need to know that the extension was <code>1234</code>.
-<p>Let&#8217;s work through developing a solution for phone number parsing. This example shows the first step.
+<p>Que de vari&eacute;t&eacute;s! Dans chacun de ces cas, j&#8217;avais besoin de savoir que le code r&eacute;gional &eacute;tait <code>800</code>, l&#8217;indicatif <code>555</code>, et le reste du num&eacute;ro  <code>1212</code>. Pour ceux avec une extension, j&#8217;avais besoin de savoir que l&#8217;extension &eacute;tait  <code>1234</code>.
+<p>Nous devons travailler &agrave; l&#8217;&eacute;laboration d&#8217;une solution d&#8217;analyse syntaxique de num&eacute;ro de t&eacute;l&eacute;phone. Cet exemple montre la premi&egrave;re &eacute;tape.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})$')</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212').groups()</kbd>             <span class=u>&#x2461;</span></a>
@@ -310,8 +310,8 @@ body{counter-reset:h1 5}
   File "&lt;stdin>", line 1, in &lt;module>
 AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <ol>
-<li>Always read regular expressions from left to right. This one matches the beginning of the string, and then <code>(\d{3})</code>. What&#8217;s <code>\d{3}</code>?  Well, <code>\d</code> means &#8220;any numeric digit&#8221; (0 through <code>9</code>). The <code>{3}</code> means &#8220;match exactly three numeric digits&#8221;; it&#8217;s a variation on the <a href=#nmsyntax><code>{n,m} syntax</code></a> you saw earlier. Putting it all in parentheses means &#8220;match exactly three numeric digits, <em>and then remember them as a group that I can ask for later</em>&#8221;. Then match a literal hyphen. Then match another group of exactly three digits. Then another literal hyphen. Then another group of exactly four digits. Then match the end of the string.
-<li>To get access to the groups that the regular expression parser remembered along the way, use the <code>groups()</code> method on the object that the <code>search()</code> method returns. It will return a tuple of however many groups were defined in the regular expression. In this case, you defined three groups, one with three digits, one with three digits, and one with four digits.
+<li>Lisez toujours les expressions r&eacute;guli&egrave;res de gauche &agrave; droite. Celle-ci correspond au d&eacute;but de la cha&icirc;ne, puis au <code>(\d{3})</code>. Que repr&eacute;sente <code>\d{3}</code>?  Et bien, <code>\d</code> signifie &#8220;n&#8217;importe quel chiffre&#8221; (de 0 &agrave; <code>9</code>). Le <code>{3}</code> signifie &#8220;&eacute;galez exactement trois chiffres&#8221;; c&#8217;est une variation de <a href=#nmsyntax><code>la syntaxe {n,m}</code></a> vue plus t&ocirc;t. Le glisser enti&egrave;rement entre parenth&egrave;ses signifie &#8220;&eacute;galez exactement trois chiffres, <em>et ensuite s&#8217;en rappeler en tant qu&#8217;un groupe que je pourrais rappeler par la suite</em>&#8221;. Puis &eacute;galez un tiret. Puis &eacute;galez un autre groupe d&#8217;exactement trois chiffres. Puis un autre tiret. Puis un autre groupe d&#8217;exactement quatre chiffres. Puis &eacute;galez la fin de la chaîne.
+<li>Pour avoir acc&egrave;s au groupe m&eacute;moris&eacute; tout au long du chemin par l&#8217;analyseur syntaxique de l&#8217;expression r&eacute;guli&egrave;re, utlisez la m&eacute;thode <code>groups()</code> sur l&#8217;objet que la m&eacute;thode <code>search()</code> retourne. Ceci retournera n&eacute;anmoins un tuple (ndlt: ou t-uple contraction de table-uple, ici collection d&8217;objet pr&eacute;sent&eacute; sous forme de tableau, de table) ere defined in the regular expression. In this case, you defined three groups, one with three digits, one with three digits, and one with four digits.
 <li>This regular expression is not the final answer, because it doesn&#8217;t handle a phone number with an extension on the end. For that, you&#8217;ll need to expand the regular expression.
 <li>And this is why you should never &#8220;chain&#8221; the <code>search()</code> and <code>groups()</code> methods in production code. If the <code>search()</code> method returns no matches, it returns <a href=native-datatypes.html#none><code>None</code></a>, not a regular expression match object. Calling <code>None.groups()</code> raises a perfectly obvious exception: <code>None</code> doesn&#8217;t have a <code>groups()</code> method. (Of course, it&#8217;s slightly less obvious when you get this exception from deep within your code. Yes, I speak from experience here.)
 </ol>
