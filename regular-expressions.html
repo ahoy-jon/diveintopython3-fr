@@ -28,7 +28,7 @@ body{counter-reset:h1 5}
 <p class=a>&#x2042;
 
 <h2 id=streetaddresses>&Eacute;tude de cas: Adresses de rues</h2>
-<p>Ces s&eacute;ries d&#8217;exemples sont inspir&eacute;es par un probl&egrave;me de la vraie vie que j&#8217;ai rencontr&eacute; dans mon travail quotidien il y a quelques ann&eacute;es de cela, alors que j&#8217;eus besoin de briquer et de standardiser des adresses de rues export&eacute;es d'un syst&egrave;me re&ccedil;u en h&eacute;ritage avant de les importer dans un nouveau syst&egrave;me. (Regardez, je n&#8217;ai pas juste maquill&eacute; cette mati&egrave;re; elle est maintenant fonctionnelle.)  Cette exemple montre de quelle mani&egrave;re j'ai approch&eacute; le probl&egrave;me.
+<p>Ces s&eacute;ries d&#8217;exemples sont inspir&eacute;es par un probl&egrave;me de la vraie vie que j&#8217;ai rencontr&eacute; dans mon travail quotidien il y a quelques ann&eacute;es de cela. J&#8217;eus alors besoin de nettoyer et de standardiser des adresses de rues export&eacute;es d'un syst&egrave;me h&eacute;rit&eacute; avant de les importer dans un nouveau syst&egrave;me. (Regardez, je n&#8217;ai pas juste maquill&eacute; ces donn&eacute;es; elles sont vraiment fonctionnelles.)  Cet exemple montre sous quel angle j&#8217;ai attaqu&eacute; le probl&egrave;me.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>s = '100 NORTH MAIN ROAD'</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>s.replace('ROAD', 'RD.')</kbd>                <span class=u>&#x2460;</span></a>
@@ -311,9 +311,9 @@ body{counter-reset:h1 5}
 AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <ol>
 <li>Lisez toujours les expressions r&eacute;guli&egrave;res de gauche &agrave; droite. Celle-ci correspond au d&eacute;but de la cha&icirc;ne, puis au <code>(\d{3})</code>. Que repr&eacute;sente <code>\d{3}</code>?  Et bien, <code>\d</code> signifie &#8220;n&#8217;importe quel chiffre&#8221; (de 0 &agrave; <code>9</code>). Le <code>{3}</code> signifie &#8220;&eacute;galez exactement trois chiffres&#8221;; c&#8217;est une variation de <a href=#nmsyntax><code>la syntaxe {n,m}</code></a> vue plus t&ocirc;t. Le glisser enti&egrave;rement entre parenth&egrave;ses signifie &#8220;&eacute;galez exactement trois chiffres, <em>et ensuite s&#8217;en rappeler en tant qu&#8217;un groupe que je pourrais rappeler par la suite</em>&#8221;. Puis &eacute;galez un tiret. Puis &eacute;galez un autre groupe d&#8217;exactement trois chiffres. Puis un autre tiret. Puis un autre groupe d&#8217;exactement quatre chiffres. Puis &eacute;galez la fin de la chaîne.
-<li>Pour avoir acc&egrave;s au groupe m&eacute;moris&eacute; tout au long du chemin par l&#8217;analyseur syntaxique de l&#8217;expression r&eacute;guli&egrave;re, utlisez la m&eacute;thode <code>groups()</code> sur l&#8217;objet que la m&eacute;thode <code>search()</code> retourne. Ceci retournera syst&eacute;matiquement un tuple (ndlt: ou t-uple contraction de table-uple, c&#8217;est &agrave; dire une collection d&#8217;objet pr&eacute;sent&eacute; sous forme de tableau, de table) de nombreux groupes qui &eacute;taient d&eacute;finis dans l&#8217;expression r&eacute;guli&egrave;re. Dans ce cas, vous avez d&eacute;fini trois groupes, l&#8217;un &agrave; trois chiffres, suivi d&#8217;un autre &agrave; trois chiffre et un &agrave; quatre chiffres pour finir.
-<li>This regular expression is not the final answer, because it doesn&#8217;t handle a phone number with an extension on the end. For that, you&#8217;ll need to expand the regular expression.
-<li>And this is why you should never &#8220;chain&#8221; the <code>search()</code> and <code>groups()</code> methods in production code. If the <code>search()</code> method returns no matches, it returns <a href=native-datatypes.html#none><code>None</code></a>, not a regular expression match object. Calling <code>None.groups()</code> raises a perfectly obvious exception: <code>None</code> doesn&#8217;t have a <code>groups()</code> method. (Of course, it&#8217;s slightly less obvious when you get this exception from deep within your code. Yes, I speak from experience here.)
+<li>Pour avoir acc&egrave;s au groupe m&eacute;moris&eacute; tout au long du chemin par l&#8217;analyseur syntaxique de l&#8217;expression r&eacute;guli&egrave;re, utlisez la m&eacute;thode <code>groups()</code> sur l&#8217;objet que la m&eacute;thode <code>search()</code> retourne. Ceci retournera syst&eacute;matiquement un tuple (ndlt: ou t-uple contraction de table-uple, c&#8217;est &agrave; dire une collection d&#8217;objet pr&eacute;sent&eacute; sous forme de tableau, de table) des nombreux groupes qui &eacute;taient d&eacute;finis dans l&#8217;expression r&eacute;guli&egrave;re. Dans ce cas, vous avez d&eacute;fini trois groupes, l&#8217;un &agrave; trois chiffres, suivi d&#8217;un autre &agrave; trois chiffre et d&#8217;un &agrave; quatre chiffres pour finir.
+<li>Cette expression r&eacute;guli&egrave;re n'est pas la r&eacute;ponse finale, car elle ne g&egrave;re pas un num&eacute;ro de t&eacute;l&eacute;phone contenant une extension sur la fin. Pour cela, vous aurez besoin pour d&eacute;velopper l&#8217;expression r&eacute;guli&egrave;re.
+<li>Et c&#8217;est pourquoi vous ne devriez jamais &#8220;encha&icirc;ner&#8221; les m&eacute;thodes <code>search()</code> et <code>groups()</code> dans du code de production. Si la m&eacute;thode <code>search()</code> ne retourne aucun r&eacute;sultat, elle retourne <a href=native-datatypes.html#none><code>None</code></a> et non pas un objet correspondant &agrave; l&#8217;expression r&eacute;guli&egrave;re. Appeler <code>None.groups()</code> l&egrave;ve une exception tout &agrave; fait &eacute;vidente: <code>None</code> n&#8217;a pas de m&eacute;thode <code>groups()</code>. (Bien s&ucirc;r, c&#8217;est l&eacute;g&egrave;rement moins &eacute;vident quand vous obtenez cette exception des profondeurs de votre code. Oui, ici je parle avec l&#8217;exp&eacute;rience.)
 </ol>
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})-(\d+)$')</kbd>  <span class=u>&#x2460;</span></a>
@@ -324,12 +324,12 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212')</kbd>                            <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li>This regular expression is almost identical to the previous one. Just as before, you match the beginning of the string, then a remembered group of three digits, then a hyphen, then a remembered group of three digits, then a hyphen, then a remembered group of four digits. What&#8217;s new is that you then match another hyphen, and a remembered group of one or more digits, then the end of the string.
-<li>The <code>groups()</code> method now returns a tuple of four elements, since the regular expression now defines four groups to remember.
-<li>Unfortunately, this regular expression is not the final answer either, because it assumes that the different parts of the phone number are separated by hyphens. What if they&#8217;re separated by spaces, or commas, or dots?  You need a more general solution to match several different types of separators.
-<li>Oops! Not only does this regular expression not do everything you want, it&#8217;s actually a step backwards, because now you can&#8217;t parse phone numbers <em>without</em> an extension. That&#8217;s not what you wanted at all; if the extension is there, you want to know what it is, but if it&#8217;s not there, you still want to know what the different parts of the main number are.
+<li>Cette expression r&eacute;guli&egrave;re est presque identique &agrave; la pr&eacute;c&eacute;dente. Tout comme avant, vous &eacute;galez le d&eacute;but de la cha&icirc;ne, puis un groupe mit en m&eacute;moire de trois chiffres, puis un tiret, puis un groupe mit en m&eacute;moire de trois chiffres, puis un tiret, puis un groupe mit en m&eacute;moire de quatre chiffres. Ce qu&#8217;il y a de nouveaux, c&#8217;est que vous &eacute;galez ensuite un autre trait d&#8217;union, puis un groupe mit en m&eacute;moire d&#8217;un ou plusieurs chiffres, puis la fin de la cha&icirc;ne.
+<li>La m&eacute;thode <code>groups()</code> retourne maintenant un tuple de quatre &eacute;l&eacute;ments,  puisque l&#8217;expression r&eacute;guli&egrave;re d&eacute;finit maintenant quatre groupes &agrave; m&eacute;moriser.
+<li>Malheureusement, cette expression r&eacute;guli&egrave;re n&#8217;est toujours pas la r&eacute;ponse finale car elle suppose que les diff&eacute;rentes parties du num&eacute;ro de t&eacute;l&eacute;phone sont s&eacute;par&eacute;es par des tirets. Que faire si elles sont s&eacute;par&eacute;es par des espaces, des virgules ou des points? Vous avez besoin d&#8217;une solution plus g&eacute;n&eacute;rale pour identifier diff&eacute;rents types de s&eacute;parateurs.
+<li>Oups! Non seulement cette expression r&eacute;guli&egrave;re ne fait pas tout ce que vous voulez, mais en plus c&#8217;est v&eacute;ritablement un retour en arri&egrave;re, parce que maintenant, vous ne pouvez pas analyser la syntaxe des num&eacute;ros de t&eacute;l&eacute;phone d&eacute;pourvu d&#8217;extension. Ce n&#8217;est pas ce que vous vouliez du tout, si l&#8217;extension est l&agrave;, vous voulez savoir ce qu&#8217;elle est, mais si elle n&#8217;est pas l&agrave;, vous voulez toujours savoir ce que sont les diff&eacute;rentes parties du num&eacute;ro principal.
 </ol>
-<p>The next example shows the regular expression to handle separators between the different parts of the phone number.
+<p>L&#8217;exemple suivant montre l&#8217;expression r&eacute;guli&egrave;re servant &agrave; g&eacute;rer les s&eacute;parateurs entre les diff&eacute;rentes parties du num&eacute;ro de t&eacute;l&eacute;phone...
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800 555 1212 1234').groups()</kbd>  <span class=u>&#x2461;</span></a>
@@ -341,13 +341,13 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212')</kbd>                <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li>Hang on to your hat. You&#8217;re matching the beginning of the string, then a group of three digits, then <code>\D+</code>. What the heck is that?  Well, <code>\D</code> matches any character <em>except</em> a numeric digit, and <code>+</code> means &#8220;1 or more&#8221;. So <code>\D+</code> matches one or more characters that are not digits. This is what you&#8217;re using instead of a literal hyphen, to try to match different separators.
-<li>Using <code>\D+</code> instead of <code>-</code> means you can now match phone numbers where the parts are separated by spaces instead of hyphens.
-<li>Of course, phone numbers separated by hyphens still work too.
-<li>Unfortunately, this is still not the final answer, because it assumes that there is a separator at all. What if the phone number is entered without any spaces or hyphens at all?
-<li>Oops! This still hasn&#8217;t fixed the problem of requiring extensions. Now you have two problems, but you can solve both of them with the same technique.
+<li>Accrochez-vous &agrave; votre chapeau. Vous &eacute;galez le d&eacute;but de la cha&icirc;ne, puis un groupe de trois chiffres, puis  <code>\D+</code>. Que diable est-ce que cela? Eh bien, <code>\D</code> correspond &agrave; tout caract&egrave;re <em>except&eacute;</em> un chiffre num&eacute;rique, et <code>+</code> signifie &#8220;1 ou plus&#8221;. Donc <code>\D+</code> correspond &agrave; un ou plusieurs caract&egrave;res qui ne sont pas des chiffres. Ceci est ce que vous utilisez &agrave; la place d&#8217;un tiret litt&eacute;ral, pour essayer de faire correspondre diff&eacute;rents s&eacute;parateurs .
+<li>Utiliser <code>\D+</code> au lieu de <code>-</code> signifie que vous pouvez maintenant &eacute;galiser des num&eacute;ros de t&eacute;l&eacute;phone dont les parties sont s&eacute;par&eacute;es par des espaces au lieu des traits d&#8217;union.
+<li>Bien s&ucirc;r, les num&eacute;ros de t&eacute;l&eacute;phone s&eacute;par&eacute;s par des tirets fonctionnent encore &eacute;galement.
+<li> Malheureusement, ce n&#8217;est pas encore la r&eacute;ponse d&eacute;finitive car elle suppose qu&#8217;il existe un s&eacute;parateur pour tout. Que faire si le num&eacute;ro de t&eacute;l&eacute;phone est inscrit sans aucun espace ni tiret du tout?
+<li>Oups! Cela n&#8217;a toujours pas r&eacute;solu le probl&egrave;me des extensions optionnelles. Maintenant vous avez deux probl&egrave;mes, mais vous pouvez les r&eacute;soudre tous les deux avec la m&ecirc;me technique.
 </ol>
-<p>The next example shows the regular expression for handling phone numbers <em>without</em> separators.
+<p>L&#8217;exemple suivant montre l&#8217;expression r&eacute;guli&egrave;re servant &agrave; g&eacute;rer les num&eacute;ros de t&eacute;l&eacute;phone <em>sans</em> s&eacute;parateurs.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'^(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('80055512121234').groups()</kbd>      <span class=u>&#x2461;</span></a>
@@ -359,13 +359,13 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('(800)5551212 x1234')</kbd>           <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li>The only change you&#8217;ve made since that last step is changing all the <code>+</code> to <code>*</code>. Instead of <code>\D+</code> between the parts of the phone number, you now match on <code>\D*</code>. Remember that <code>+</code> means &#8220;1 or more&#8221;?  Well, <code>*</code> means &#8220;zero or more&#8221;. So now you should be able to parse phone numbers even when there is no separator character at all.
-<li>Lo and behold, it actually works. Why?  You matched the beginning of the string, then a remembered group of three digits (<code>800</code>), then zero non-numeric characters, then a remembered group of three digits (<code>555</code>), then zero non-numeric characters, then a remembered group of four digits (<code>1212</code>), then zero non-numeric characters, then a remembered group of an arbitrary number of digits (<code>1234</code>), then the end of the string.
-<li>Other variations work now too: dots instead of hyphens, and both a space and an <code>x</code> before the extension.
-<li>Finally, you&#8217;ve solved the other long-standing problem: extensions are optional again. If no extension is found, the <code>groups()</code> method still returns a tuple of four elements, but the fourth element is just an empty string.
-<li>I hate to be the bearer of bad news, but you&#8217;re not finished yet. What&#8217;s the problem here?  There&#8217;s an extra character before the area code, but the regular expression assumes that the area code is the first thing at the beginning of the string. No problem, you can use the same technique of &#8220;zero or more non-numeric characters&#8221; to skip over the leading characters before the area code.
+<li>Le seul changement que vous avez effectu&eacute; depuis la derni&egrave;re &eacute;tape est d&#8217;avoir changer tous les <code>+</code> en <code>*</code>. &Agrave; la place d&#8217;avoir <code>\D+</code> entre les parties du num&eacute;ro de t&eacute;l&eacute;phone, vous avez maintenant <code>\D*</code>. Vous rappelez-vous que <code>+</code> signifie &#8220;1 ou plus&#8221;? H&eacute; bien <code>*</code> signifie &#8220;z&eacute;ro ou plus&#8221;.  Vous devriez donc &ecirc;tre maintenant capable d&#8217;analyser la syntaxe des num&eacute;ros de t&eacute;l&eacute;phone m&ecirc;me quand il n&#8217;y a pas de s&eacute;parateur du tout.
+<li>Et voil&agrave;, cela fonctionne r&eacute;ellement. Pourquoi? Nous avons &eacute;galis&eacute; le d&eacute;but de la cha&icirc;ne, puis un groupe identifi&eacute; de trois chiffres (<code>800</code>), puis aucun caract&egrave;re non num&eacute;rique, puis un groupe m&eacute;moris&eacute; de trois chiffres (<code>555</code>), puis aucun caract&egrave;re non num&eacute;rique, puis un groupe m&eacute;moris&eacute; de quatre chiffres (<code>1212</code>), puis aucun caract&egrave;re non num&eacute;rique, puis un groupe m&eacute;moris&eacute; d&#8217;un nombre de chiffres arbitraires (<code>1234</code>), puis la fin de la cha&icirc;ne.
+<li>Maintenant, d&#8217;autres variantes fonctionnent &eacute;galement: des points au lieu des tirets et l&#8217;association d&#8217;un espace et d&#8217;un <code>x</code> avant l&#8217;extension.
+<li>Finalement, vous avez r&eacute;solu l&#8217;autre probl&egrave;me de longue date: les extensions sont encore optionnelles. Si aucune extension n'est trouvée, la méthode  <code>groups()</code> retourne malgr&eacute; tout un tuple de quatre &eacute;l&eacute;ments, mais le quatri&egrave;me &eacute;l&eacute;ment est simplement une cha&icirc;ne de caract&egrave;re vide.
+<li>Je d&eacute;teste &ecirc;tre le porteur de mauvaises nouvelles, mais vous n&#8217;avez pas encore fini. Quel est le probl&egrave;me ici? Il y a un caractère suppl&eacute;mentaire avant le code r&eacute;gional, mais l&#8217;expression r&eacute;guli&egrave;re suppose que le code r&eacute;gional est la premi&egrave;re chose au d&eacute;but de la cha&icirc;ne de caract&egrave;res. Pas de probl&egrave;me, vous pouvez utiliser la m&ecirc;me technique de  &#8220;z&eacute;ro ou plusieurs caract&egrave;res non-num&eacute;riques&#8221; pour passer outre les caract&egrave;res situ&eacute;s avant le code r&eacute;gional.
 </ol>
-<p>The next example shows how to handle leading characters in phone numbers.
+<p>L&#8217;exemple suivant montre comment g&eacute;rer les caract&egrave;res principaux dans les num&eacute;ros de t&eacute;l&eacute;phone.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('(800)5551212 ext. 1234').groups()</kbd>                  <span class=u>&#x2461;</span></a>
@@ -375,12 +375,12 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('work 1-(800) 555.1212 #1234')</kbd>                      <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li>This is the same as in the previous example, except now you&#8217;re matching <code>\D*</code>, zero or more non-numeric characters, before the first remembered group (the area code). Notice that you&#8217;re not remembering these non-numeric characters (they&#8217;re not in parentheses). If you find them, you&#8217;ll just skip over them and then start remembering the area code whenever you get to it.
-<li>You can successfully parse the phone number, even with the leading left parenthesis before the area code. (The right parenthesis after the area code is already handled; it&#8217;s treated as a non-numeric separator and matched by the <code>\D*</code> after the first remembered group.)
-<li>Just a sanity check to make sure you haven&#8217;t broken anything that used to work. Since the leading characters are entirely optional, this matches the beginning of the string, then zero non-numeric characters, then a remembered group of three digits (<code>800</code>), then one non-numeric character (the hyphen), then a remembered group of three digits (<code>555</code>), then one non-numeric character (the hyphen), then a remembered group of four digits (<code>1212</code>), then zero non-numeric characters, then a remembered group of zero digits, then the end of the string.
-<li>This is where regular expressions make me want to gouge my eyes out with a blunt object. Why doesn&#8217;t this phone number match? Because there&#8217;s a <code>1</code> before the area code, but you assumed that all the leading characters before the area code were non-numeric characters (<code>\D*</code>). Aargh.
+<li>Voici la m&ecirc;me chose que dans l&#8217exemple pr&eacute;c&eacute;dent, sauf que maintenant vous &eacute;galisez <code>\D*</code>, z&eacute;ro ou plusieurs caract&egrave;res non-num&eacute;rique, avant le premier groupe m&eacute;moris&eacute; (l&#8217;indicatif r&eacute;gional). Notez que vous ne m&eacute;morisez pas ces caract&egrave;res non-num&eacute;riques (ils ne sont pas entre parenth&egrave;ses). Si vous les trouvez, vous les ignorerez juste et commencerez ensuite &agrave; m&eacute;moriser le code régional quand vous arriverez &agrave; lui.
+<li>Vous pouvez analyser correctement la syntaxe du num&eacute;ro de t&eacute;l&eacute;phone, m&ecirc;me avec la parenth&egrave;se principale ouvrante devant le code r&eacute;gional. (La parenth&egrave;se fermante justes apr&egrave;s le code r&eacute;gional est d&eacute;j&agrave; pris en charge; elle est consid&eacute;r&eacute;e comme un s&eacute;parateur non-num&eacute;rique et reconnue par le <code>\D*</code> apr&egrave;s le premier groupe m&eacute;moris&eacute;.)
+<li>Une simple v&eacute;rification de bon sens pour s&#8217;assurer que vous n&#8217;ayez rien cass&eacute; qui avais l&#8217habitude de fonctionner. Puisque les caract&egrave;res principaux sont enti&egrave;rement facultatifs, cela correspond au d&eacute;but de la cha&icirc;ne, puis &agrave; z&eacute;ro caractères non numériques, puis &agrave; un groupe mis en m&eacute;moire de trois chiffres (<code>800</code>), puis &agrave; un caract&egrave;re non-num&eacute;rique (le tiret), puis &agrave; un groupe mis en m&eacute;moire de trois chiffres (<code>555</code>), puis &agrave; un caract&egrave;re non-num&eacute;rique (le tiret), puis &agrave; un groupe mis en m&eacute;moire de quatre chiffres  (<code>1212</code>), puis &agrave; z&eacute;ro caract&egrave;res non-num&eacute;riques, puis &agrave; un groupe mis en m&eacute;moire de z&eacute;ro chiffres, puis &agrave; la fin de la cha&icirc;ne.
+<li>C&#8217;est l&agrave; que les expressions r&eacute;guli&egrave;res me donnent envie de m&#8217enlever les yeux avec un objet contondant. Pourquoi ce num&eacute;ro de t&eacute;l&eacute;phone ne correspond-il pas? Parce qu&#8217;il ya un <code>1</code> avant le code r&eacute;gional, mais nous avons consid&eacute;r&eacute; que tous les caract&egrave;res principaux situ&eacute;s avant le code r&eacute;gional &eacute;taient des caract&egrave;res non-num&eacute;riques (<code>\D*</code>). Aargh.
 </ol>
-<p>Let&#8217;s back up for a second. So far the regular expressions have all matched from the beginning of the string. But now you see that there may be an indeterminate amount of stuff at the beginning of the string that you want to ignore. Rather than trying to match it all just so you can skip over it, let&#8217;s take a different approach: don&#8217;t explicitly match the beginning of the string at all. This approach is shown in the next example.
+<p>Revenons en arri&egrave;re un instant. Jusqu&#8217;&agrave; pr&eacute;sent, les expressions r&eacute;guli&egrave;res ont toutes correspondues &agrave; partir du d&eacute;but de la cha&icirc;ne de caract&egrave;res. Mais maintenant, vous voyez qu&#8217;il ya peut &ecirc;tre un nombre indetermin&eacute; de choses en d&eacute;but de la cha&icirc;ne de caract&egrave;res que vous voulez ignorer. Plut&ocirc;t que d&#8217;essayer de tout faire correspondre pr&eacute;cisement vous pouvez les laisser de cot&eacute;, nous allons adopter une approche diff&eacute;rente: ne pas &eacute;galiser explicitement tout le d&eacute;but de la cha&icirc;ne de caract&egrave;res. Cette approche est illustr&eacute;e dans l&#8217;exemple suivant.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>         <span class=u>&#x2461;</span></a>
@@ -390,32 +390,32 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('80055512121234').groups()</kbd>                      <span class=u>&#x2463;</span></a>
 <samp class=pp>('800', '555', '1212', '1234')</samp></pre>
 <ol>
-<li>Note the lack of <code>^</code> in this regular expression. You are not matching the beginning of the string anymore. There&#8217;s nothing that says you need to match the entire input with your regular expression. The regular expression engine will do the hard work of figuring out where the input string starts to match, and go from there.
-<li>Now you can successfully parse a phone number that includes leading characters and a leading digit, plus any number of any kind of separators around each part of the phone number.
-<li>Sanity check. This still works.
-<li>That still works too.
+<li>Notez l&#8217;absence de <code>^</code> dans cette expression r&eacute;guli&egrave;re. Vous ne correspondait plus au d&eacute;but de la cha&icirc;ne de caract&egrave;res. Il n&#8217;y a rien qui dit que vous devez faire correspondre l&#8217;entr&eacute;e compl&egrave;te avec votre expression r&eacute;guli&egrave;re. Le moteur d&#8217;expressions r&eacute;guli&egrave;res fera le travail difficile de d&eacute;terminer o&ugrave; commence l&#8217;entr&eacute;e de la cha&icirc;ne de caract&egrave;re &agrave; &eacute;galer, et partira de l&agrave;.
+<li>Maintenant, vous pouvez analyser correctement la syntaxe d&#8217;un num&eacute;ro de t&eacute;l&eacute;phone qui comprend caract&egrave;res pricipaux et chiffres principaux, plus n&#8217;importe quel nombre de n&#8217;importe quel soorte de s&eacute;parateurs autour de chaque partie du num&eacute;ro de t&eacute;l&eacute;phone.
+<li>Test de v&eacute;rification. Cela fonctionne encore.
+<li>Ici aussi, cela fonctionne encore.
 </ol>
-<p>See how quickly a regular expression can get out of control?  Take a quick glance at any of the previous iterations. Can you tell the difference between one and the next?
-<p>While you still understand the final answer (and it is the final answer; if you&#8217;ve discovered a case it doesn&#8217;t handle, I don&#8217;t want to know about it), let&#8217;s write it out as a verbose regular expression, before you forget why you made the choices you made.
+<p>Voyez &agrave; quelle vitesse une expression r&eacute;guli&egrave;re peut devenir incontr&ocirc;lable? Jetez un rapide coup d&#8217;&oelig;l &agrave; l&#8217;une des it&eacute;rations pr&eacute;c&eacute;dentes. Pouvez-vous faire la diff&eacute;rence entre l&#8217;une d&#8217;entre elles et celle qui la suit?
+<p>Pendant que vous comprenez encore la r&eacute;ponse finale (et c&#8217;est la r&eacute;ponse finale, si vous avez d&eacute;couvert un cas non g&eacute;r&eacute;, je ne veux pas le savoir), allons l&#8217;&eacute;crire comme une expression r&eacute;guli&egrave;re verbeuse avant que vous oubliez pourquoi vous avez fait les choix que vous avez fait.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'''
-                # don't match beginning of string, number can start anywhere
-    (\d{3})     # area code is 3 digits (e.g. '800')
-    \D*         # optional separator is any number of non-digits
-    (\d{3})     # trunk is 3 digits (e.g. '555')
-    \D*         # optional separator
-    (\d{4})     # rest of number is 4 digits (e.g. '1212')
-    \D*         # optional separator
-    (\d*)       # extension is optional and can be any number of digits
-    $           # end of string
+                # Ne pas &eacute;galiser le d&eacute;but de la cha&icirc;ne, les nombres peuvent commencer &agrave; appara&icirc;tre n&#8217;importe o&ucirc;
+    (\d{3})     # code r&eacute;gional de 3 chiffres (par exemple: '800 ')
+    \D*         # s&eacute;parateur optionnel: caract&egrave;re quelconque de non-chiffres
+    (\d{3})     # corps du num&eacute;ro compos&eacute; de trois chiffres (par exemple: '555')
+    \D*         # s&eacute;parateur optionnel
+    (\d{4})     # restant du num&eacute;ro compos&eacute; de 4 chiffres (par exemple '1212')
+    \D*         # s&eacute;parateur optionnel
+    (\d*)       # extension optionnelle qui peut &ecirc;tre compos&eacute;e de n&#8217;importe quel nombre de chiffres
+    $           # fin de la cha&icirc;ne de caract&egrave;re.
     ''', re.VERBOSE)</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=pp>('800', '555', '1212', '1234')</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212')</kbd>                          <span class=u>&#x2461;</span></a>
 <samp class=pp>('800', '555', '1212', '')</samp></pre>
 <ol>
-<li>Other than being spread out over multiple lines, this is exactly the same regular expression as the last step, so it&#8217;s no surprise that it parses the same inputs.
-<li>Final sanity check. Yes, this still works. You&#8217;re done.
+<li>En plus d&#8217;&ecirc;tre &eacute;tal&eacute; sur plusieurs lignes, c&#8217;est exactement la m&ecirc;me expression r&eacute;guli&egrave;re qu&#8217;&agrave; la derni&egrave;re &eacute;tape, il n&#8217;est donc pas &eacute;tonnant qu&#8217;elle reconnaisse les m&ecirc;mes entr&eacute;es.
+<li>Test de validation finale. Oui, &ccedil;a marche toujours. Vous avez termin&eacute;.
 </ol>
 <p class=a>&#x2042;
 
@@ -423,8 +423,8 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <p>This is just the tiniest tip of the iceberg of what regular expressions can do. In other words, even though you&#8217;re completely overwhelmed by them now, believe me, you ain&#8217;t seen nothing yet.
 <p>You should now be familiar with the following techniques:
 <ul>
-<li><code>^</code> correspond au d&eacute;but de la cha&icirc;ne.
-<li><code>$</code> correspond &agrave; la fin de la cha&icirc;ne.
+    <li><code>^</code> correspond au d&eacute;but de la cha&icirc;ne de caract&egrave;res.
+<li><code>$</code> correspond &agrave; la fin de la cha&icirc;ne de caract&egrave;res.
 <li><code>\b</code> matches a word boundary.
 <li><code>\d</code> matches any numeric digit.
 <li><code>\D</code> matches any non-numeric character.
