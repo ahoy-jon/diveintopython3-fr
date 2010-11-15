@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Biblioth&egrave;ques Pythons Empaquet&eacute;es - Plongez au c&oelig;ur de python 3</title>
+<title>Packager des biblioth&egrave;ques Python - Plongez au c&oelig;ur de python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -13,17 +13,17 @@ mark{display:inline}
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=root value=Recherchez></div></form>
 <p>Vous &ecirc;tes ici: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#packaging>Plongez au c&oelig;ur de Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Niveau de difficult&eacute;: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
-<h1>Biblioth&egrave;ques Pythons Empaquet&eacute;es</h1>
+<h1>Packager des biblioth&egrave;ques Python</h1>
 <blockquote class=q>
 <p><span class=u>&#x275D;</span> Vous trouverez que la honte c&#8217;est comme la douleur; on ne la ressent qu&#8217;une seule fois. <span class=u>&#x275E;</span><br>&mdash; Marquise de Merteuil, <a href=http://www.imdb.com/title/tt0094947/quotes><cite>Les liaisons dangereuses</cite></a>
 </blockquote>
 <p id=toc>&nbsp;
-<h2 id=divingin>Diving In</h2>
-<p class=f>Real artists ship. Or so says Steve Jobs. Do you want to release a Python script, library, framework, or application? Excellent. The world needs more Python code. Python 3 comes with a packaging framework called Distutils. Distutils is many things: a build tool (for you), an installation tool (for your users), a package metadata format (for search engines), and more. It integrates with the <a href=http://pypi.python.org/>Python Package Index</a> (&#8220;PyPI&#8221;), a central repository for open source Python libraries.
+<h2 id=divingin>Lan&ccedil;ons nous</h2>
+<p class=f>un navire de vrais artistes. Ou tout comme dit Steve Jobs. Voulez vous rendre un script Python, une biblioth&egrave;que, un framework (ndlt: kit de composants logiciels structurels, qui d&eacute;finissent les fondations ainsi que les grandes lignes de l&#8217;organisation de tout ou partie d&#8217;un logiciel, de son architecture), ou une application public? Excellent. Le monde a besoin de plus de code Python. Python 3 est livr&eacute; avec un framework appel&eacute; Distutils. Distutils est beaucoup de choses: un outil de construction (pour vous), un outil d&#8217;installation (pour les utilisateurs), un package de format de m&eacute;tadonn&eacute;es (pour les moteurs de recherche), et plus encore. Il s&#8217;int&egrave;gre avec le <a href=http://pypi.python.org/>Python Package Index</a> ("PyPI"), un r&eacute;f&eacute;rentiel central pour les biblioth&egrave;ques open source Python.
 
-<p>All of these facets of Distutils center around the <i>setup script</i>, traditionally called <code>setup.py</code>. In fact, you&#8217;ve already seen several Distutils setup scripts in this book. You used Distutils to install <code>httplib2</code> in <a href=http-web-services.html#introducing-httplib2>HTTP Web Services</a> and again to install <code>chardet</code> in <a href=case-study-porting-chardet-to-python-3.html>Case Study: Porting <code>chardet</code> to Python 3</a>.
+<p>Toutes ces facettes de Distutils gravitent autour du <i>script d&#8217;installation</i>, traditionnellement appel&eacute; <code>setup.py</code>. En fait, vous avez d&eacute;j&agrave; vu plusieurs scripts d&#8217;installation Distutils dans ce livre. Vous avez utilis&eacute; Distutils pour installer <code>httplib2</code> dans <a href=http-web-services.html#introducing-httplib2>HTTP Web Services</a> et une nouvelle fois pour installer <code>chardet</code> dans <a href=case-study-porting-chardet-to-python-3.html>l&#8217;&eacute;tude de cas: portage de <code>chardet</code> en Python 3</a>.
 
-<p>In this chapter, you&#8217;ll learn how the setup scripts for <code>chardet</code> and <code>httplib2</code> work, and you&#8217;ll step through the process of releasing your own Python software.
+<p>Dans ce chapitre, vous apprendrez comment fonctionnent les scripts d&#8217;installation pour <code>chardet</code> et <code>httplib2</code>, and you&#8217;ll step through the process of releasing your own Python software.
 
 <pre class=pp><code># chardet's setup.py
 from distutils.core import setup
