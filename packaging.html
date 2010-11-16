@@ -23,7 +23,7 @@ mark{display:inline}
 
 <p>Toutes ces facettes de Distutils gravitent autour du <i>script d&#8217;installation</i>, traditionnellement appel&eacute; <code>setup.py</code>. En fait, vous avez d&eacute;j&agrave; vu plusieurs scripts d&#8217;installation Distutils dans ce livre. Vous avez utilis&eacute; Distutils pour installer <code>httplib2</code> dans <a href=http-web-services.html#introducing-httplib2>HTTP Web Services</a> et une nouvelle fois pour installer <code>chardet</code> dans <a href=case-study-porting-chardet-to-python-3.html>l&#8217;&eacute;tude de cas: portage de <code>chardet</code> en Python 3</a>.
 
-<p>Dans ce chapitre, vous apprendrez comment fonctionnent les scripts d&#8217;installation pour <code>chardet</code> et <code>httplib2</code>, and you&#8217;ll step through the process of releasing your own Python software.
+<p>Dans ce chapitre, vous apprendrez comment fonctionnent les scripts d&#8217;installation pour <code>chardet</code> et <code>httplib2</code>, et vous vous familiariserez avec le processus de publication de vos propres applications Python.
 
 <pre class=pp><code># chardet's setup.py
 from distutils.core import setup
@@ -70,27 +70,27 @@ This version requires Python 3 or later; a Python 2 version is available separat
 )</code></pre>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span><code>chardet</code> and <code>httplib2</code> are open source, but there&#8217;s no requirement that you release your own Python libraries under any particular license. The process described in this chapter will work for any Python software, regardless of license.
+    <p><span class=u>&#x261E;</span><code>chardet</code> et <code>httplib2</code> sont open source, mais il n&#8217;y a pas d&#8217;obligation que vous publiez vos biblioth&egrave;ques Python personnelles sous une licence en particulier. Le proc&eacute;d&eacute; d&eacute;crit dans ce chapitre fonctionnera pour n&#8217;importe quel logiciel Python, ind&eacute;pendamment de toute licence.
 </blockquote>
 
 <p class=a>&#x2042;
 
-<h2 id=cantdo>Things Distutils Can&#8217;t Do For You</h2>
+<h2 id=cantdo>Les choses que Distutils ne peut pas faire pour vous</h2>
 
-<p>Releasing your first Python package is a daunting process. (Releasing your second one is a little easier.) Distutils tries to automate as much of it as possible, but there are some things you simply must do yourself.
+<p>Sortir votre premier package Python est un processus intimidant. (Sortir le second est un peu plus facile.) Distutils essaye d&#8217;automatiser autant que possible, mais il ya certaines choses que vous devez tout simplement faire vous-m&ecirc;me.
 
 <ul>
-<li><b>Choose a license</b>. This is a complicated topic, fraught with politics and peril. If you wish to release your software as open source, I humbly offer five pieces of advice:
+<li><b>Choisir une licence</b>. Il s&#8217;agit d&#8217;un sujet compliqu&eacute;, lourd de politique et plein de p&eacute;rils. Si vous souhaitez publier vos logiciels en open source, je propose humblement cinq fragments de conseils:
 
 <ol>
-<li>Don&#8217;t write your own license.
-<li>Don&#8217;t write your own license.
-<li>Don&#8217;t write your own license.
-<li>It doesn&#8217;t need to be <abbr>GPL</abbr>, but <a href=http://www.dwheeler.com/essays/gpl-compatible.html>it needs to be <abbr>GPL</abbr>-compatible</a>.
-<li>Don&#8217;t write your own license.
+<li>N&#8217;&eacute;crivez pas votre propre licence.
+<li>N&#8217;&eacute;crivez pas votre propre licence.
+<li>N&#8217;&eacute;crivez pas votre propre licence.
+<li>Elle n&#8217;a pas besoin d&#8217;&ecirc;tre <abbr>GPL</abbr>, mais <a href=http://www.dwheeler.com/essays/gpl-compatible.html>elle doit &ecirc;tre <abbr>GPL</abbr>-compatible</a>.
+<li>N&#8217;&eacute;crivez pas votre propre licence.
 </ol>
-<li><b>Classify your software</b> using the PyPI classification system. I&#8217;ll explain what this means later in this chapter.
-<li><b>Write a &#8220;read me&#8221; file</b>. Don&#8217;t skimp on this. At a minimum, it should give your users an overview of what your software does and how to install it.
+<li><b>Classez vos logiciels </b> en utilisant le syst&egrave;me de classification PyPI. J&#8217;expliquerais ce que cela signifie plus loin dans ce chapitre.
+<li><b>R&eacute;diger un fichier &#8220;lisez moi&#8221;</b>. Ne l&eacute;sinez pas sur ce point. Au minimum, il convient de donner &agrave; vos utilisateurs un aper&ccedil;u de ce que votre logiciel fait et de comment l&#8217;installer.
 </ul>
 
 <p class=a>&#x2042;
