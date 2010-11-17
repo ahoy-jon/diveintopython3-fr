@@ -95,9 +95,9 @@ This version requires Python 3 or later; a Python 2 version is available separat
 
 <p class=a>&#x2042;
 
-<h2 id=structure>Directory Structure</h2>
+<h2 id=structure>Structure de r&eacute;pertoire</h2>
 
-<p>To start packaging your Python software, you need to get your files and directories in order. The <code>httplib2</code> directory looks like this:
+<p>Pour commencer &agrave; packager votre logiciel Python, vous devez avoir ordonn&eacute; vos fichiers et vos r&eacute;pertoires. Le r&eacute;pertoire <code>httplib2</code> ressemble &agrave; ceci:
 
 <pre class=screen>
 <a>httplib2/                 <span class=u>&#x2460;</span></a>
@@ -112,13 +112,13 @@ This version requires Python 3 or later; a Python 2 version is available separat
    |
    +--iri2uri.py</pre>
 <ol>
-<li>Make a root directory to hold everything. Give it the same name as your Python module.
-<li>To accomodate Windows users, your &#8220;read me&#8221; file should include a <code>.txt</code> extension, and it should use Windows-style carriage returns. Just because <em>you</em> use a fancy text editor that runs from the command line and includes its own macro language, that doesn&#8217;t mean you need to make life difficult for your users. (Your users use Notepad. Sad but true.) Even if you&#8217;re on Linux or Mac OS X, your fancy text editor undoubtedly has an option to save files with Windows-style carriage returns.
-<li>Your Distutils setup script should be named <code>setup.py</code> unless you have a good reason not to. You do not have a good reason not to.
-<li>If your Python software is a single <code>.py</code> file, you should put it in the root directory along with your &#8220;read me&#8221; file and your setup script. But <code>httplib2</code> is not a single <code>.py</code> file; it&#8217;s <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>a multi-file module</a>. But that&#8217;s OK! Just put the <code>httplib2</code> directory in the root directory, so you have an <code>__init__.py</code> file within an <code>httplib2/</code> directory within the <code>httplib2/</code> root directory. That&#8217;s not a problem; in fact, it will simplify your packaging process.
+<li>Cr&eacute;ez un r&eacute;pertoire racine pour contenir le tout. Donnez-lui le m&ecirc;me nom que votre module Python.
+<li>Pour arranger les utilisateurs de Windows, votre fichier "lisez-moi" devrait inclure une extension <code>.txt</code>, et il devrait utiliser les retours de chariot de style Windows. Le fait que <em>vous</em> utilisiez un &eacute;diteur de texte sophistiqu&eacute; qui fonctionne  &agrave; partir de la ligne de commande et poss&egrave;de son propre langage de macros, ne vous donne pas le droit de menetr la vie dure &agrave; vos utilisateurs. (Vos utilisateurs utilisent le bloc-notes. Triste mais vrai.) M&ecirc;me si vous &ecirc;tes sous Linux ou MAC OS X, votre &eacute;diteur de texte sophistiqu&eacute; a sans aucun doute une option permettant d&#8217;enregistrer des fichiers avec un retour chariot de style Windows.
+<li>Votre script d&#8217;installation Distutils devrait &ecirc;tre nomm&eacute; <code>setup.py</code> &agrave; moins que vous n&#8217;ayez une bonne raison de ne pas le faire. Vous n&#8217;avez pas de bonne raison de ne pas le faire.
+<li>Si votre logiciel Python est un simple fichier <code>.py</code>, vous devriez le mettre dans le r&eacute;pertoire racine entre votre fichier &#8220;lisez-moi&#8221; file et votre script d&#8217;installation. Mais <code>httplib2</code> n&#8217;est pas un simple fichier <code>.py</code>; c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>. Mais c&#8217;est OK! Mettez juste le r&eacute;pertoire <code>httplib2</code> dans le r&eacute;pertoire racine, vous avez donc un fichier <code>__init__.py</code> &agrave; l&#8217;int&eacute;rieur d&#8217;un r&eacute;pertoire <code>httplib2/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>httplib2/</code>. Ce n&#8217;est pas un probl&egrave;me; en fait, cela simplifiera votre processus de packaging.
 </ol>
 
-<p>The <code>chardet</code> directory looks slightly different. Like <code>httplib2</code>, it&#8217;s <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>a multi-file module</a>, so there&#8217;s a <code>chardet/</code> directory within the <code>chardet/</code> root directory. In addition to the <code>README.txt</code> file, <code>chardet</code> has <abbr>HTML</abbr>-formatted documentation in the <code>docs/</code> directory. The <code>docs/</code> directory contains several <code>.html</code> and <code>.css</code> files and an <code>images/</code> subdirectory, which contains several <code>.png</code> and <code>.gif</code> files. (This will be important later.) Also, in keeping with the convention for <abbr>(L)GPL</abbr>-licensed software, it has a separate file called <code>COPYING.txt</code> which contains the complete text of the <abbr>LGPL</abbr>.
+<p>Le r&eacute;pertoire <code>chardet</code> &agrave; l&#8217;air l&eacute;g&egrave;rement diff&eacute;rent . Tout comme <code>httplib2</code>, c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>, il y a donc un r&eacute;pertoire <code>chardet/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>chardet/</code>. En plus du fichier <code>README.txt</code>, <code>chardet</code> poss&egrave;de une documentation au format <abbr>HTML</abbr> dans le r&eacute;pertoire <code>docs/</code>. Le r&eacute;pertoire <code>docs/</code> contient plusieurs fichiers <code>.html</code> et <code>.css</code> et un sous-r&eacute;pertoire <code>images/</code>, qui contient plusieurs <code>.png</code> et <code>.gif</code>. (Ce sera important pour la suite.) De plus, conform&eacute;ment &agrave; la convention pour les logiciels sous licence <abbr>(L)GPL</abbr>, il contient un fichier s&eacute;par&eacute; appel&eacute; <code>COPYING.txt</code> qui contient le texte complet de la <abbr>LGPL</abbr>.
 
 <pre class=nd><code>
 chardet/
