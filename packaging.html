@@ -115,7 +115,7 @@ This version requires Python 3 or later; a Python 2 version is available separat
 <li>Cr&eacute;ez un r&eacute;pertoire racine pour contenir le tout. Donnez-lui le m&ecirc;me nom que votre module Python.
 <li>Pour arranger les utilisateurs de Windows, votre fichier "lisez-moi" devrait inclure une extension <code>.txt</code>, et il devrait utiliser les retours de chariot de style Windows. Le fait que <em>vous</em> utilisiez un &eacute;diteur de texte sophistiqu&eacute; qui fonctionne  &agrave; partir de la ligne de commande et poss&egrave;de son propre langage de macros, ne vous donne pas le droit de menetr la vie dure &agrave; vos utilisateurs. (Vos utilisateurs utilisent le bloc-notes. Triste mais vrai.) M&ecirc;me si vous &ecirc;tes sous Linux ou MAC OS X, votre &eacute;diteur de texte sophistiqu&eacute; a sans aucun doute une option permettant d&#8217;enregistrer des fichiers avec un retour chariot de style Windows.
 <li>Votre script d&#8217;installation Distutils devrait &ecirc;tre nomm&eacute; <code>setup.py</code> &agrave; moins que vous n&#8217;ayez une bonne raison de ne pas le faire. Vous n&#8217;avez pas de bonne raison de ne pas le faire.
-<li>Si votre logiciel Python est un simple fichier <code>.py</code>, vous devriez le mettre dans le r&eacute;pertoire racine entre votre fichier &#8220;lisez-moi&#8221; file et votre script d&#8217;installation. Mais <code>httplib2</code> n&#8217;est pas un simple fichier <code>.py</code>; c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>. Mais c&#8217;est OK! Mettez juste le r&eacute;pertoire <code>httplib2</code> dans le r&eacute;pertoire racine, vous avez donc un fichier <code>__init__.py</code> &agrave; l&#8217;int&eacute;rieur d&#8217;un r&eacute;pertoire <code>httplib2/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>httplib2/</code>. Ce n&#8217;est pas un probl&egrave;me; en fait, cela simplifiera votre processus de packaging.
+<li>Si votre logiciel Python est un simple fichier <code>.py</code>, vous devriez le mettre dans le r&eacute;pertoire racine entre votre fichier &#8220;lisez-moi&#8221; file et votre script d&#8217;installation. Mais <code>httplib2</code> n&#8217;est pas un simple fichier <code>.py</code>; c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>. Mais &ccedil;a roule! Mettez juste le r&eacute;pertoire <code>httplib2</code> dans le r&eacute;pertoire racine, vous avez donc un fichier <code>__init__.py</code> &agrave; l&#8217;int&eacute;rieur d&#8217;un r&eacute;pertoire <code>httplib2/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>httplib2/</code>. Ce n&#8217;est pas un probl&egrave;me; en fait, cela simplifiera votre processus de packaging.
 </ol>
 
 <p>Le r&eacute;pertoire <code>chardet</code> &agrave; l&#8217;air l&eacute;g&egrave;rement diff&eacute;rent . Tout comme <code>httplib2</code>, c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>, il y a donc un r&eacute;pertoire <code>chardet/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>chardet/</code>. En plus du fichier <code>README.txt</code>, <code>chardet</code> poss&egrave;de une documentation au format <abbr>HTML</abbr> dans le r&eacute;pertoire <code>docs/</code>. Le r&eacute;pertoire <code>docs/</code> contient plusieurs fichiers <code>.html</code> et <code>.css</code> et un sous-r&eacute;pertoire <code>images/</code>, qui contient plusieurs <code>.png</code> et <code>.gif</code>. (Ce sera important pour la suite.) De plus, conform&eacute;ment &agrave; la convention pour les logiciels sous licence <abbr>(L)GPL</abbr>, il contient un fichier s&eacute;par&eacute; appel&eacute; <code>COPYING.txt</code> qui contient le texte complet de la <abbr>LGPL</abbr>.
@@ -148,41 +148,41 @@ chardet/
 
 <p class=a>&#x2042;
 
-<h2 id=setuppy>Writing Your Setup Script</h2>
+<h2 id=setuppy>R&eacute;daction de votre script d&#8217;installation</h2>
 
-<p>The Distutils setup script is a Python script. In theory, it can do anything Python can do. In practice, it should do as little as possible, in as standard a way as possible. Setup scripts should be boring. The more exotic your installation process is, the more exotic your bug reports will be.
+<p>Le script d&#8217;installation Distutils est un script Python. En th&eacute;orie, il peut faire tout ce que Python peut faire. Dans la pratique, il devrait le faire aussi peu que possible, de fa&ccedil;on aussi standard que possible. Les scripts d&#8217;installation devraient &ecirc;tre ennuyeux.Setup scripts should be boring. Plus votre processus d&#8217;installation est exotique, plus vos rapports de bogues le seront.
 
-<p>The first line of every Distutils setup script is always the same:
+<p>La premi&egrave;re ligne de chaque script de d&#8217;installation de Distutils est toujours la m&ecirc;me:
 
 <pre class='nd pp'><code>from distutils.core import setup</code></pre>
 
-<p>This imports the <code>setup()</code> function, which is the main entry point into Distutils. 95% of all Distutils setup scripts consist of a single call to <code>setup()</code> and nothing else. (I totally just made up that statistic, but if your Distutils setup script is doing more than calling the Distutils <code>setup()</code> function, you should have a good reason. Do you have a good reason? I didn&#8217;t think so.)
+<p>Ceci importe la fonction <code>setup()</code>, qui est le point d&#8217;entr&eacute;e principal de Distutils. 95% de tous les scripts d&#8217;installation Distutils ne se composent que d&#8217;un seul appel &agrave; <code>setup()</code> et de rien d&#8217;autre. (Je viens juste d&#8217;inventer cette statistique de toutes pi&egrave;ces, mais si votre script d&#8217;installation Distutils fait plus que d&#8217;appeler la fonction <code>setup()</code> de Distutils, vous devriez avoir une bonne raison. Avez-vous une bonne raison? Je ne crois pas.)
 
-<p>The <code>setup()</code> function <a href=http://docs.python.org/3.1/distutils/apiref.html#distutils.core.setup>can take dozens of parameters</a>. For the sanity of everyone involved, you must use <a href=your-first-python-program.html#optional-arguments>named arguments</a> for every parameter. This is not merely a convention; it&#8217;s a hard requirement. Your setup script will crash if you try to call the <code>setup()</code> function with non-named arguments.
+<p>La fonction <code>setup()</code> <a href=http://docs.python.org/3.1/distutils/apiref.html#distutils.core.setup>peut prendre des dizaines de param&egrave;tres</a>. Pour la sant&eacute; mentale de tous les int&eacute;ress&eacute;s, vous devez utiliser <a href=your-first-python-program.html#optional-arguments>des arguments nomm&eacute;s</a> pour chaque param&egrave;tre. Ce n&#8217;est pas seulement une convention, c&#8217;est une exigence difficile. Votre script d&#8217;installation plantera si vous essayez d&#8217;appeler la fonction <code>setup()</code> avec des arguments non-nomm&eacute;s.
 
-<p>The following named arguments are required:
+<p>Les arguments nommés suivants sont indispensables:
 
 <ul>
-<li><b>name</b>, the name of the package.
-<li><b>version</b>, the version number of the package.
-<li><b>author</b>, your full name.
-<li><b>author_email</b>, your email address.
-<li><b>url</b>, the home page of your project. This can be your <a href=http://pypi.python.org/>PyPI</a> package page if you don&#8217;t have a separate project website.
+<li><b>name</b>, le nom du package.
+<li><b>version</b>, le num&eacute;ro de version du package.
+<li><b>author</b>, votre nom complet.
+<li><b>author_email</b>, votre adresse email.
+<li><b>url</b>, la page d&#8217;accueil de votre projet. Ceci peut &ecirc;tre votre page de package <a href=http://pypi.python.org/>PyPI</a> si vous n&#8217;avez pas de site web s&eacute;par&eacute; pour le projet.
 </ul>
 
-<p>Although not required, I recommend that you also include the following in your setup script:
+<p>Bien que non requis, je vous recommande &eacute;galement d&#8217;inclure les &eacute;l&eacute;ments suivants dans votre script d&#8217;installation:
 
 <ul>
-<li><b>description</b>, a one-line summary of the project.
-<li><b>long_description</b>, a multi-line string in <a href=http://docutils.sourceforge.net/rst.html>reStructuredText format</a>. <a href=http://pypi.python.org/>PyPI</a> converts this to <abbr>HTML</abbr> and displays it on your package page.
-<li><b>classifiers</b>, a list of specially-formatted strings described in the next section.
+<li><b>description</b>, un r&eacute;sum&eacute; en une ligne du projet.
+<li><b>long_description</b>, une cha&icirc;ne de caract&egrave;res multi-ligne en <a href=http://docutils.sourceforge.net/rst.html>format reStructuredText</a>. <a href=http://pypi.python.org/>PyPI</a> convertit ceci en <abbr>HTML</abbr> et l&#8217;affiche dans votre page de package.
+<li><b>classifiers</b>, une liste de cha&icirc;nes de caract&egrave;res sp&eacute;cialement format&eacute;es d&eacute;crite dans la section suivante.
 </ul>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Setup script metadata is defined in <a href=http://www.python.org/dev/peps/pep-0314/><abbr>PEP</abbr> 314</a>.
+<p><span class=u>&#x261E;</span>Les m&eacute;tadonn&eacute;es du script d&#8217;installation sont d&eacute;finies dans <a href=http://www.python.org/dev/peps/pep-0314/><abbr>PEP</abbr> 314</a>.
 </blockquote>
 
-<p>Now let&#8217;s look at the <code>chardet</code> setup script. It has all of these required and recommended parameters, plus one I haven&#8217;t mentioned yet: <code>packages</code>.
+<p>Maintenant, jettons un &oelig;il au script d&#8217;installation <code>chardet</code>. Il contient tous ces param&egrave;tres requis et recommand&eacute;, plus un que je n&#8217;ai pas encore mentionn&eacute;: <code>packages</code>.
 
 <pre class='nd pp'><code>from distutils.core import setup
 setup(
@@ -194,7 +194,7 @@ setup(
     ...
 )</code></pre>
 
-<p>The <code>packages</code> parameter highlights an unfortunate vocabulary overlap in the distribution process. We&#8217;ve been talking about the &#8220;package&#8221; as the thing you&#8217;re building (and potentially listing in The Python &#8220;Package&#8221; Index). But that&#8217;s not what this <code>packages</code> parameter refers to. It refers to the fact that the <code>chardet</code> module is <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>a multi-file module</a>, sometimes known as&hellip; a &#8220;package.&#8221; The <code>packages</code> parameter tells Distutils to include the <code>chardet/</code> directory, its <code>__init__.py</code> file, and all the other <code>.py</code> files that constitute the <code>chardet</code> module. That&#8217;s kind of important; all this happy talk about documentation and metadata is irrelevant if you forget to include the actual code!
+<p>Le param&egrave;tre <code>packages</code> met en &eacute;vidence une maheureuse co&iuml;ncidence dans le processus de distribution. Nous sommes en train de parler du &#8220;package&#8221; en tant que choses que vous construisez (et potentiellement une liste dans le Python &#8220;Package&#8221; Index). Mais ce n&#8217;est pas ce &agrave; quoi ce param&egrave;tre <code>packages</code> se r&eacute;f&egrave;re. Il se r&eacute;f&egrave;re au fait que le module <code>chardet</code> est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichier</a>, parfois connu en tant que&hellip; &#8220;package.&#8221; Le param&egrave;tre <code>packages</code> indique &agrave; Distutils d&#8217;inclure le r&eacute;pertoire <code>chardet/</code>, son fichier <code>__init__.py</code>, et tout les autres fichiers <code>.py</code> qui constituent le module <code>chardet</code>. Cela a une esp&egrave;ce d&#8217;importance; toutes ces belles paroles sur la documentation et les m&eacute;tadonn&eacute;es sont sans objet si vous oubliez d&#8217;inclure le code actuel!
 
 <p class=a>&#x2042;
 
