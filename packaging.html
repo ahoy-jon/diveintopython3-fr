@@ -179,7 +179,7 @@ chardet/
 </ul>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Les m&eacute;tadonn&eacute;es du script d&#8217;installation sont d&eacute;finies dans <a href=http://www.python.org/dev/peps/pep-0314/><abbr>PEP</abbr> 314</a> (ndlt: Python Enhancement Proposals (propositions d&#8217;am&eacute;lioration de Python), un genre de RFC pour le langage de programmation python).
+<p><span class=u>&#x261E;</span>Les m&eacute;tadonn&eacute;es du script d&#8217;installation sont d&eacute;finies dans <a href=http://www.python.org/dev/peps/pep-0314/><abbr>PEP</abbr> 314</a> (ndlt: <a href=http://fr.wikipedia.org/wiki/Python_%28langage%29#Les_PEP>Python Enhancement Proposals</a> (propositions d&#8217;am&eacute;lioration de Python), un genre de RFC pour le langage de programmation python).
 </blockquote>
 
 <p>Maintenant, jettons un &oelig;il au script d&#8217;installation <code>chardet</code>. Il contient tous ces param&egrave;tres requis et recommand&eacute;, plus un que je n&#8217;ai pas encore mentionn&eacute;: <code>packages</code>.
@@ -261,37 +261,37 @@ Intended Audience :: Developers
 Topic :: Internet :: WWW/HTTP
 Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 
-<h2 id=manifest>Specifying Additional Files With A Manifest</h2>
+<h2 id=manifest>Sp&eacute;cification des fichiers suppl&eacute;mentaires &agrave; l&#8217;aide d&#8217;un manifeste</h2>
 
-<p>By default, Distutils will include the following files in your release package:
+<p>Par d&eacute;faut, Distutils inclura dans votre package distribuable les fichiers suivants:
 
 <ul>
 <li><code>README.txt</code>
 <li><code>setup.py</code>
-<li>The <code>.py</code> files needed by the multi-file modules listed in the <code>packages</code> parameter
-<li>The individual <code>.py</code> files listed in the <code>py_modules</code> parameter
+<li>Les fichiers <code>.py</code> n&eacute;cessaires aux modules multi-fichiers r&eacute;pertori&eacute;s dans le param&egrave;tre <code>packages</code>
+<li>Les fichiers individuels <code>.py</code> r&eacute;pertori&eacute;s dans le param&egrave;tre <code>py_modules</code>
 </ul>
 
-<p>That will cover <a href=#structure>all the files in the <code>httplib2</code> project</a>. But for the <code>chardet</code> project, we also want to include the <code>COPYING.txt</code> license file and the entire <code>docs/</code> directory that contains images and  <abbr>HTML</abbr> files. To tell Distutils to include these additional files and directories when it builds the <code>chardet</code> release package, you need a <i>manifest file</i>.
+<p>Cela englobera <a href=#structure>tous les fichiers situ&eacute;s dans le projet <code>httplib2</code></a>. Mais pour le projet <code>chardet</code>, nous voulons aussi inclure le fichier de licence <code>COPYING.txt</code> et tout le r&eacute;pertoire <code>docs/</code> qui contient des images et des fichiers <abbr>HTML</abbr>. Pour dire &agrave; Distutils d&#8217;inclure ces fichiers et r&eacute;pertoires additionnels quand il construit le package distribuable <code>chardet</code>, vous avez besoin d&#8217;un <i>fichier de manifeste</i>.
 
-<p>A manifest file is a text file called <code>MANIFEST.in</code>. Place it in the project&#8217;s root directory, next to <code>README.txt</code> and <code>setup.py</code>. Manifest files are <em>not</em> Python scripts; they are text files that contain a series of &#8220;commands&#8221; in a Distutils-defined format. Manifest commands allow you to include or exclude specific files and directories.
+<p>Un fichier de manifeste est un fichier texte appel&eacute; <code>MANIFEST.in</code>. Placez le &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine du projet, au cot&eacute; de <code>README.txt</code> et de <code>setup.py</code>. Les fichiers de manifeste <em>ne sont pas</em> des scripts Python; ils sont des fichiers textes qui contiennent une s&eacute;rie de &#8220;commandes&#8221; en format Distutils. Les commmandes de manifeste vous permettent d&#8217;inclure ou d&#8217;exclure des fichiers et des r&eacute;pertoires sp&eacute;cifiques.
 
-<p>This is the entire manifest file for the <code>chardet</code> project:
+<p>Voici le fichier de manifeste complet du projet <code>chardet</code>:
 
 <pre class=nd><code><a>include COPYING.txt                                <span class=u>&#x2460;</span></a>
 <a>recursive-include docs *.html *.css *.png *.gif    <span class=u>&#x2461;</span></a></code></pre>
 <ol>
-<li>The first line is self-explanatory: include the <code>COPYING.txt</code> file from the project&#8217;s root directory.
-<li>The second line is a bit more complicated. The <code>recursive-include</code> command takes a directory name and one or more filenames. The filenames aren&#8217;t limited to specific files; they can include wildcards. This line means &#8220;See that <code>docs/</code> directory in the project&#8217;s root directory? Look in there (recursively) for <code>.html</code>, <code>.css</code>, <code>.png</code>, and <code>.gif</code> files. I want all of them in my release package.&#8221;
+<li>La premi&egrave;re ligne est explicite d&#8217;elle-m&ecirc;me: inclure le fichier <code>COPYING.txt</code> &agrave; partir du r&eacute;pertoire racine du projet.
+<li>La seconde ligne est un peu plus compliqu&eacute;. La commande <code>recursive-include</code> prend un nom de r&eacute;pertoire et un nom ou plus de fichier. Les noms de fichiers ne sont pas limit&eacute;s au fichiers sp&eacute;cifiques; ils peuvent inclure des caract&egrave;res de remplacement. Cette ligne signifie &#8220;Voyez-vous ce r&eacute;pertoire <code>docs/</code> situ&eacute; dans le r&eacute;pertoire racine du projet? Recherchez-y (de fa&ccedil;on r&eacute;cursive) les fichiers <code>.html</code>, <code>.css</code>, <code>.png</code>, et <code>.gif</code>. Je les veux tous dans mon package distribuable.&#8221;
 </ol>
 
-<p>All manifest commands preserve the directory structure that you set up in your project directory. That <code>recursive-include</code> command is not going to put a bunch of <code>.html</code> and <code>.png</code> files in the root directory of the release package. It&#8217;s going to maintain the existing <code>docs/</code> directory structure, but only include those files inside that directory that match the given wildcards. (I didn&#8217;t mention it earlier, but the <code>chardet</code> documentation is actually written in <abbr>XML</abbr> and converted to <abbr>HTML</abbr> by a separate script. I don&#8217;t want to include the <abbr>XML</abbr> files in the release package, just the <abbr>HTML</abbr> and the images.)
+<p>Toutes les commandes de manifeste pr&eacute;serve la structure du r&eacute;pertoire dans lequel vous installez le r&eacute;pertoire de votre projet. Cette commande <code>recursive-include</code> n&#8217;est pas en train de d&eacute;poser un tas de fichier <code>.html</code> et <code>.png</code> dans le r&eacute;pertoire racine du package distribuable. Il est en train de maintenir la structure existante du r&eacute;pertoire <code>docs/</code>, mais inclut simplement ces fichiers &agrave; l&#8217;int&eacute;rieur de ce r&eacute;pertoire qui &eacute;galise les caract&egrave;res de remplacement donn&eacute;s. (Je ne l&#8217;ai pas mentionn&eacute; plus t&ocirc;t, mais la documentation de <code>chardet</code> est actuellement &eacute;crite en <abbr>XML</abbr> et convertie en <abbr>HTML</abbr> via un script s&eacute;par&eacute;. Je ne veux pas inclure les fichiers <abbr>XML</abbr> dans le package distribuable, juste les fichiers <abbr>HTML</abbr> et les images.)
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Manifest files have their own unique format. See <a href=http://docs.python.org/3.1/distutils/sourcedist.html#manifest>Specifying the files to distribute</a> and <a href=http://docs.python.org/3.1/distutils/commandref.html#sdist-cmd>the manifest template commands</a> for details.
+<p><span class=u>&#x261E;</span>Les manifestes ont leur propre format sp&eacute;cifique. Regardez les <a href=http://docs.python.org/3.1/distutils/sourcedist.html#manifest>sp&eacute;cifications des fichiers &agrave; distribuer</a> et les <a href=http://docs.python.org/3.1/distutils/commandref.html#sdist-cmd>mod&egrave;les de commandes de manifeste</a> pour plus de d&eacute;tails.
 </blockquote>
 
-<p>To reiterate: you only need to create a manifest file if you want to include files that Distutils doesn&#8217;t include by default. If you do need a manifest file, it should only include the files and directories that Distutils wouldn&#8217;t otherwise find on its own.
+<p>Je le r&eacute;p&egrave;te: il vous suffit de cr&eacute;er un fichier de manifeste si vous souhaitez inclure des fichiers que Distutils n&#8217;inclut pas par d&eacute;faut. Si vous avez besoin vraiment besoin d&#8217;un fichier de manifeste, il ne devrait inclure que les fichiers et r&eacute;pertoires que Distutils ne trouverait pas de sa propre initiative sans cela.
 
 <h2 id=check>Checking Your Setup Script for Errors</h2>
 
