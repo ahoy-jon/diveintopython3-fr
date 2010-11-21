@@ -293,16 +293,16 @@ Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 
 <p>Je le r&eacute;p&egrave;te: il vous suffit de cr&eacute;er un fichier de manifeste si vous souhaitez inclure des fichiers que Distutils n&#8217;inclut pas par d&eacute;faut. Si vous avez besoin vraiment besoin d&#8217;un fichier de manifeste, il ne devrait inclure que les fichiers et r&eacute;pertoires que Distutils ne trouverait pas de sa propre initiative sans cela.
 
-<h2 id=check>Checking Your Setup Script for Errors</h2>
+<h2 id=check>Traquez les erreurs de vos scripts d&#8217;installation</h2>
 
-<p>There&#8217;s a lot to keep track of. Distutils comes with a built-in validation command that checks that all the required metadata is present in your setup script. For example, if you forget to include the <code>version</code> parameter, Distutils will remind you.
+<p>Il y a beaucoup de pistes &agrave; surveiller. Distutils est livr&eacute; avec une commande de validation de construction interne qui v&eacute;rifie que  toutes les metadonn&eacute;es n&eacute;cessaires sont pr&eacute;sentes. Par exemple, si vous oubliez d&#8217;inclure le param&egrave;tre <code>version</code>, Distutils vous le rappellera.
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd>c:\python31\python.exe setup.py check</kbd>
 <samp>running check
 warning: check: missing required meta-data: version</samp></pre>
 
-<p>Once you include a <code>version</code> parameter (and all the other required bits of metadata), the <code>check</code> command will look like this:
+<p>Une fois que vous incluez un param&egrave;tre de <code>version</code> (et tout les autres morceaux de metadonn&eacute;es requis), la commande <code>check</code> ressemblera &agrave; ceci:
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd>c:\python31\python.exe setup.py check</kbd>
