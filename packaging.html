@@ -150,7 +150,7 @@ chardet/
 
 <h2 id=setuppy>R&eacute;daction de votre script d&#8217;installation</h2>
 
-<p>Le script d&#8217;installation Distutils est un script Python. En th&eacute;orie, il peut faire tout ce que Python peut faire. Dans la pratique, il devrait le faire aussi peu que possible, de fa&ccedil;on aussi standard que possible. Les scripts d&#8217;installation devraient &ecirc;tre ennuyeux.Setup scripts should be boring. Plus votre processus d&#8217;installation est exotique, plus vos rapports de bogues le seront.
+<p>Le script d&#8217;installation Distutils est un script Python. En th&eacute;orie, il peut faire tout ce que Python peut faire. Dans la pratique, il devrait le faire aussi peu que possible, de fa&ccedil;on aussi standard que possible. Les scripts d&#8217;installation devraient &ecirc;tre ennuyeux. Plus votre processus d&#8217;installation est exotique, plus vos rapports de bogues le seront.
 
 <p>La premi&egrave;re ligne de chaque script de d&#8217;installation de Distutils est toujours la m&ecirc;me:
 
@@ -202,7 +202,7 @@ setup(
 
 <p>Le Python Package Index (&#8220;PyPI&#8221;) contient des milliers de biblioth&egrave;ques Python. Une classification correcte des metadonn&eacute;es permettra aux gens de trouver votre exemplaire plus facilement. PyPI vous permet <a href='http://pypi.python.org/pypi?:action=browse'>de parcourir les paquets &agrave; l&#8217;aide de classificateurs</a>. Vous pouvez m&egrave;me s&eacute;lectionner plusieurs classificateurs afin d&#8217;affiner votre recherche. Les classificateurs ne sont pas des metadonn&eacute;es invisibles que vous pouvez vous contenter d&#8217;ignorer!
 
-<p>Pour classifier votre logiciel, passez un param&egrave;tre de l&#8217;un des <code>classificateurs</code> &agrave; la fonction <code>setup()</code> de Distutils. Le param&egrave;tre des <code>classificateurs</code> se pr&eacute;sente sous forme d&#8217;une liste de cha&icirc;nes de caract&egrave;res. Ces cha&icirc;nes de caract&egrave;res <em>ne sont pas</em> libres de forme. Toutes les cha&icirc;nes de caract&egrave;res des classificateurs devrait provenir de <a href='http://pypi.python.org/pypi?:action=list_classifiers'>cette liste de PyPI</a>.
+<p>Pour classifier votre logiciel, passez un param&egrave;tre de l&#8217;un des <code>classificateurs</code> &agrave; la fonction <code>setup()</code> de Distutils. Le param&egrave;tre des <code>classificateurs</code> se pr&eacute;sente sous forme d&#8217;une liste de cha&icirc;nes de caract&egrave;res. Ces cha&icirc;nes de caract&egrave;res <em>ne sont pas</em> libres de forme. Toutes les cha&icirc;nes de caract&egrave;res des classificateurs devraient provenir de <a href='http://pypi.python.org/pypi?:action=list_classifiers'>cette liste de PyPI</a>.
 
 <p>Les classificateurs sont optionnels. Vous pouvez &eacute;crire un script d&#8217;innstallation Distutils sans aucun classificateur du tout. <strong>Ne le fa&icirc;tes pas.</strong> Vous devriez <em>toujours</em> inclure au moins ces classificateurs:
 
@@ -291,11 +291,11 @@ Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 <p><span class=u>&#x261E;</span>Les manifestes ont leur propre format sp&eacute;cifique. Regardez les <a href=http://docs.python.org/3.1/distutils/sourcedist.html#manifest>sp&eacute;cifications des fichiers &agrave; distribuer</a> et les <a href=http://docs.python.org/3.1/distutils/commandref.html#sdist-cmd>mod&egrave;les de commandes de manifeste</a> pour plus de d&eacute;tails.
 </blockquote>
 
-<p>Je le r&eacute;p&egrave;te: il vous suffit de cr&eacute;er un fichier de manifeste si vous souhaitez inclure des fichiers que Distutils n&#8217;inclut pas par d&eacute;faut. Si vous avez besoin vraiment besoin d&#8217;un fichier de manifeste, il ne devrait inclure que les fichiers et r&eacute;pertoires que Distutils ne trouverait pas de sa propre initiative sans cela.
+<p>Je le r&eacute;p&egrave;te: il vous suffit de cr&eacute;er un fichier de manifeste si vous souhaitez inclure des fichiers que Distutils n&#8217;inclut pas par d&eacute;faut. Si vous avez vraiment besoin d&#8217;un fichier de manifeste, il ne devrait inclure que les fichiers et r&eacute;pertoires que Distutils ne trouverait pas, sans cela, de sa propre initiative.
 
 <h2 id=check>Traquez les erreurs de vos scripts d&#8217;installation</h2>
 
-<p>Il y a beaucoup de pistes &agrave; surveiller. Distutils est livr&eacute; avec une commande de validation de construction interne qui v&eacute;rifie que  toutes les metadonn&eacute;es n&eacute;cessaires sont pr&eacute;sentes. Par exemple, si vous oubliez d&#8217;inclure le param&egrave;tre <code>version</code>, Distutils vous le rappellera.
+<p>On s&#8217;y retrouve bien. Distutils est livr&eacute; avec une commande de validation de construction interne qui v&eacute;rifie que  toutes les metadonn&eacute;es n&eacute;cessaires sont pr&eacute;sentes. Par exemple, si vous oubliez d&#8217;inclure le param&egrave;tre <code>version</code>, Distutils vous le rappellera.
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd>c:\python31\python.exe setup.py check</kbd>
@@ -310,9 +310,9 @@ warning: check: missing required meta-data: version</samp></pre>
 
 <p class=a>&#x2042;
 
-<h2 id=sdist>Creating a Source Distribution</h2>
+<h2 id=sdist>Cr&eacute;ation d&#8217;une distribution de source</h2>
 
-<p>Distutils supports building multiple types of release packages. At a minimum, you should build a &#8220;source distribution&#8221; that contains your source code, your Distutils setup script, your &#8220;read me&#8221; file, and whatever <a href=#manifest>additional files you want to include</a>. To build a source distribution, pass the <code>sdist</code> command to your Distutils setup script.
+<p>Distutils supporte la construction de types multiples de packages distribuables. Au minimum, vous devriez construire une &#8220;distribution de source&#8221; qui contient votre code source, votre script d&#8217;installation Distutils , votre fichier &#8220;lisez moi&#8221;, et <a href=#manifest>les fichiers additionnels que vous souhaiteriez inclure</a> quelqu'ils soient. Pour construire une disitribution de source, passez la commande <code>sdist</code> &agrave; votre script d&#8217;installation Distutils.
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd><mark>c:\python31\python.exe setup.py sdist</mark></kbd>
@@ -373,12 +373,12 @@ adding 'chardet-1.0.2\docs\images\tip.png'
 adding 'chardet-1.0.2\docs\images\warning.png'
 removing 'chardet-1.0.2' (and everything under it)</samp></pre>
 
-<p>Several things to note here:
+<p>Plusieurs choses &agrave; noter ici:
 
 <ul>
-<li>Distutils noticed the manifest file (<code>MANIFEST.in</code>).
-<li>Distutils successfully parsed the manifest file and added the additional files we wanted&nbsp;&mdash;&nbsp;<code>COPYING.txt</code> and the <abbr>HTML</abbr> and image files in the <code>docs/</code> directory.
-<li>If you look in your project directory, you&#8217;ll see that Distutils created a <code>dist/</code> directory. Within the <code>dist/</code> directory the <code>.zip</code> file that you can distribute.
+<li>Distutils a remarqu&eacute; le fichier de manifeste (<code>MANIFEST.in</code>).
+<li>Distutils a analys&eacute; le fichier manifeste et rajout&eacute; les fichiers additionnels que nous voulions avec succ&egrave;s&nbsp;&mdash;&nbsp;<code>COPYING.txt</code>, les fichiers <abbr>HTML</abbr> ainsi que les images dans le r&eacute;pertoire <code>docs/</code>.
+<li>Si vous regardez dans le r&eacute;pertoire de votre projet, vous constaterez que Distutils a cr&eacute;&eacute; un r&eacute;pertoire <code>dist/</code>. Vous trouverez &agrave; l&#8217;int&eacute;rieur de celui-ci, le fichier <code>.zip</code> que vous pouvez distribuer.
 </ul>
 
 <pre class=screen>
