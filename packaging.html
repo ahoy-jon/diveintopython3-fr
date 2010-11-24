@@ -463,19 +463,19 @@ removing 'build\bdist.win32\wininst' (and everything under it)</samp>
 
 <p class=a>&#x2042;
 
-<h2 id=pypi>Adding Your Software to The Python Package Index</h2>
+<h2 id=pypi>Ajout de votre logiciel au Python Package Index</h2>
 
-<p>Uploading software to the Python Package Index is a three step process.
+<p>Mettre en ligne un logiciel sur le Python Package Index est un processus en trois &eacute;tapes.
 
 <ol>
-<li>Register yourself
-<li>Register your software
-<li>Upload the packages you created with <code>setup.py sdist</code> and <code>setup.py bdist_*</code>
+<li>Enregistrez-vous
+<li>Enregistrez votre logiciel
+<li>Mettre en ligne les packages que vous avez cr&eacute;&eacute; avec <code>setup.py sdist</code> et <code>setup.py bdist_*</code>
 </ol>
 
-<p>To register yourself, go to <a href="http://pypi.python.org/pypi?:action=register_form">the PyPI user registration page</a>. Enter your desired username and password, provide a valid email address, and click the <code>Register</code> button. (If you have a <abbr>PGP</abbr> or <abbr>GPG</abbr> key, you can also provide that. If you don&#8217;t have one or don&#8217;t know what that means, don&#8217;t worry about it.) Check your email; within a few minutes, you should receive a message from PyPI with a validation link. Click the link to complete the registration process.
+<p>Pour vous inscrire, aller &agrave; <a href="http://pypi.python.org/pypi?:action=register_form">la page d&#8217;enregistrement des utilisateurs de PyPI</a>. Entrez les nom d&#8217;utilisateur et mot de passe choisis, fournissez une adresse e-mail valide, et cliquez sur le boutton <code>Register</code>. (Si vous avez une clef <abbr>PGP</abbr> ou <abbr>GPG</abbr>, vous pouvez aussi la fournir. Si vous n&#8217;en avez pas ou si vous ne savez pas ce que c&#8217;est, ne vous en inqui&eacute;tez pas.) Contr&ocirc;lez votre bo&icirc;te mail; dans quelques minutes, vous devriez recevoir un message de validation de PyPI contenant un lien de validation. Cliquez sur le lien pour compl&eacute;ter le processus d&#8217;inscription.
 
-<p>Now you need to register your software with PyPI and upload it. You can do this all in one step.
+<p>Vous devez maintenant enregistrer votre logiciel avec PyPI et le mettre en ligne. Vous pouvez faire tout cela en une seule &eacute;tape.
 
 <pre class=screen>
 <a><samp class=p>c:\Users\pilgrim\chardet> </samp><kbd>c:\python31\python.exe setup.py register sdist bdist_wininst upload</kbd>  <span class=u>&#x2460;</span></a>
@@ -503,19 +503,19 @@ I can store your PyPI login so future submissions will be faster.
 (the login will be stored in c:\home\.pypirc)</samp>
 <a><samp class=p>Save your login (y/N)?</samp><kbd class=pp>n</kbd>                                                                        <span class=u>&#x2467;</span></a></pre>
 <ol>
-<li>When you release your project for the first time, Distutils will add your software to the Python Package Index and give it its own <abbr>URL</abbr>. Every time after that, it will simply update the project metadata with any changes you may have made in your <code>setup.py</code> parameters. Next, it builds a source distribution (<code>sdist</code>) and a Windows installer (<code>bdist_wininst</code>), then uploads them to PyPI (<code>upload</code>).
-<li>Type <kbd>1</kbd> or just press <kbd>ENTER</kbd> to select &#8220;use your existing login.&#8221;
-<li>Enter the username and password you selected on the <a href="http://pypi.python.org/pypi?:action=register_form">the PyPI user registration page</a>. Distuils will not echo your password; it will not even echo asterisks in place of characters. Just type your password and press <kbd>ENTER</kbd>.
-<li>Distutils registers your package with the Python Package Index&hellip;
-<li>&hellip;builds your source distribution&hellip;
-<li>&hellip;builds your Windows installer&hellip;
-<li>&hellip;and uploads them both to the Python Package Index.
-<li>If you want to automate the process of releasing new versions, you need to save your PyPI credentials in a local file. This is completely insecure and completely optional.
+<li>Quand vous distribuez votre projet pour la premi&egrave;re fois, Distutils ajoute votre logiciel au Python Package Index et lui attribue sa propre <abbr>URL</abbr>. Toutes les fois suivantes, il met simplement &agrave; jour les m&eacute;tadonn&eacute;es du projet avec chaque modification que vous auriez fait dans vos param&egrave;tres <code>setup.py</code>. Ensuite, il construit une distribution de source (<code>sdist</code>) et un installateur Windows (<code>bdist_wininst</code>), apr&egrave;s quoi il les met en ligne sur PyPI (<code>upload</code>).
+<li>Tapez <kbd>1</kbd> ou pressez juste <kbd>ENTER</kbd> afin de s&eacute;lectionner &#8220;use your existing login.&#8221;
+<li>Entrez le nom d&#8217;utilisateur et le mot de passe que vous avez s&eacute;lectionn&eacute; dans <a href="http://pypi.python.org/pypi?:action=register_form">la page d&#8217;enregistrement des utilisateurs de PyPI</a>. Distuils ne rep&eacute;tera pas votre mot de passe; m&ecirc;me les ast&eacute;risques rempla&ccedil;ant les caract&egrave;res il ne les rep&eacute;tera pas. Tapez simplement votre mot de passe et appuyez sur <kbd>ENTER</kbd>.
+<li>Distutils enregistre votre package avec le Python Package Index&hellip;
+<li>&hellip;construit votre distribution de source&hellip;
+<li>&hellip;construit votre installateur Windows&hellip;
+<li>&hellip;et met les deux en ligne sur le Python Package Index.
+<li>Si vous voulez automatiser le processus de distribution des nouvelles versions, vous devez enregistrer vos informations d&#8217;identification PyPI dans un fichier local. Ceci n&#8217;est pas s&eacute;curis&eacute; du tout et est totalement facultatif.
 </ol>
 
-<p>Congratulations, you now have your own page on the Python Package Index! The address is <code>http://pypi.python.org/pypi/<i>NAME</i></code>, where <i>NAME</i> is the string you passed in the <var>name</var> parameter in your <code>setup.py</code> file.
+<p>F&eacute;licitations, vous avez &agrave; pr&eacute;sent votre propre page sur le Python Package Index! L&#8217;adresse est <code>http://pypi.python.org/pypi/<i>NAME</i></code>, o&ugrave; <i>NAME</i> est la cha&icirc;ne de caract&egrave;res que vous avez pass&eacute; dans le param&egrave;tre <var>name</var> de votre fichier <code>setup.py</code>.
 
-<p>If you want to release a new version, just update your <code>setup.py</code> with the new version number, then run the same upload command again:
+<p>Si vous voulez distribuer une nouvelle version, il vous suffit de mettre &agrave; jour votre <code>setup.py</code> avec le nouveau num&eacute;ro de version, puis d&#8217;ex&eacute;cutez &agrave; nouveau la m&ecirc;me commande upload:
 
 <pre class='nd screen'>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd>c:\python31\python.exe setup.py register sdist bdist_wininst upload</kbd>
