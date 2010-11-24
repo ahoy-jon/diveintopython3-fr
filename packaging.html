@@ -15,7 +15,7 @@ mark{display:inline}
 <p id=level>Niveau de difficult&eacute;: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>Packager des biblioth&egrave;ques Python</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Vous trouverez que la honte c&#8217;est comme la douleur; on ne la ressent qu&#8217;une seule fois. <span class=u>&#x275E;</span><br>&mdash; Marquise de Merteuil, <a href=http://www.imdb.com/title/tt0094947/quotes><cite>Les liaisons dangereuses</cite></a>
+<p><span class=u>&#x275D;</span> Vous trouverez que la honte c&#8217;est comme la douleur; on ne la ressent qu&#8217;une seule fois. <span class=u>&#x275E;</span><br>&mdash; Marquise de Merteuil, <a href=http://fr.wikipedia.org/wiki/Les_Liaisons_dangereuses><cite>Les liaisons dangereuses</cite></a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Lan&ccedil;ons nous</h2>
@@ -398,9 +398,9 @@ removing 'chardet-1.0.2' (and everything under it)</samp></pre>
 
 <h2 id=bdist>Cr&eacute;ation d&#8217;un installateur graphique</h2>
 
-<p>&Agrave; mon avis, toutes les biblioth&egrave;ques Python m&eacute;ritent un installateur graphique pour les utilisateurs de Windows. C&#8217;est facile &agrave; r&eacute;aliser (m&ecirc;me si vous n&#8217;utilisez pas Windows vous-m&ecirc;me), et les utilisateurs de Windows l&#8217;appr&eacute;cieront.
+<p>&Agrave; mon avis, toutes les biblioth&egrave;ques Python m&eacute;ritent un installateur graphique pour les utilisateurs de Windows. C&#8217;est facile &agrave; r&eacute;aliser (m&ecirc;me si vous n&#8217;utilisez pas Windows vous-m&ecirc;me), et les utilisateurs de Windows appr&eacute;cieront le geste.
 
-<p>Distutils can <a href=http://docs.python.org/3.1/distutils/builtdist.html#creating-windows-installers>create a graphical Windows installer for you</a>, by passing the <code>bdist_wininst</code> command to your Distutils setup script.
+<p>Distutils peut <a href=http://docs.python.org/3.1/distutils/builtdist.html#creating-windows-installers>cr&eacute;er un installateur graphique Windows pour vous</a>, en passant la commande <code>bdist_wininst</code> &agrave; votre script d&#8217;installation Distutils.
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd><mark>c:\python31\python.exe setup.py bdist_wininst</mark></kbd>
@@ -453,13 +453,13 @@ removing 'build\bdist.win32\wininst' (and everything under it)</samp>
                2 File(s)        577,676 bytes
                2 Dir(s)  61,424,070,656 bytes free</samp></pre>
 
-<h3 id=linux>Building Installable Packages for Other Operating Systems</h3>
+<h3 id=linux>Construire des packages installables pour d&#8217;autres syst&egrave;mes d&#8217;exploitation</h3>
 
-<p>Distutils can help you <a href=http://docs.python.org/3.1/distutils/builtdist.html#creating-rpm-packages>build installable packages for Linux users</a>. In my opinion, this probably isn&#8217;t worth your time. If you want your software distributed for Linux, your time would be better spent working with community members who specialize in packaging software for major Linux distributions.
+<p>Distutils peut vous aider &agrave; <a href=http://docs.python.org/3.1/distutils/builtdist.html#creating-rpm-packages>construire des packages installables pour les utilisateurs Linux</a>. &Agrave; mon avis, cela ne vaut probablement pas votre temps. Si vous voulez que votre logiciel soit distribu&eacute; pour Linux, votre temps serait plus profitable &agrave; travailler aupr&egrave;s des membres de la communaut&eacute; qui se sp&eacute;cialisent dans le packaging de logiciels destin&eacute;s aux distributions Linux principales.
 
-<p>For example, my <code>chardet</code> library is <a href=http://packages.debian.org/python-chardet>in the Debian GNU/Linux repositories</a> (and therefore <a href=http://packages.ubuntu.com/python-chardet>in the Ubuntu repositories</a> as well). I had nothing to do with this; the packages just showed up there one day. The Debian community has <a href=http://www.debian.org/doc/packaging-manuals/python-policy/>their own policies for packaging Python libraries</a>, and the Debian <code>python-chardet</code> package is designed to follow these conventions. And since the package lives in Debian&#8217;s repositories, Debian users will receive security updates and/or new versions, depending on the system-wide settings they&#8217;ve chosen to manage their own computers.
+<p>Par exemple, ma biblioth&egrave;que  <code>chardet</code> est <a href=http://packages.debian.org/python-chardet>dans les d&eacute;p&ocirc;ts Debian GNU/Linux</a> (et par cons&eacute;quent <a href=http://packages.ubuntu.com/python-chardet>dans les d&eacute;p&ocirc;ts Ubuntu</a> &eacute;galement). Je n'ai rien fait pour cela; les packages ont vus le jour tous seuls. La commmunaut&eacute; Debian a <a href=http://www.debian.org/doc/packaging-manuals/python-policy/>ses propres  politiques pour packager les biblioth&egrave;ques</a>, et le package <code>python-chardet</code> de Debian est con&ccedil;u pour suivre ces conventions. Et puisque le package vit dans le d&eacute;p&ocirc;t Debian, les utilisateurs Debian recevront les mises &agrave; jour de s&eacute;curit&eacute; et/ou les nouvelles versions, en fonction du degr&eacute; de configuration du syst&eacute;me d&#8217;exploitation qu&#8217;ils auront choisi pour administrer leurs machines.
 
-<p>The Linux packages that Distutils builds offer none of these advantages. Your time is better spent elsewhere.
+<p>Les packages Linux que Distutils construit n'offre aucun de ces avantages. Votre temps est mieux d&eacute;pens&eacute; ailleurs.
 
 <p class=a>&#x2042;
 
