@@ -77,10 +77,10 @@ This version requires Python 3 or later; a Python 2 version is available separat
 
 <h2 id=cantdo>Les choses que Distutils ne peut pas faire pour vous</h2>
 
-<p>Sortir votre premier package Python est un processus intimidant. (Sortir le second est un peu plus facile.) Distutils essaye d&#8217;automatiser autant que possible, mais il ya certaines choses que vous devez tout simplement faire vous-m&ecirc;me.
+<p>Sortir votre premier package Python est un processus intimidant. (Sortir le second est un peu plus facile.) Distutils essaye d&#8217;automatiser autant que possible, mais il y a certaines choses que vous devez tout simplement faire vous-m&ecirc;me.
 
 <ul>
-<li><b>Choisir une licence</b>. Il s&#8217;agit d&#8217;un sujet compliqu&eacute;, lourd de politique et plein de p&eacute;rils. Si vous souhaitez publier vos logiciels en open source, je propose humblement cinq fragments de conseils:
+<li><b>Choisir une licence</b>. Il s&#8217;agit d&#8217;un sujet compliqu&eacute;, lourd de politique et plein de p&eacute;rils. Si vous souhaitez publier vos logiciels en open source, je vous propose humblement cinq petits conseils:
 
 <ol>
 <li>N&#8217;&eacute;crivez pas votre propre licence.
@@ -113,9 +113,9 @@ This version requires Python 3 or later; a Python 2 version is available separat
    +--iri2uri.py</pre>
 <ol>
 <li>Cr&eacute;ez un r&eacute;pertoire racine pour contenir le tout. Donnez-lui le m&ecirc;me nom que votre module Python.
-<li>Pour arranger les utilisateurs de Windows, votre fichier "lisez-moi" devrait inclure une extension <code>.txt</code>, et il devrait utiliser les retours de chariot de style Windows. Le fait que <em>vous</em> utilisiez un &eacute;diteur de texte sophistiqu&eacute; qui fonctionne  &agrave; partir de la ligne de commande et poss&egrave;de son propre langage de macros, ne vous donne pas le droit de menetr la vie dure &agrave; vos utilisateurs. (Vos utilisateurs utilisent le bloc-notes. Triste mais vrai.) M&ecirc;me si vous &ecirc;tes sous Linux ou MAC OS X, votre &eacute;diteur de texte sophistiqu&eacute; a sans aucun doute une option permettant d&#8217;enregistrer des fichiers avec un retour chariot de style Windows.
+<li>Pour arranger les utilisateurs de Windows, votre fichier "lisez-moi" devrait inclure une extension <code>.txt</code>, et il devrait utiliser les retours de chariot de style Windows. Le fait que <em>vous</em> utilisiez un &eacute;diteur de texte sophistiqu&eacute; qui fonctionne  &agrave; partir de la ligne de commande et poss&egrave;de son propre langage de macros, ne vous donne pas le droit de mener la vie dure &agrave; vos utilisateurs. (Vos utilisateurs utilisent le bloc-notes. Triste mais vrai.) M&ecirc;me si vous &ecirc;tes sous Linux ou MAC OS X, votre &eacute;diteur de texte sophistiqu&eacute; a sans aucun doute une option permettant d&#8217;enregistrer des fichiers avec un retour chariot de style Windows.
 <li>Votre script d&#8217;installation Distutils devrait &ecirc;tre nomm&eacute; <code>setup.py</code> &agrave; moins que vous n&#8217;ayez une bonne raison de ne pas le faire. Vous n&#8217;avez pas de bonne raison de ne pas le faire.
-<li>Si votre logiciel Python est un simple fichier <code>.py</code>, vous devriez le mettre dans le r&eacute;pertoire racine entre votre fichier &#8220;lisez-moi&#8221; file et votre script d&#8217;installation. Mais <code>httplib2</code> n&#8217;est pas un simple fichier <code>.py</code>; c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>. Mais &ccedil;a roule! Mettez juste le r&eacute;pertoire <code>httplib2</code> dans le r&eacute;pertoire racine, vous avez donc un fichier <code>__init__.py</code> &agrave; l&#8217;int&eacute;rieur d&#8217;un r&eacute;pertoire <code>httplib2/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>httplib2/</code>. Ce n&#8217;est pas un probl&egrave;me; en fait, cela simplifiera votre processus de packaging.
+<li>Si votre logiciel Python est un simple fichier <code>.py</code>, vous devriez le mettre dans le r&eacute;pertoire racine entre votre fichier &#8220;lisez-moi&#8221; et votre script d&#8217;installation. Mais <code>httplib2</code> n&#8217;est pas un simple fichier <code>.py</code>; c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>. Mais &ccedil;a roule! Mettez juste le r&eacute;pertoire <code>httplib2</code> dans le r&eacute;pertoire racine, vous avez donc un fichier <code>__init__.py</code> &agrave; l&#8217;int&eacute;rieur d&#8217;un r&eacute;pertoire <code>httplib2/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>httplib2/</code>. Ce n&#8217;est pas un probl&egrave;me; en fait, cela simplifiera votre processus de packaging.
 </ol>
 
 <p>Le r&eacute;pertoire <code>chardet</code> &agrave; l&#8217;air l&eacute;g&egrave;rement diff&eacute;rent . Tout comme <code>httplib2</code>, c&#8217;est <a href=case-study-porting-chardet-to-python-3.html#multifile-modules>un module multi-fichiers</a>, il y a donc un r&eacute;pertoire <code>chardet/</code> &agrave; l&#8217;int&eacute;rieur du r&eacute;pertoire racine <code>chardet/</code>. En plus du fichier <code>README.txt</code>, <code>chardet</code> poss&egrave;de une documentation au format <abbr>HTML</abbr> dans le r&eacute;pertoire <code>docs/</code>. Le r&eacute;pertoire <code>docs/</code> contient plusieurs fichiers <code>.html</code> et <code>.css</code> et un sous-r&eacute;pertoire <code>images/</code>, qui contient plusieurs <code>.png</code> et <code>.gif</code>. (Ce sera important pour la suite.) De plus, conform&eacute;ment &agrave; la convention pour les logiciels sous licence <abbr>(L)GPL</abbr>, il contient un fichier s&eacute;par&eacute; appel&eacute; <code>COPYING.txt</code> qui contient le texte complet de la <abbr>LGPL</abbr>.
@@ -152,7 +152,7 @@ chardet/
 
 <p>Le script d&#8217;installation Distutils est un script Python. En th&eacute;orie, il peut faire tout ce que Python peut faire. Dans la pratique, il devrait le faire aussi peu que possible, de fa&ccedil;on aussi standard que possible. Les scripts d&#8217;installation devraient &ecirc;tre ennuyeux. Plus votre processus d&#8217;installation est exotique, plus vos rapports de bogues le seront.
 
-<p>La premi&egrave;re ligne de chaque script de d&#8217;installation de Distutils est toujours la m&ecirc;me:
+<p>La premi&egrave;re ligne de chaque script d&#8217;installation de Distutils est toujours la m&ecirc;me:
 
 <pre class='nd pp'><code>from distutils.core import setup</code></pre>
 
@@ -166,8 +166,8 @@ chardet/
 <li><b>name</b>, le nom du package.
 <li><b>version</b>, le num&eacute;ro de version du package.
 <li><b>author</b>, votre nom complet.
-<li><b>author_email</b>, votre adresse email.
-<li><b>url</b>, la page d&#8217;accueil de votre projet. Ceci peut &ecirc;tre votre page de package <a href=http://pypi.python.org/>PyPI</a> si vous n&#8217;avez pas de site web s&eacute;par&eacute; pour le projet.
+<li><b>author_email</b>, votre adresse e-mail.
+<li><b>url</b>, la page d&#8217;accueil de votre projet. Ceci peut &ecirc;tre votre page de package <a href=http://pypi.python.org/>PyPI</a> si vous n&#8217;avez pas de site web s&eacute;par&eacute; pour votre projet.
 </ul>
 
 <p>Bien que non requis, je vous recommande &eacute;galement d&#8217;inclure les &eacute;l&eacute;ments suivants dans votre script d&#8217;installation:
@@ -175,7 +175,7 @@ chardet/
 <ul>
 <li><b>description</b>, un r&eacute;sum&eacute; en une ligne du projet.
 <li><b>long_description</b>, une cha&icirc;ne de caract&egrave;res multi-ligne en <a href=http://docutils.sourceforge.net/rst.html>format reStructuredText</a>. <a href=http://pypi.python.org/>PyPI</a> convertit ceci en <abbr>HTML</abbr> et l&#8217;affiche dans votre page de package.
-<li><b>classifiers</b>, une liste de cha&icirc;nes de caract&egrave;res sp&eacute;cialement format&eacute;es d&eacute;crite dans la section suivante.
+<li><b>classifiers</b>, une liste de cha&icirc;nes de caract&egrave;res sp&eacute;cialement format&eacute;e d&eacute;crite dans la section suivante.
 </ul>
 
 <blockquote class=note>
@@ -200,14 +200,14 @@ setup(
 
 <h2 id=trove>Classifier votre package</h2>
 
-<p>Le Python Package Index (&#8220;PyPI&#8221;) contient des milliers de biblioth&egrave;ques Python. Une classification correcte des metadonn&eacute;es permettra aux gens de trouver votre exemplaire plus facilement. PyPI vous permet <a href='http://pypi.python.org/pypi?:action=browse'>de parcourir les paquets &agrave; l&#8217;aide de classificateurs</a>. Vous pouvez m&egrave;me s&eacute;lectionner plusieurs classificateurs afin d&#8217;affiner votre recherche. Les classificateurs ne sont pas des metadonn&eacute;es invisibles que vous pouvez vous contenter d&#8217;ignorer!
+<p>Le Python Package Index (&#8220;PyPI&#8221;) contient des milliers de biblioth&egrave;ques Python. Une classification correcte des metadonn&eacute;es permettra aux gens de trouver votre exemplaire plus facilement. PyPI vous permet <a href='http://pypi.python.org/pypi?:action=browse'>de parcourir les paquets &agrave; l&#8217;aide de classificateurs</a>. Vous pouvez m&ecirc;me s&eacute;lectionner plusieurs classificateurs afin d&#8217;affiner votre recherche. Les classificateurs ne sont pas des metadonn&eacute;es invisibles que vous pouvez vous contenter d&#8217;ignorer!
 
 <p>Pour classifier votre logiciel, passez un param&egrave;tre de l&#8217;un des <code>classificateurs</code> &agrave; la fonction <code>setup()</code> de Distutils. Le param&egrave;tre des <code>classificateurs</code> se pr&eacute;sente sous forme d&#8217;une liste de cha&icirc;nes de caract&egrave;res. Ces cha&icirc;nes de caract&egrave;res <em>ne sont pas</em> libres de forme. Toutes les cha&icirc;nes de caract&egrave;res des classificateurs devraient provenir de <a href='http://pypi.python.org/pypi?:action=list_classifiers'>cette liste de PyPI</a>.
 
-<p>Les classificateurs sont optionnels. Vous pouvez &eacute;crire un script d&#8217;innstallation Distutils sans aucun classificateur du tout. <strong>Ne le fa&icirc;tes pas.</strong> Vous devriez <em>toujours</em> inclure au moins ces classificateurs:
+<p>Les classificateurs sont optionnels. Vous pouvez &eacute;crire un script d&#8217;installation Distutils sans aucun classificateur du tout. <strong>Ne le fa&icirc;tes pas.</strong> Vous devriez <em>toujours</em> inclure au moins ces classificateurs:
 
 <ul>
-<li><b>Programming Language</b>. En particulier, vous devriez inclure &agrave; la fois <code>"Programming Language :: Python"</code> et &agrave; la fois <code>"Programming Language :: Python :: 3"</code>. Si vous ne les incluez pas, votre package ne ressortira pas de <a href='http://pypi.python.org/pypi?:action=browse&amp;c=533&amp;show=all'>cette liste de biblioth&egrave;ques compatibles Python 3</a>, qui sont accessible &agrave; partir de chaque page de <code>pypi.python.org</code> depuis le menu lat&eacute;ral.
+<li><b>Programming Language</b>. En particulier, vous devriez inclure &agrave; la fois <code>"Programming Language :: Python"</code> et &agrave; la fois <code>"Programming Language :: Python :: 3"</code>. Si vous ne les incluez pas, votre package ne ressortira pas dans <a href='http://pypi.python.org/pypi?:action=browse&amp;c=533&amp;show=all'>cette liste de biblioth&egrave;ques compatibles Python 3</a>, qui sont accessibles &agrave; partir de chaque page de <code>pypi.python.org</code> depuis le menu lat&eacute;ral.
 <li><b>License</b>. Ceci est <em>la premi&egrave;re chose que je recherche en priorit&eacute;</em> quand j&#8217;&eacute;value des biblioth&egrave;ques tierces. Ne me donnez pas la chasse pour cette information vitale. N&#8217;incluez pas plus d&#8217;un classificateur de licence &agrave; moins que votre logiciel soit explicitement sous de multiples licences. (Et ne diffusez pas de logiciels sous des licences multiples &agrave; moins que vous ne soyez forc&eacute; de faire ainsi. Et ne forcez pas d&#8217;autres gens &agrave; le faire non plus. Le choix des licences fait suffisamment mal &agrave; la t&ecirc;te comme &ccedil;a; ne le rendez pas plus douloureux.)
 <li><b>Operating System</b>. Si votre logiciel ne fonctionne que sous Windows (ou Mac OS X, ou Linux), je veux le savoir plut&ocirc;t trop t&ocirc;t que trop tard. Si votre logiciel fonctionne partout sans aucun code sp&eacute;cifique &agrave; la plateforme, utilisez le classificateur <code>"Operating System :: OS Independent"</code>. Des classificateurs <code>Operating System</code> multiples ne sont n&eacute;cessaire seulement si votre logiciel requiert un support sp&eacute;cifique pour chaque plate-forme. (Ce qui n&#8217;est pas commun.)
 </ul>
@@ -249,7 +249,7 @@ Intended Audience :: Developers
 Topic :: Text Processing :: Linguistic
 Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 
-<p>Et voici les classificateurs pour <a href=http://pypi.python.org/pypi/httplib2><code>httplib2</code></a>, la biblioth&egrave;que figurant dans le chapitre <a href=http-web-services.html>Services Web <abbr>HTTP</abbr></a>. <code>httplib2</code> est de qualit&eacute; beta, multiplate-forme, sous licence <abbr>MIT</abbr>, et destin&eacute; aux d&eacute;veloppeurs Python.
+<p>Et voici les classificateurs pour <a href=http://pypi.python.org/pypi/httplib2><code>httplib2</code></a>, la biblioth&egrave;que figurant dans le chapitre <a href=http-web-services.html>Services Web <abbr>HTTP</abbr></a>. <code>httplib2</code> est de qualit&eacute; beta, multiplate-forme, sous licence <abbr>MIT</abbr>, et destin&eacute;e aux d&eacute;veloppeurs Python.
 
 <pre><code>Programming Language :: Python
 Programming Language :: Python :: 3
@@ -457,7 +457,7 @@ removing 'build\bdist.win32\wininst' (and everything under it)</samp>
 
 <p>Distutils peut vous aider &agrave; <a href=http://docs.python.org/3.1/distutils/builtdist.html#creating-rpm-packages>construire des packages installables pour les utilisateurs Linux</a>. &Agrave; mon avis, cela ne vaut probablement pas votre temps. Si vous voulez que votre logiciel soit distribu&eacute; pour Linux, votre temps serait plus profitable &agrave; travailler aupr&egrave;s des membres de la communaut&eacute; qui se sp&eacute;cialisent dans le packaging de logiciels destin&eacute;s aux distributions Linux principales.
 
-<p>Par exemple, ma biblioth&egrave;que  <code>chardet</code> est <a href=http://packages.debian.org/python-chardet>dans les d&eacute;p&ocirc;ts Debian GNU/Linux</a> (et par cons&eacute;quent <a href=http://packages.ubuntu.com/python-chardet>dans les d&eacute;p&ocirc;ts Ubuntu</a> &eacute;galement). Je n'ai rien fait pour cela; les packages ont vus le jour tous seuls. La commmunaut&eacute; Debian a <a href=http://www.debian.org/doc/packaging-manuals/python-policy/>ses propres  politiques pour packager les biblioth&egrave;ques</a>, et le package <code>python-chardet</code> de Debian est con&ccedil;u pour suivre ces conventions. Et puisque le package vit dans le d&eacute;p&ocirc;t Debian, les utilisateurs Debian recevront les mises &agrave; jour de s&eacute;curit&eacute; et/ou les nouvelles versions, en fonction du degr&eacute; de configuration du syst&eacute;me d&#8217;exploitation qu&#8217;ils auront choisi pour administrer leurs machines.
+<p>Par exemple, ma biblioth&egrave;que  <code>chardet</code> est <a href=http://packages.debian.org/python-chardet>dans les d&eacute;p&ocirc;ts Debian GNU/Linux</a> (et par cons&eacute;quent <a href=http://packages.ubuntu.com/python-chardet>dans les d&eacute;p&ocirc;ts Ubuntu</a> &eacute;galement). Je n'ai rien fait pour cela; les packages ont vus le jour tout seul. La commmunaut&eacute; Debian a <a href=http://www.debian.org/doc/packaging-manuals/python-policy/>ses propres  politiques pour packager les biblioth&egrave;ques</a>, et le package <code>python-chardet</code> de Debian est con&ccedil;u pour suivre ces conventions. Et puisque le package vit dans le d&eacute;p&ocirc;t Debian, les utilisateurs Debian recevront les mises &agrave; jour de s&eacute;curit&eacute; et/ou les nouvelles versions, en fonction du degr&eacute; de configuration du syst&eacute;me d&#8217;exploitation qu&#8217;ils auront choisi pour administrer leurs machines.
 
 <p>Les packages Linux que Distutils construit n'offre aucun de ces avantages. Votre temps est mieux d&eacute;pens&eacute; ailleurs.
 
@@ -470,7 +470,7 @@ removing 'build\bdist.win32\wininst' (and everything under it)</samp>
 <ol>
 <li>Enregistrez-vous
 <li>Enregistrez votre logiciel
-<li>Mettre en ligne les packages que vous avez cr&eacute;&eacute; avec <code>setup.py sdist</code> et <code>setup.py bdist_*</code>
+<li>Mettez en ligne les packages que vous avez cr&eacute;&eacute; avec <code>setup.py sdist</code> et <code>setup.py bdist_*</code>
 </ol>
 
 <p>Pour vous inscrire, aller &agrave; <a href="http://pypi.python.org/pypi?:action=register_form">la page d&#8217;enregistrement des utilisateurs de PyPI</a>. Entrez les nom d&#8217;utilisateur et mot de passe choisis, fournissez une adresse e-mail valide, et cliquez sur le boutton <code>Register</code>. (Si vous avez une clef <abbr>PGP</abbr> ou <abbr>GPG</abbr>, vous pouvez aussi la fournir. Si vous n&#8217;en avez pas ou si vous ne savez pas ce que c&#8217;est, ne vous en inqui&eacute;tez pas.) Contr&ocirc;lez votre bo&icirc;te mail; dans quelques minutes, vous devriez recevoir un message de validation de PyPI contenant un lien de validation. Cliquez sur le lien pour compl&eacute;ter le processus d&#8217;inscription.
@@ -525,7 +525,7 @@ I can store your PyPI login so future submissions will be faster.
 
 <h2 id=future>Les nombreux avenirs possibles du packaging Python</h2>
 
-<p>Distutils n&#8217;est pas le summum du packaging Python, mais depuis le jour de son &eacute;criture (Ao&ucirc;t 2009), c&#8217;est le seul framework de packaging qui fonctionne en Python 3. Il y a un certain nombre d&#8217autres frameworks pour Python 2; certains se concentrent sur l&#8217;installation, d&#8217;autres sur les tests et le d&eacute;ploiement. Certains d&#8217;entre eux voir m&ecirc;me la totalit&eacute; pourraient finir par &ecirc;tre port&eacute; en Python 3 &agrave; l&#8217;avenir.
+<p>Distutils n&#8217;est pas le summum du packaging Python, mais depuis le jour de son &eacute;criture (Ao&ucirc;t 2009), c&#8217;est le seul framework de packaging qui fonctionne en Python 3. Il y a un certain nombre d&#8217autres frameworks pour Python 2; certains se concentrent sur l&#8217;installation, d&#8217;autres sur les tests et le d&eacute;ploiement. Certains d&#8217;entre eux voir m&ecirc;me la totalit&eacute; pourraient finir par &ecirc;tre port&eacute;s en Python 3 &agrave; l&#8217;avenir.
 
 <p>Ces frameworks ci se concentrent sur l&#8217;installation:
 
@@ -572,6 +572,7 @@ I can store your PyPI login so future submissions will be faster.
 
 <p class=v><a rel=prev href=case-study-porting-chardet-to-python-3.html title='back to &#8220;Case Study: Porting chardet to Python 3&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=porting-code-to-python-3-with-2to3.html title='onward to &#8220;Porting Code to Python 3 with 2to3&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;10 <a href=about.html>Mark Pilgrim</a>
+<p class=c>&copy; 2010 <a href="http://bitbucket.org/ogirardot/diveintopython3-fr">Equipe de traduction fran&ccedil;aise</a>
 <script src=j/jquery.js></script>
 <script src=j/prettify.js></script>
 <script src=j/dip3.js></script>
