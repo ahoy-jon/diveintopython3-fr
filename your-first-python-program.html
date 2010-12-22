@@ -57,13 +57,13 @@ if __name__ == '__main__':
 <p>Maintenant, nous allons ex&eacute;cuter ce programme avec la ligne de commande. Sur Windows, il ressemblera &agrave; quelque chose comme ceci :
 <pre class='nd screen'>
 <samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
-<samp>1.0 TB
-931.3 GiB</samp></pre>
+<samp>1.0 To
+931.3 Gio</samp></pre>
 <p>Sur Mac OS X ou Linux, cela ressemblerait &agrave; quelque chose comme ceci:
 <pre class='nd screen cmdline'>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 humansize.py</kbd>
-<samp>1.0 TB
-931.3 GiB</samp></pre>
+<samp>1.0 To
+931.3 Gio</samp></pre>
 
 <p>Qu'est ce qui vient de ce passer ? Vous avez ex&eacute;cut&eacute; votre premier programme Python. Vous avez appel&eacute; l'interpr&eacute;teur Python en ligne de commande, et vous avez pass&eacute; le nom du script que vous vouliez que Python &eacute;x&eacute;cute. Le script d&eacute;finit une fonction unique, la  fonction <code>taille_approximative()</code>, qui prend en entr&eacute;e une taille exacte de fichier en octect et calcule une &#8220;jolie&#8221; (mais approxim&eacute;e) taille. (Vous avez probablement vu dans l&rsquo;Explorateur Windows ou de Mac OS X Finder, ou Nautilus ou Dolphin ou Thunar sur Linux. Si vous affichez un dossier de documents sous forme de liste &agrave; plusieurs colonnes, il affichera un tableau avec l'ic&ocirc;ne du document, le nom du document, la taille, type, date de modification, etc. 
    Si un dossier contient un fichier de 1093 octect nomm&eacute; <code>TODO</code>, votre gestionnaire de fichier ne va pas afficher <code>TODO 1093 octects</code>; Il va probablement afficher un texte du genre <code>TODO 1kb</code> &agrave; la place. C'est ce que la fonction <code>taille_approximative()</code> fait.)
@@ -74,18 +74,27 @@ if __name__ == '__main__':
 
 <p class=a>&#x2042;
 
-<h2 id=declaringfunctions>Declaring Functions</h2>
-<p>Python has functions like most other languages, but it does not have separate header files like <abbr>C++</abbr> or <code>interface</code>/<code>implementation</code> sections like Pascal. When you need a function, just declare it, like this:
-<pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
-<aside>When you need a function, just declare it.</aside>
-<p>The keyword <code>def</code> starts the function declaration, followed by the function name, followed by the arguments in parentheses. Multiple arguments are separated with commas.
-<p>Also note that the function doesn&#8217;t define a return datatype. Python functions do not specify the datatype of their return value; they don&#8217;t even specify whether or not they return a value. (In fact, every Python function returns a value; if the function ever executes a <code>return</code> statement, it will return that value, otherwise it will return <code>None</code>, the Python null value.)
+<h2 id=declaringfunctions>Déclarer des fonctions</h2>
+<p>
+Python a des foncions comme la pluspart des autres languages de programmation, mais il n'y a pas de fichiers séparés avec des headers comme en <abbr>C++</abbr> ou des sections pour les <code>interface</code>/<code>implementation</code> comme Pascal.
+  
+  Quand vous avez besoin d'un fonction, vous avez juste à la déclarer comme cela : 
+<pre class='nd pp'><code>def taille_approximative(taille, un_kilooctect_est_1024_octects=True):</code></pre>
+<aside>>Quand vous avez besoin d'une fonction, vous avez juste à la déclarer.</aside>
+<p>Le mot clés <code>def</code> commence la déclaration de la fonction, suivi par le nom de la fonction, suivi par les arguments entre parenthèses. Si il y a plusieurs arguments, ils sont séparés par des virgules.
+<p>
+Il est à noter que la fonction ne définit pas de type de retour. 
+Les fonctions Python ne spécifient par le type de données de leur valeur de retour, elles ne spécifient même pas si elles retournent une valeur. (Dans les faits, toutes les fonctions Python retournent une valeur; si la fonction execute à un moment l'instruction <code>return</code>, cela va retourner cette valeur, sinon cela va retourner <code>None</code>, l'équivalent de null en Python.)
+
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>In some languages, functions (that return a value) start with <code>function</code>, and subroutines (that do not return a value) start with <code>sub</code>. There are no subroutines in Python. Everything is a function, all functions return a value (even if it&#8217;s <code>None</code>), and all functions start with <code>def</code>.
+<p><span class=u>&#x261E;</span>
+Dans certains langages, les fonctions (qui retournent une valeur) commencent avec <code>function</code>, et les sous-routines (qui ne retournent pas de valeur) commencent par <code>sub</code>. Il n'y a pas de sous-routines en Python, Tout est une fonction, toutes les fonctions retournent une valeur (même si c'est <code>None</code>), et toutes les fonctions commencent par le mot clés <code>def</code>.
 </blockquote>
-<p>The <code>approximate_size()</code> function takes the two arguments&nbsp;&mdash;&nbsp;<var>size</var> and <var>a_kilobyte_is_1024_bytes</var>&nbsp;&mdash;&nbsp;but neither argument specifies a datatype. In Python, variables are never explicitly typed. Python figures out what type a variable is and keeps track of it internally.
+<p>La fonction <code>approximate_size()</code> prend deux arguments en entrée. Les deux arguments &nbsp;&mdash;&nbsp;<var>size</var> et <var>a_kilobyte_is_1024_bytes</var>&nbsp;&mdash;&nbsp;
+mais pas d'arguments qui spécifie le type de donnée.
+ En Python, les variables ne sont jamais typée explicitement. Python  infère quel type de donnée est la variable et en garde la trace en interne.
 <blockquote class='note compare java'>
-<p><span class=u>&#x261E;</span>In Java and other statically-typed languages, you must specify the datatype of the function return value and each function argument. In Python, you never explicitly specify the datatype of anything. Based on what value you assign, Python keeps track of the datatype internally.
+<p><span class=u>&#x261E;</span>En Java et d'autres langages à typage statique, vous devez spécifier le type de retour des fonctions et de chacun des arguments. En Python, vous n'avez jamais à spécifier le type de quoi que ce soit. Python garde une trace des types en interne.
 </blockquote>
 
 <h3 id=optional-arguments>Optional and Named Arguments</h3>
