@@ -35,12 +35,12 @@
 		
 		<h2 id="os">Travailler avec les fichiers et r&eacute;pertoires</h2>
 
-		<p>Python 3 poss&egrave;de un module appel&eacute; <code>os</code>, qui signifie &#8220;operating system&#8221; (syst&egrave;me d&#x27;exploitation). Le module  <a href="http://docs.python.org/3.1/library/os.html"><code>os</code></a> contient une pl&eacute;thore de fonctions nous permettant de r&eacute;cup&eacute;rer des informations&nbsp;&mdash;&nbsp;et dans certains cas de les manipuler&nbsp;&mdash;&nbsp;sur les r&eacute;pertoires, fichiers, processus et variables d&#x27;environnement. Python fait de son mieux pour proposer une <abbr>API</abbr> uniforme sur tous les <a href="installing-python.html">syst&egrave;mes d&#x27;exploitation support&eacute;s</a>, pour que vos programmes puissent fonctionner sur n&#x27;importe quel ordinateur et ce, sans avoir &agrave; &eacute;crire trop de code sp&eacute;cifique.
+		<p>Python 3 poss&egrave;de un module appel&eacute; <code>os</code>, qui signifie &#8220;operating system&#8221; (syst&egrave;me d'exploitation). Le module  <a href="http://docs.python.org/3.1/library/os.html"><code>os</code></a> contient une pl&eacute;thore de fonctions nous permettant de r&eacute;cup&eacute;rer des informations&nbsp;&mdash;&nbsp;et dans certains cas de les manipuler&nbsp;&mdash;&nbsp;sur les r&eacute;pertoires, fichiers, processus et variables d'environnement. Python fais de son mieux pour proposer une <abbr>API</abbr> uniforme sur tous les <a href="installing-python.html">syst&egrave;mes d'exploitation support&eacute;s</a>, pour que vos programmes puissent fonctionner sur n'importe quel ordinateur et ce sans avoir &agrave; &eacute;crire trop de code sp&eacute;cifique.
 		</p>
 		
 		<h3 id="getcwd">Le r&eacute;pertoire de travail</h3>
 		
-		<p>Quand on d&eacute;bute avec Python, on est amen&eacute; &agrave; passer beaucoup de temps dans le <a href="installing-python.html#idle">shell de Python</a>. Tout au long de ce livre, vous verrez de nombreux exemples organis&eacute;s comme ceci :</p>
+		<p>Lorsqu'on d&eacute;bute avec Python, on est amen&eacute; &agrave; passer beaucoup de temps dans le <a href="installing-python.html#idle">shell de Python</a>. Tout au long de ce livre, vous verrez de nombreux exemples comme ceux-ci:</p>
 		
 		<ol>
 			<li>Importer un des modules du r&eacute;pertoire <a href="examples/"><code>examples</code></a></li>
@@ -50,14 +50,14 @@
 		
 		<aside>Il y a toujours un r&eacute;pertoire de travail.</aside>
 		
-		<p>Si vous ne connaissez pas le r&eacute;pertoire de travail, l&#x27;&eacute;tape 1 &eacute;chouera probablement avec le message <code>ImportError</code>. Pourquoi ? Parce que Python va chercher le module dans les <a href="your-first-python-program.html#importsearchpath">chemins de recherche d&#x27;imports</a>, mais il ne le trouvera pas parce que le r&eacute;pertoire <code>examples</code> ne fait pas partie de cette liste de chemins. Pour contourner ce probl&egrave;me vous pouvez faire l&#x27;une des choses suivantes:</p>
+		<p>Si vous ne connaissez pas le r&eacute;pertoire de travail, l'&eacute;tape 1 &eacute;chouera probablement avec le message <code>ImportError</code>. Pourquoi ? Parce que Python va chercher le module 'exemple' dans les <a href="your-first-python-program.html#importsearchpath">chemins de recherche d'imports</a>, mais il ne le trouvera pas parce que le r&eacute;pertoire <code>examples</code> ne fais pas partie de cette liste de chemins. Pour contourner ce probl&egrave;me vous pouvez faire l'une des choses suivantes:</p>
 		
 		<ol>
-			<li>Ajouter le r&eacute;pertoire <code>examples</code> &agrave; la liste des chemins d&#x27;imports</li>
-			<li>Changer votre r&eacute;pertoire de travail pour qu&#x27;il devienne le r&eacute;pertoire <code>examples</code></li>
+			<li>Ajouter le r&eacute;pertoire <code>examples</code> &agrave; la liste des chemins d'imports</li>
+			<li>Changer le r&eacute;pertoire de travail pour qu'il devienne le r&eacute;pertoire <code>examples</code></li>
 		</ol>
 		
-		<p>Le r&eacute;pertoire de travail est une propri&eacute;t&eacute; invisible que le shell Python garde en m&eacute;moire constamment. Il y a toujours un r&eacute;pertoire de travail, que vous soyez dans un shell Python, que vous lanciez vos propres scripts Python depuis la ligne de commande, ou que vous utilisiez un script <abbr>CGI</abbr> Python sur un serveur web.</p>
+		<p>Le r&eacute;pertoire de travail est une propri&eacute;t&eacute; invisible que le shell Python garde en m&eacute;moire constamment. Il y a toujours un r&eacute;pertoire de travail, que vous vous trouviez dans un shell Python, que vous lanciez vos propres scripts Python depuis la ligne de commande, ou que vous utilisiez un script <abbr>CGI</abbr> Python sur un serveur web.</p>
 		
 		<p>Le module <code>os</code> contient deux fonctions pour r&eacute;cup&eacute;rer et modifier le r&eacute;pertoire de travail.</p>
 		
@@ -94,13 +94,13 @@
 <samp>c:\Users\pilgrim\diveintopython3\examples\humansize.py</samp></pre>
 
 		<ol>
-			<li>La fonction <code>os.path.join()</code> permet de construire un chemin &agrave; partir de plusieurs cha&icirc;nes de caract&egrave;res. Ici cette fonction concat&egrave;ne simplement les deux chaines.</li>
-			<li>Dans ce cas un peu moins trivial, l&#x27;appel &agrave; la fonction <code>os.path.join()</code> ajoutera un slash suppl&eacute;mentaire avant d&#x27;ajouter, &agrave; la fin, la deuxi&egrave;me chaine de caract&egrave;res. C&#x27;est un backslash au lieu d&#x27;un slash car cet exemple est ex&eacute;cut&eacute; sur Windows. Si vous essayez ce bout de code sur Linux ou Mac OS X vous verrez que la m&eacute;thode ajoute bien un slash en lieu et place du backslash ci-pr&eacute;sent. Mais ne vous occupez pas des conventions de slashs, utilisez toujours <code>os.path.join()</code> et Python fera le reste pour vous.</li>
-			<li>La fonction <code>os.path.expanduser()</code> remplacera le caract&egrave;re <code>~</code> par le chemin vers le r&eacute;pertoire d&#x27;accueil de l&#x27;utilisateur actuel. Cela fonctionne sur n&#x27;importe quelle plateforme o&ugrave; les utilisateurs ont un r&eacute;pertoire d&#x27;accueil, ce qui inclus Linux, Mac OS X et Windows. Le r&eacute;sultat de la fonction ne se finit pas par un slash, mais la fonction <code>os.path.join()</code> n&#x27;en a pas besoin.</li>
-			<li>En combinant ces techniques, vous pouvez facilement construire des chemins vers des r&eacute;pertoires et fichiers situ&eacute;s dans votre r&eacute;pertoire d&#x27;accueil. La fonction <code>os.path.join()</code> peut prendre un nombre variable d&#x27;arguments. J&#x27;&eacute;tais ravi quand j&#x27;ai d&eacute;couvert &ccedil;a pour la premi&egrave;re fois, puisque jusqu&#x27;alors je devais souvent &eacute;crire une fonction similaire <code>addSlashIfNecessary()</code> dans chaque nouveau langage. La conclusion est donc : <em>N&#x27;&eacute;crivez pas</em> cette fonction stupide en Python, des gens intelligents l&#x27;ont d&eacute;j&agrave; fait pour vous.</li>
+			<li>La fonction <code>os.path.join()</code> permet de construire un chemin &agrave; partir de plusieurs chaines de caract&egrave;res. Dans l'exemple pr&eacute;sent elle concat&egrave;ne simplement les deux chaines.</li>
+			<li>Dans ce cas un peu moins trivial, l'appel &agrave; la fonction <code>os.path.join()</code> ajoutera un slash suppl&eacute;mentaire avant d'ajouter en fin la deuxi&egrave;me chaine de caract&egrave;res. C'est un backslash au lieu d'un slash car cet exemple est ex&eacute;cut&eacute; sur Windows. Si vous essayez ce bout de code sur Linux ou Mac OS X vous verrez que la m&eacute;thode ajoute bien un slash en lieu et place du backslash ci-pr&eacute;sent. Mais ne vous occupez pas des conventions de slashs, utilisez toujours <code>os.path.join()</code> et Python fera le reste pour vous.</li>
+			<li>La fonction <code>os.path.expanduser()</code> remplacera le caract&egrave;re <code>~</code> par le chemin vers le r&eacute;pertoire d'accueil de l'utilisateur actuel. Cela fonctionne sur n'importe quelle plateforme o&ugrave; les utilisateurs ont un r&eacute;pertoire d'accueil, ce qui inclus Linux, Mac OS X et Windows. Le r&eacute;sultat de la fonction ne se finis pas par un slash, mais la fonction <code>os.path.join()</code> n'en a pas besoin.</li>
+			<li>En combinant ces techniques, vous pouvez facilement construire des chemins vers des r&eacute;pertoires et fichiers situ&eacute;s dans votre r&eacute;pertoire d'accueil. La fonction <code>os.path.join()</code> peut prendre un nombre variable d'arguments. J'&eacute;tais ravi quand j'ai d&eacute;couvert &ccedil;a pour la premi&egrave;re fois, puisque jusqu'alors je devais souvent &eacute;crire une fonction similaire <code>addSlashIfNecessary()</code> dans chaque nouveau langage. <em>N'&eacute;crivez pas</em> cette fonction stupide en Python, des gens intelligents l'ont d&eacute;j&agrave; fait pour vous.</li>
 		</ol>
 		
-		<p>Le module <code>os.path</code> contient &eacute;galement des fonctions pour s&eacute;parer les diff&eacute;rents constituants des chemins d&#x27;acc&egrave;s (disque, liste de r&eacute;pertoires, nom de fichier, extension, etc.).</p>
+		<p>Le module <code>os.path</code> contient &eacute;galement des fonctions pour d&eacute;couper des chemins d'acc&egrave;s en diff&eacute;rentes parties les constituants (disque, liste de r&eacute;pertoires, nom de fichier, extension, etc.).</p>
 		
 <pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">pathname = '/Users/pilgrim/diveintopython3/examples/humansize.py'</kbd>
@@ -117,18 +117,18 @@
 <samp class="p">>>> </samp><kbd class="pp">extension</kbd>
 <samp class="pp">'.py'</samp></pre>
 		<ol>
-			<li>La fonction <code>split()</code> permet de d&eacute;couper un chemin d&#x27;acc&egrave;s et retourne un n-uplet contenant l&#x27;emplacement (liste des r&eacute;pertoires) et le nom du fichier.</li>
-			<li>Vous souvenez-vous lorsque j&#x27;ai dis pouvoir utiliser <a href="native-datatypes.html#multivar">l&#x27;affectation de plusieurs variables</a> pour extraire plusieurs r&eacute;sultats d&#x27;une seule et m&ecirc;me fonction ? La fonction <code>os.path.split()</code> utilise ce m&ecirc;me m&eacute;canisme. On assigne le r&eacute;sultat de la fonction <code>split</code> &agrave; une paire de variables. Chaque variable re&ccedil;oit la valeur correspondant &agrave; son emplacement dans le n-uplet.</li>
+			<li>La fonction <code>split()</code> permet de d&eacute;couper un chemin d'acc&egrave;s et retourne un n-uplet contenant l'emplacement (liste de r&eacute;pertoires) et le nom du fichier.</li>
+			<li>Vous souvenez-vous lorsque j'ai dis pouvoir utiliser <a href="native-datatypes.html#multivar">l'assignement de plusieurs variables</a> pour retourner plusieurs r&eacute;sultats d'une seule et m&ecirc;me fonction ? La fonction <code>os.path.split()</code> utilise ce m&ecirc;me m&eacute;canisme. On assigne le r&eacute;sultat de la fonction <code>split</code> &agrave; une paire de variables. Chaque variable re&ccedil;oit la valeur correspondant &agrave; son emplacement dans le n-uplet.</li>
 			<li>La premi&egrave;re variable, <var>dirname</var>, re&ccedil;oit la valeur du premier &eacute;l&eacute;ment du n-uplet retourn&eacute; par la fonction <code>os.path.split()</code>, l'emplacement du fichier.</li>
 			<li>La seconde variable, <var>filename</var>, re&ccedil;oit la valeur du second &eacute;l&eacute;ment du n-uplet retourn&eacute; par la fonction <code>os.path.split()</code>, le nom du fichier.</li>
-			<li>Le module <code>os.path</code> contient &eacute;galement la fonction <code>os.path.splitext()</code>, qui permet de d&eacute;couper un nom de fichier en deux composantes qui sont le nom du fichier et son extension. L&agrave; encore on peut utiliser la m&ecirc;me technique pour affecter ces deux r&eacute;sultats &agrave; deux diff&eacute;rentes variables.</li>
+			<li>Le module <code>os.path</code> contient &eacute;galement la fonction <code>os.path.splitext()</code>, qui permet de d&eacute;couper un nom de fichier en deux composantes qui sont le nom du fichier ainsi que son extension. L&agrave; encore on peut utiliser la m&ecirc;me technique pour assigner ces deux r&eacute;sultats &agrave; deux diff&eacute;rentes variables.</li>
 		</ol>
 		
 		<h3 id="glob">Lister des r&eacute;pertoires</h3>
 		
-		<p>Le module <code>glob</code> est un autre fameux outil de la librairie standard Python. C&#x27;est un moyen facile de r&eacute;cup&eacute;rer le contenu d&#x27;un r&eacute;pertoire programmatiquement et qui permet d&#x27;utiliser des caract&egrave;res g&eacute;n&eacute;riques semblables &agrave; ceux que vous connaissez d&eacute;j&agrave; en utilisant la ligne de commande de votre syst&egrave;me d&#x27;exploitation.</p>
+		<p>Le module <code>glob</code> est un autre fameux outil de la librairie standard Python. C'est un moyen facile de r&eacute;cup&eacute;rer le contenu d'un r&eacute;pertoire programmatiquement, et qui permet d'utiliser des caract&egrave;res joker semblables &agrave; ceux que vous connaissez d&eacute;j&agrave; en utilisant la ligne de commande de votre syst&egrave;me d'exploitation.</p>
 		
-		<aside>Le module <code>glob</code> comprends les caract&egrave;res g&eacute;n&eacute;riques, comme un shell.</aside>
+		<aside>Le module <code>glob</code> comprends les jokers, comme un shell.</aside>
 		
 <pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">os.chdir('/Users/pilgrim/diveintopython3/')</kbd>
@@ -158,14 +158,14 @@
  'romantest9.py']</samp></pre>
 		
 		<ol>
-			<li>Le module <code>glob</code> prends un caract&egrave;re g&eacute;n&eacute;rique et retourne le chemin d&#x27;acc&egrave;s de chaque fichier et r&eacute;pertoire qui ont un nom similaire au g&eacute;n&eacute;rique. Dans cet exemple, le g&eacute;n&eacute;rique est un emplacement de r&eacute;pertoire plus &#8220;<code>*.xml</code>&#8221;, ce qui englobe donc tous les fichiers d&#x27;extension <code>.xml</code> dans le r&eacute;pertoire <code>examples</code>.</li>
-			<li>Ici on change de r&eacute;pertoire de travail en allant vers le sous-r&eacute;pertoire <code>examples</code>. La fonction <code>os.chdir()</code> accepte &eacute;galement les chemins relatifs.</li>
-			<li>Vous pouvez utiliser plusieurs g&eacute;n&eacute;rique dans votre recherche. Cet exemple trouve tous les fichiers dans le r&eacute;pertoire de travail qui ont <code>.py</code> comme extension et dont le nom contient <code>test</code>.</li>
+			<li>Le module <code>glob</code> prends un joker et retourne le chemin d'acc&egrave;s de chaque fichier et r&eacute;pertoires qui ont un nom similaire au joker. Dans cet exemple, le joker est un emplacement de r&eacute;pertoire plus &#8220;<code>*.xml</code>&#8221;, ce qui englobe donc tous les fichiers d'extension <code>.xml</code> dans le r&eacute;pertoire <code>examples</code>.</li>
+			<li>Ici on change the r&eacute;pertoire de travail vers le sous-r&eacute;pertoire <code>examples</code>. La fonction <code>os.chdir()</code> accepte &eacute;galement les chemins relatifs.</li>
+			<li>Vous pouvez utiliser plusieurs jokers dans votre recherche. Cet exemple trouve tous les fichiers dans le r&eacute;pertoire de travail qui ont <code>.py</code> comme extension et dont le nom contient <code>test</code>.</li>
 		</ol>
 		
-		<h3 id="osstat">R&eacute;cup&eacute;rer les m&eacute;ta-donn&eacute;es d&#x27;un fichier</h3>
+		<h3 id="osstat">R&eacute;cup&eacute;rer les m&eacute;ta-donn&eacute;es d'un fichier</h3>
 		
-		<p>Tous les syst&egrave;mes de fichiers modernes enregistrent des m&eacute;ta-donn&eacute;es avec chaque fichier, comme par exemple sa date de cr&eacute;ation, la derni&egrave;re fois que le fichier a &eacute;t&eacute; modifi&eacute;, ainsi que sa taille, et tout un tas d&#x27;informations suppl&eacute;mentaires. Python nous fournit une <abbr>API</abbr> pour acc&eacute;der &agrave; ces m&eacute;ta-donn&eacute;es, sans m&ecirc;me ouvrir le fichier en question, le nom du fichier &eacute;tant l&#x27;unique param&egrave;tre dont Python a besoin.</p>
+		<p>Tous les syst&egrave;mes de fichiers modernes enregistrent des m&eacute;ta-donn&eacute;es accompagnant chaque fichier, comme par exemple sa date de cr&eacute;ation, la derni&egrave;re fois que le fichier a &eacute;t&eacute; modifi&eacute;, ainsi que sa taille, et tout un tas d'informations suppl&eacute;mentaires. Python nous fournit une <abbr>API</abbr> pour acc&eacute;der &agrave; cex m&eacute;ta-donn&eacute;es, sans m&ecirc;me ouvrir le fichier en question, le nom du fichier est l'unique param&egrave;tre dont Python &agrave; besoin.</p>
 
 <pre class="screen">
 <samp class="p">>>> </samp><kbd class="pp">import os</kbd>

@@ -88,7 +88,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
-var HS = {'visible': 'hide', 'hidden': 'show'};
+var HS = {'visible': 'cacher', 'hidden': 'afficher'};
 
 function hideTOC() {
     var toc = '<span class="nm u">&#8227;</span> <a href="javascript:showTOC()">afficher le sommaire</a>';
