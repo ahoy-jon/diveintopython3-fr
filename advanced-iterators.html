@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Advanced Iterators - Dive Into Python 3</title>
+<title>Iterators avanc&eacute;s - Plongez au c&oelig;ur de Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -11,15 +11,15 @@ mark{display:inline}
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
-<p>You are here: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#advanced-iterators>Dive Into Python 3</a> <span class=u>&#8227;</span>
-<p id=level>Difficulty level: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
-<h1>Advanced Iterators</h1>
+<p>Vous &ecirc;tes ici: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#advanced-iterators>Dive Into Python 3</a> <span class=u>&#8227;</span>
+<p id=level>Niveau de difficult&eacute;: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
+<h1>Iterators avanc&eacute;s</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Great fleas have little fleas upon their backs to bite &#8217;em,<br>And little fleas have lesser fleas, and so ad infinitum. <span class=u>&#x275E;</span><br>&mdash; Augustus De Morgan
+    <p><span class=u>&#x275D;</span> Les grosses puces ont des petites puces sur leurs dos pour les mordrent, les petites puces ont des puces encore plus petites, et ainsi de suite &agrave; l&#8217;infini. <span class=u>&#x275E;</span><br>&mdash; Augustus De Morgan
 </blockquote>
 <p id=toc>&nbsp;
-<h2 id=divingin>Diving In</h2>
-<p class=f>Just as <a href=regular-expressions.html>regular expressions</a> put <a href=strings.html>strings</a> on steroids, the <code>itertools</code> module puts <a href=iterators.html>iterators</a> on steroids. But first, I want to show you a classic puzzle.
+<h2 id=divingin>Lan&ccedil;ons nous</h2>
+<p class=f>Tout comme les <a href=regular-expressions.html>expressions r&eacute;guli&egrave;res</a> boostent <a href=strings.html>les cha&icirc;nes de caract&egrave;res</a>, le module <code>itertools</code> boostent les <a href=iterators.html>it&eacute;rateurs</a>. Mais en premier lieu, je veux vous montrer un puzzle classique.
 
 <pre class=nd><code>HAWAII + IDAHO + IOWA + OHIO == STATES
 510199 + 98153 + 9301 + 3593 == 621246
@@ -34,11 +34,11 @@ S = 6
 T = 2
 E = 4</code></pre>
 
-<p>Puzzles like this are called <i>cryptarithms</i> or <i>alphametics</i>. The letters spell out actual words, but if you replace each letter with a digit from <code>0&ndash;9</code>, it also &#8220;spells&#8221; an arithmetic equation. The trick is to figure out which letter maps to each digit. All the occurrences of each letter must map to the same digit, no digit can be repeated, and no &#8220;word&#8221; can start with the digit 0.
+<p>Les puzzles de ce genre sont appel&eacute;s des <i>cryptarithmes</i> ou des <i>alpham&eacute;tiques</i> (ndlt: un cryptarithme, aussi connu sous les noms d'arithm&eacute;tique verbale, d&#8217;alpham&eacute;tique et de cryptarithm&eacute;tique, est un casse-t&ecirc;te num&eacute;rique et logique qui consiste en une &eacute;quation math&eacute;matique o&ugrave; les lettres repr&eacute;sentent des chiffres &agrave; trouver). Les lettres &eacute;pellent des mots r&eacute;els, mais si vous remplacez chaque lettre par un chiffre situ&eacute; dans l&#8217;intervalle <code>0&ndash;9</code>, cela "correspond" &eacute;galement &agrave; une &eacute;quation arithm&eacute;tique. L&#8217;astuce est de trouver quelle lettre est repr&eacute;sent&eacute;e par quel chiffre. Toutes les occurrences de chaque lettre doivent &ecirc;tre repr&eacute;sent&eacute;e par le m&ecirc;me chiffre, aucun chiffre ne peut être r&eacute;p&eacute;t&eacute; et aucun &#8220;mot&#8221; ne peut commencer par le chiffre 0.
 
-<aside>The most well-known alphametic puzzle is <code>SEND + MORE = MONEY</code>.</aside>
+<aside>Le puzzle alpham&eacute;tique le plus connu est <code>SEND + MORE = MONEY</code>.</aside>
 
-<p>In this chapter, we&#8217;ll dive into an incredible Python program originally written by Raymond Hettinger. This program solves alphametic puzzles <em>in just 14 lines of code</em>.
+<p>Dans ce chapitre, nous allons plonger dans un programme Python incroyable, initialement &eacute;crit par Raymond Hettinger. Ce programme r&eacute;sout des &eacute;nigmes alpham&eacute;tiques <em>en seulement 14 lignes de code</em>.
 
 <p class=d>[<a href=examples/alphametics.py>download <code>alphametics.py</code></a>]
 <pre class=pp><code>import re
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         if solution:
             print(solution)</code></pre>
 
-<p>You can run the program from the command line. On Linux, it would look like this. (These may take some time, depending on the speed of your computer, and there is no progress bar. Just be patient!)
+<p>Vous pouvez ex&eacute;cuter le programme &agrave; partir de la ligne de commande. Sur Linux, cela pourrait ressembler &agrave; ceci. (Cela peut parfois prendre du temps en fonction de la vitesse de votre ordinateur, et il n&8217;y a aucune barre de progression. Soyez seulement patient!)
 
 <pre class='nd screen cmdline'>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "HAWAII + IDAHO + IOWA + OHIO == STATES"</kbd>
