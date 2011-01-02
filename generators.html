@@ -34,8 +34,8 @@ body{counter-reset:h1 6}
 <p class=a>&#x2042;
 
 <h2 id=i-know>J&#x27;ai une id&eacute;e, Utilisons des expressions r&eacute;guli&egrave;res !</h2>
-<p>So you&#8217;re looking at words, which, at least in English, means you&#8217;re looking at strings of characters. You have rules that say you need to find different combinations of characters, then do different things to them. This sounds like a job for regular expressions!
-<p class=d>[<a href=examples/plural1.py>download <code>plural1.py</code></a>]
+<p>Donc nous allons regarder des mots, ce qui veut dire, au moins en Anglais, que nous allons &eacute;tudier des cha&icirc;nes de caract&egrave;res. Et nous avons des r&egrave;gles qui demandent de chercher des combinaisons pr&eacute;cises de ces caract&egrave;res, et de leur appliquer quelques op&eacute;rations. &Ccedil;a, c&#x27;est un boulot pour des expressions r&eacute;guli&egrave;res !
+<p class=d>[<a href=examples/plural1.py>t&eacute;l&eacute;chargez <code>plural1.py</code></a>]
 <pre class=pp><code>import re
 
 def plural(noun):          
@@ -48,11 +48,11 @@ def plural(noun):
     else:
         return noun + 's'</code></pre>
 <ol>
-<li>This is a regular expression, but it uses a syntax you didn&#8217;t see in <a href=regular-expressions.html><i>Regular Expressions</i></a>. The square brackets mean &#8220;match exactly one of these characters.&#8221; So <code>[sxz]</code> means &#8220;<code>s</code>, or <code>x</code>, or <code>z</code>&#8221;, but only one of them. The <code>$</code> should be familiar; it matches the end of string. Combined, this regular expression tests whether <var>noun</var> ends with <code>s</code>, <code>x</code>, or <code>z</code>.
-<li>This <code>re.sub()</code> function performs regular expression-based string substitutions.
+<li>Ceci est une expression r&eacute;guli&egrave;re, mais elle utilise une syntaxe que vous n&#x27;avez pas vu dans le chapitre <a href=regular-expressions.html><i>Expression r&eacute;guli&egrave;res</i></a>. Les crochets permettent de &#8220;rep&eacute;rer un et un seul de ces caract&egrave;res.&#8221; Ainsi la cha&icirc;ne <code>[sxz]</code> permet de rep&eacute;rer &#8220;<code>s</code>, ou <code>x</code>, ou encore <code>z</code>&#8221;, mais seulement un de ces caract&egrave;res. Le symbole <code>$</code> doit maintenant vous &ecirc;tre familier; il symbolise la fin de la string. En combinant ces symboles, on obtient une expression r&eacute;guli&egrave;re qui test si la variable <var>noun</var> finit par un <code>s</code>, un <code>x</code>, ou un <code>z</code>.
+<li>La fonction <code>re.sub()</code> en elle-m&ecirc;me permet de remplacer tout ce qui est rep&eacute;r&eacute; par l&#x27;expression r&eacute;guli&egrave;re en entr&eacute;e.
 </ol>
 
-<p>Let&#8217;s look at regular expression substitutions in more detail.
+<p>Voyons comment ces substitutions fonctionnent sur des cas concrets.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search('[abc]', 'Mark')</kbd>    <span class=u>&#x2460;</span></a>
@@ -64,13 +64,13 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd class=pp>re.sub('[abc]', 'o', 'caps')</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=pp>'oops'</samp></pre>
 <ol>
-<li>Does the string <code>Mark</code> contain <code>a</code>, <code>b</code>, or <code>c</code>? Yes, it contains <code>a</code>.
-<li>OK, now find <code>a</code>, <code>b</code>, or <code>c</code>, and replace it with <code>o</code>. <code>Mark</code> becomes <code>Mork</code>.
-<li>The same function turns <code>rock</code> into <code>rook</code>.
-<li>You might think this would turn <code>caps</code> into <code>oaps</code>, but it doesn&#8217;t. <code>re.sub</code> replaces <em>all</em> of the matches, not just the first one. So this regular expression turns <code>caps</code> into <code>oops</code>, because both the <code>c</code> and the <code>a</code> get turned into <code>o</code>.
+<li>Est ce que la string <code>Mark</code> contient un <code>a</code>, un <code>b</code>, ou un <code>c</code>? Oui, elle contient un <code>a</code>.
+<li>OK, donc maintenant trouve un caract&egrave;re <code>a</code>, <code>b</code>, ou <code>c</code>, et replace le par un <code>o</code>. <code>Mark</code> devient alors <code>Mork</code>.
+<li>La m&ecirc;me fonction transforme <code>rock</code> en <code>rook</code>.
+<li>Vous auriez p&ucirc; croire que cette fonction allait transformer <code>caps</code> en <code>oaps</code>, mais en fait non. <code>re.sub</code> remplace <em>toutes</em> les occurences rep&eacute;r&eacute;es, pas seulement la premi&egrave;re. Donc cette expression r&eacute;guli&egrave;re va transformer <code>caps</code> en <code>oops</code>, car &agrave; la fois le <code>c</code> et le <code>a</code> se transforment en <code>o</code>.
 </ol>
 
-<p>And now, back to the <code>plural()</code> function&hellip;
+<p>Maintenant, retournons &agrave; notre fonction <code>plural()</code>&hellip;
 
 <pre class=pp><code>def plural(noun):          
     if re.search('[sxz]$', noun):            
@@ -82,12 +82,12 @@ def plural(noun):
     else:
         return noun + 's'</code></pre>
 <ol>
-<li>Here, you&#8217;re replacing the end of the string (matched by <code>$</code>) with the string <code>es</code>. In other words, adding <code>es</code> to the string. You could accomplish the same thing with string concatenation, for example <code>noun + 'es'</code>, but I chose to use regular expressions for each rule, for reasons that will become clear later in the chapter.
-<li>Look closely, this is another new variation. The <code>^</code> as the first character inside the square brackets means something special: negation. <code>[^abc]</code> means &#8220;any single character <em>except</em> <code>a</code>, <code>b</code>, or <code>c</code>&#8221;. So <code>[^aeioudgkprt]</code> means any character except <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, <code>u</code>, <code>d</code>, <code>g</code>, <code>k</code>, <code>p</code>, <code>r</code>, or <code>t</code>. Then that character needs to be followed by <code>h</code>, followed by end of string. You&#8217;re looking for words that end in H where the H can be heard.
-<li>Same pattern here: match words that end in Y, where the character before the Y is <em>not</em> <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, or <code>u</code>. You&#8217;re looking for words that end in Y that sounds like I.
+<li>Ici, nous rempla&ccedil;ons la fin de la string (symbolis&eacute; par le <code>$</code>) avec la string <code>es</code>. Autrement dit, nous ajoutons <code>es</code> &agrave; la fin de la cha&icirc;ne de caract&egrave;res. Vous pouvez accomplir la m&ecirc;me op&eacute;ration avec une simple concat&eacute;nation de string, par exemple <code>noun + &#x27;es&#x27;</code>, mais j&#x27;ai choisit d&#x27;utiliser les expressions r&eacute;guli&egrave;res pour chacun des r&egrave;gles, pour des raisons qui vous appara&icirc;trons plus clair dans la suite de ce chapitre.
+<li>Regargez attentivement, il s&#x27;agit d&#x27;une nouvelle formulation. Le symbole <code>^</code> en tant que premier caract&egrave;re &agrave; l&#x27;int&eacute;rieur des crochets a un sens tr&egrave;s diff&eacute;rent : un sens d&#x27;exclusion. En effet <code>[^abc]</code> signifie &#8220;tout caract&egrave;re <em>&agrave; l&#x27;exception</em> de <code>a</code>, <code>b</code>, ou <code>c</code>&#8221;. Donc <code>[^aeioudgkprt]</code> signifie tout caract&egrave;re &agrave; l&#x27;exception de <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, <code>u</code>, <code>d</code>, <code>g</code>, <code>k</code>, <code>p</code>, <code>r</code>, ou <code>t</code>. Alors pour &ecirc;tre rep&eacute;r&eacute; par l&#x27;expression r&eacute;guli&egrave;re, ce caract&egrave;re devra &ecirc;tre suivi d&#x27;un <code>h</code>, lui-m&ecirc;me &eacute;tant le dernier caract&egrave;re de la string. Tout bien consid&eacute;r&eacute; on recherche alors les mots qui finissent par un H o&ugrave; le H s&#x27;entend.
+<li>Le m&ecirc;me motif est utilis&eacute; ici : rep&eacute;rer les mots qui finissent en Y, o&ugrave; le caract&egrave;re juste avant le Y <em>n&#x27;est pas</em> un <code>a</code>, un <code>e</code>, un <code>i</code>, un <code>o</code>, ou un <code>u</code>. On recherche des mots qui finissent par un Y et produisent le son a&iuml;e.
 </ol>
 
-<p>Let&#8217;s look at negation regular expressions in more detail.
+<p>Analysons un peu plus en d&eacute;tails les exclusions dans les expressions r&eacute;guli&egrave;res.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
@@ -100,9 +100,9 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd class=pp>re.search('[^aeiou]y$', 'pita')</kbd>     <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li><code>vacancy</code> matches this regular expression, because it ends in <code>cy</code>, and <code>c</code> is not <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, or <code>u</code>.
-<li><code>boy</code> does not match, because it ends in <code>oy</code>, and you specifically said that the character before the <code>y</code> could not be <code>o</code>. <code>day</code> does not match, because it ends in <code>ay</code>.
-<li><code>pita</code> does not match, because it does not end in <code>y</code>.
+<li>Le mot <code>vacancy</code> est bien reconnu par l&#x27;expression r&eacute;guli&egrave;re, car il finit en <code>cy</code>, et que <code>c</code> n&#x27;est pas <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, ou <code>u</code>.
+<li><code>boy</code> n&#x27;est pas reconnu, car il finit en <code>oy</code>, et on a sp&eacute;cifiquement pr&eacute;cis&eacute; que le caract&egrave;re pr&eacute;c&eacute;dant le <code>y</code> ne pouvait pas &ecirc;tre un <code>o</code>. <code>day</code> n&#x27;est pas reconnu non plus, car il finit en <code>ay</code>.
+<li><code>pita</code> n&#x27;est pas reconnu, car il ne finit pas en <code>y</code>.
 </ol>
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>re.sub('y$', 'ies', 'vacancy')</kbd>               <span class=u>&#x2460;</span></a>
@@ -112,18 +112,18 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd class=pp>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span class=u>&#x2461;</span></a>
 <samp class=pp>'vacancies'</samp></pre>
 <ol>
-<li>This regular expression turns <code>vacancy</code> into <code>vacancies</code> and <code>agency</code> into <code>agencies</code>, which is what you wanted. Note that it would also turn <code>boy</code> into <code>boies</code>, but that will never happen in the function because you did that <code>re.search</code> first to find out whether you should do this <code>re.sub</code>.
-<li>Just in passing, I want to point out that it is possible to combine these two regular expressions (one to find out if the rule applies, and another to actually apply it) into a single regular expression. Here&#8217;s what that would look like. Most of it should look familiar: you&#8217;re using a remembered group, which you learned in <a href=regular-expressions.html#phonenumbers>Case study: Parsing Phone Numbers</a>. The group is used to remember the character before the letter <code>y</code>. Then in the substitution string, you use a new syntax, <code>\1</code>, which means &#8220;hey, that first group you remembered? put it right here.&#8221; In this case, you remember the <code>c</code> before the <code>y</code>; when you do the substitution, you substitute <code>c</code> in place of <code>c</code>, and <code>ies</code> in place of <code>y</code>. (If you have more than one remembered group, you can use <code>\2</code> and <code>\3</code> and so on.)
+<li>Cette expression r&eacute;guli&egrave;re transforme <code>vacancy</code> en <code>vacancies</code> et <code>agency</code> en <code>agencies</code>, ce qui est pr&eacute;cis&eacute;ment ce que l&#x27;on voulait. En revanche il est bon de noter que cette fonction transformerait <code>boy</code> en <code>boies</code>, mais cela n&#x27;arrivera jamais dans notre fonction <code>plural()</code> car on effectue tout d&#x27;abord un <code>re.search</code> pour d&eacute;terminer si l&#x27;on doit (ou non) faire un remplacement avec <code>re.sub</code>.
+<li>En passant, j&#x27;aimerais signaler qu&#x27;il est possible de combiner ces deux expressions r&eacute;guli&egrave;res (une pour d&eacute;terminer si la r&egrave;gle s&#x27;applique, et l&#x27;autre pour faire effectivement le remplacement) dans une seule expression r&eacute;guli&egrave;re. Voici ce &agrave; quoi une telle combinaison ressemblerait pour notre cas. En grande partie, cette expression r&eacute;guli&egrave;re devrait vous &ecirc;tre famili&egrave;re : on utilise un groupement, notion que l&#x27;on a appris dans <a href=regular-expressions.html#phonenumbers>l&#x27;&eacute;tude de cas : Lire des num&eacute;ros de t&eacute;l&eacute;phones</a>. Le groupement est utilis&eacute; pour se rappeler du caract&egrave;re juste avant la lettre <code>y</code>. Ainsi dans la string de substitution, on peut utiliser un nouveau symbole, <code>\1</code>, ce qui signifie &#8220;Dis, tu te souviens du premier groupe qu&#x27;on a d&eacute;finit pr&eacute;c&eacute;demment ? mets ce que t&#x27;as r&eacute;cup&eacute;r&eacute; ici.&#8221; Ce qui pour notre exemple se traduit par, tu te souviens du <code>c</code> avant le <code>y</code>; eh bien lors de la substitution, tu mets ce <code>c</code> &agrave; la place du <code>c</code>, et tu mets <code>ies</code> &agrave; la place de <code>y</code>. (Si vous utilisez plus d&#x27;un groupement, vous pouvez utiliser les symboles <code>\2</code> et <code>\3</code> etc.)
 </ol>
-<p>Regular expression substitutions are extremely powerful, and the <code>\1</code> syntax makes them even more powerful. But combining the entire operation into one regular expression is also much harder to read, and it doesn&#8217;t directly map to the way you first described the pluralizing rules. You originally laid out rules like &#8220;if the word ends in S, X, or Z, then add ES&#8221;. If you look at this function, you have two lines of code that say &#8220;if the word ends in S, X, or Z, then add ES&#8221;. It doesn&#8217;t get much more direct than that.
+<p>Les substitutions utilisant les expression r&eacute;guli&egrave;res sont particuli&egrave;rement puissantes, et le symbole <code>\1</code> les rends encore plus puissantes. Mais combiner la rechercher et le remplacement en une seule op&eacute;ration rend la lecture du code plus difficile, et ne permet pas de repr&eacute;senter clairement (en terme de code) les r&egrave;gles enonc&eacute;es pr&eacute;c&eacute;dement pour mettre les noms au pluriel. &Agrave; la base on avait &eacute;nonc&eacute; des r&egrave;gles comme &#8220;si le mot finit par un S, un X, ou un Z, alors ajoutez ES&#8221;. Si vous regardez maintenant cette fonction, vous avez deux lignes de code qui disent respectivement &#8220;si le mot finit par un S, un X, ou un Z, alors ajoutez ES&#8221;. Il n'y a pas plus directe comme traduction.
 
 <p class=a>&#x2042;
 
-<h2 id=a-list-of-functions>A List Of Functions</h2>
+<h2 id=a-list-of-functions>Une Liste des Fonctions</h2>
 
-<p>Now you&#8217;re going to add a level of abstraction. You started by defining a list of rules: if this, do that, otherwise go to the next rule. Let&#8217;s temporarily complicate part of the program so you can simplify another part.
+<p>Maintenant nous allons ajouter un niveau d'abstraction. Nous avons commencé par définir un certain nombre de règles : Si ceci, alors il faut faire, sinon vérifier si la règle suivante s'applique. Essayons, temporairement, de complexifier une partie du programme pour en simplifier une autre.
 
-<p class=d>[<a href=examples/plural2.py>download <code>plural2.py</code></a>]
+<p class=d>[<a href=examples/plural2.py>t&eacute;l&eacute;charger <code>plural2.py</code></a>]
 <pre class=pp><code>import re
 
 def match_sxz(noun):
@@ -161,16 +161,16 @@ def plural(noun):
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
-<li>Now, each match rule is its own function which returns the results of calling the <code>re.search()</code> function.
-<li>Each apply rule is also its own function which calls the <code>re.sub()</code> function to apply the appropriate pluralization rule.
-<li>Instead of having one function (<code>plural()</code>) with multiple rules, you have the <code>rules</code> data structure, which is a sequence of pairs of functions.
-<li>Since the rules have been broken out into a separate data structure, the new <code>plural()</code> function can be reduced to a few lines of code. Using a <code>for</code> loop, you can pull out the match and apply rules two at a time (one match, one apply) from the <var>rules</var> structure. On the first iteration of the <code>for</code> loop, <var>matches_rule</var> will get <code>match_sxz</code>, and <var>apply_rule</var> will get <code>apply_sxz</code>. On the second iteration (assuming you get that far), <var>matches_rule</var> will be assigned <code>match_h</code>, and <var>apply_rule</var> will be assigned <code>apply_h</code>. The function is guaranteed to return something eventually, because the final match rule (<code>match_default</code>) simply returns <code>True</code>, meaning the corresponding apply rule (<code>apply_default</code>) will always be applied.
+<li>Maintenant, chaque règle est disposée dans sa propre fonction <code>match</code> qui renvoit le résultat de l'appel à <code>re.search()</code>.
+<li>Chaque règle possède aussi sa fonction <code>apply</code> qui effectue l'appel à <code>re.sub()</code> pour appliquer la règle de plurialisation.
+<li>Au lieu d'avoir une seule fonction (<code>plural()</code>) avec plusieurs règles, on possède maintenant une structure de données <code>rules</code> qui est en fait une liste de paires de fonctions.
+<li>Comme les règles ont été séparées entre dans une structure de données différente, la fonction <code>plural()</code> résultante est réduite à juste quelques lignes de code. En utilisant juste un boucle <code>for</code>, on peut ainsi extraire et appliquer les règles en une seule opération (une fonction recherche, l'autre applique) sur la structure de données <var>rules</var>. &Agrave; la première itération de la boucle <code>for</code>, la variable <var>matches_rule</var> va devenir <code>match_sxz</code>, et  <var>apply_rule</var> va devenir <code>apply_sxz</code>. &Agrave; la seconde itération (en supposant qu'on arrive aussi loin ), la variable <var>matches_rule</var> va devenir <code>match_h</code>, et <var>apply_rule</var> va devenir <code>apply_h</code>. Cette fonction retourne un résultat de manière certaine, car la dernière règle (<code>match_default</code>) renvoie purement et simplement <code>True</code>, ce qui signifie que la dernière fonction  (<code>apply_default</code>) sera toujours utilisée.
 </ol>
 
-<aside>The &#8220;rules&#8221; variable is a sequence of pairs of functions.</aside>
-<p>The reason this technique works is that <a href=your-first-python-program.html#everythingisanobject>everything in Python is an object</a>, including functions. The <var>rules</var> data structure contains functions&nbsp;&mdash;&nbsp;not names of functions, but actual function objects. When they get assigned in the <code>for</code> loop, then <var>matches_rule</var> and <var>apply_rule</var> are actual functions that you can call. On the first iteration of the <code>for</code> loop, this is equivalent to calling <code>matches_sxz(noun)</code>, and if it returns a match, calling <code>apply_sxz(noun)</code>.
+<aside>La variable &#8220;rules&#8221; est une séquence de paires de fonctions.</aside>
+<p>La raison pour laquelle cette technique fonctionne est que <a href=your-first-python-program.html#everythingisanobject>en Python tout est un Objet</a>, même les fonctions. La structure de données <var>rules</var> contient donc vraiment des functions&nbsp;&mdash;&nbsp;pas des noms de fonctions, mais les objets fonctions. Quand au cour d'une itération de la boucle <code>for</code>, les variables <var>matches_rule</var> et <var>apply_rule</var> se font assigner, ce sont véritablement les fonctions référencées que l'on peut appeler. La première itération de la boucle <code>for</code> est donc équivalente à appeler <code>matches_sxz(noun)</code>, et si cette fonction renvoit <code>True</code>, à appeler <code>apply_sxz(noun)</code>.
 
-<p>If this additional level of abstraction is confusing, try unrolling the function to see the equivalence. The entire <code>for</code> loop is equivalent to the following:
+<p>Si ce niveau supplémentaire d'abstraction vous semble obscure, essayez de dérouler explicitement la boucle pour voir à chaque étape comment vous auriez écrit l'équivalent. Car en somme la boucle <code>for</code> est équivalente au code suivante :
 
 <pre class='nd pp'><code>
 def plural(noun):
@@ -183,27 +183,27 @@ def plural(noun):
     if match_default(noun):
         return apply_default(noun)</code></pre>
 
-<p>The benefit here is that the <code>plural()</code> function is now simplified. It takes a sequence of rules, defined elsewhere, and iterates through them in a generic fashion.
+<p>Seulement maintenant la fonction <code>plural()</code> est grandement simplifiée. Elle se base sur une liste de règles, définit ailleurs, et boucle sur cette liste de façon usuelle.
 
 <ol>
-<li>Get a match rule
-<li>Does it match? Then call the apply rule and return the result.
-<li>No match? Go to step 1.
+<li>Trouves une règle
+<li>Elle convient ? Alors appliques la et renvoie le résultat.
+<li>Elle ne convient pas ? Alors repart à l'étape n°1.
 </ol>
 
-<p>The rules could be defined anywhere, in any way. The <code>plural()</code> function doesn&#8217;t care.
+<p>Les règles pourraient être définies n'importe où, et de n'importe quelle façon. La fonction <code>plural()</code> s'en fiche.
 
-<p>Now, was adding this level of abstraction worth it? Well, not yet. Let&#8217;s consider what it would take to add a new rule to the function. In the first example, it would require adding an <code>if</code> statement to the <code>plural()</code> function. In this second example, it would require adding two functions, <code>match_foo()</code> and <code>apply_foo()</code>, and then updating the <var>rules</var> sequence to specify where in the order the new match and apply functions should be called relative to the other rules.
+<p>Maintenant, est-ce que l'ajout d'un niveau d'abstraction en valait la peine ? En fait, pas encore. Voyons voir ce que nous devons faire pour ajouter une nouvelle règle à la fonction. Dans le premier exemple, il faudrait ajouter un <code>if</code> à la fonction <code>plural()</code>. Dans le second exemple, il faudrait ajouter deux fonctions, <code>match_foo()</code> et <code>apply_foo()</code>, et enfin mettre à jour la liste <var>rules</var> pour spécifier, dans l'ordre des priorités des différentes règles, où se place ces deux nouvelles fonctions.
 
-<p>But this is really just a stepping stone to the next section. Let&#8217;s move on&hellip;
+<p>Mais tout ceci n'est qu'une introduction à la prochaine section. Je vous propose donc d'avancer&hellip;
 
 <p class=a>&#x2042;
 
-<h2 id=a-list-of-patterns>A List Of Patterns</h2>
+<h2 id=a-list-of-patterns>Une liste de patrons</h2>
 
-<p>Defining separate named functions for each match and apply rule isn&#8217;t really necessary. You never call them directly; you add them to the <var>rules</var> sequence and call them through there. Furthermore, each function follows one of two patterns. All the match functions call <code>re.search()</code>, and all the apply functions call <code>re.sub()</code>. Let&#8217;s factor out the patterns so that defining new rules can be easier.
+<p>Définir des fonctions séparées pour chaque phase de recherche et de remplacement n'est pas vraiment nécessaire. Pourquoi ? Tout d'abord parce qu'on ne les appelle jamais directement; on les ajoute à la liste <var>rules</var> et on les appelle depuis celle-ci. De plus, chaque fonction suit un ou deux patrons de conception. Toutes les fonctions de recherche appellent <code>re.search()</code>, et toutes les fonctions de remplacement appellent <code>re.sub()</code>. Essayons de trouver les points communs entre chaque déclarations pour enfin définir de nouvelles règles plus facilement.
 
-<p class=d>[<a href=examples/plural3.py>download <code>plural3.py</code></a>]
+<p class=d>[<a href=examples/plural3.py>télécharger <code>plural3.py</code></a>]
 <pre class=pp><code>import re
 
 def build_match_and_apply_functions(pattern, search, replace):
@@ -213,12 +213,12 @@ def build_match_and_apply_functions(pattern, search, replace):
         return re.sub(search, replace, word)
 <a>    return (matches_rule, apply_rule)                           <span class=u>&#x2462;</span></a></code></pre>
 <ol>
-<li><code>build_match_and_apply_functions()</code> is a function that builds other functions dynamically. It takes <var>pattern</var>, <var>search</var> and <var>replace</var>, then defines a <code>matches_rule()</code> function which calls <code>re.search()</code> with the <var>pattern</var> that was passed to the <code>build_match_and_apply_functions()</code> function, and the <var>word</var> that was passed to the <code>matches_rule()</code> function you&#8217;re building. Whoa.
-<li>Building the apply function works the same way. The apply function is a function that takes one parameter, and calls <code>re.sub()</code> with the <var>search</var> and <var>replace</var> parameters that were passed to the <code>build_match_and_apply_functions()</code> function, and the <var>word</var> that was passed to the <code>apply_rule()</code> function you&#8217;re building. This technique of using the values of outside parameters within a dynamic function is called <em>closures</em>. You&#8217;re essentially defining constants within the apply function you&#8217;re building: it takes one parameter (<var>word</var>), but it then acts on that plus two other values (<var>search</var> and <var>replace</var>) which were set when you defined the apply function.
-<li>Finally, the <code>build_match_and_apply_functions()</code> function returns a tuple of two values: the two functions you just created. The constants you defined within those functions (<var>pattern</var> within the <code>matches_rule()</code> function, and <var>search</var> and <var>replace</var> within the <code>apply_rule()</code> function) stay with those functions, even after you return from <code>build_match_and_apply_functions()</code>. That&#8217;s insanely cool.
+<li><code>build_match_and_apply_functions()</code> est une fonction qui va construire de nouvelles fonctions dynamiquement. Elle prend en paramètres d'entrée les variables <var>pattern</var>, <var>search</var> and <var>replace</var>, et définit une fonction <code>matches_rule()</code> qui appelle <code>re.search()</code> avec la paramètre d'entrée <var>pattern</var> de la fonction <code>build_match_and_apply_functions()</code>, et le paramètre d'entrée <var>word</var> de la fonction  <code>matches_rule()</code> que nous sommes en train de construire. Whoa.
+<li>La construction de la fonction <code>apply()</code> se base sur le même raisonnement. La fonction apply est une fonction qui ne prend qu'un seul paramètre, et appelle <code>re.sub()</code> avec les paramètres <var>search</var> et <var>replace</var> qui ont été donné à la fonction <code>build_match_and_apply_functions()</code>,  et la variable <var>word</var> qui a été passé à la fonction <code>apply_rule()</code> que nous sommes en train de construire. Cette technique permettant d'utiliser les valeurs de paramètres extérieurs au sein d'une fonction dynamique est appelé <em>closures</em>. En somme on définit des constantes au sein de la fonction apply  que l'on construit : elle ne prend qu'un seul paramètre (<var>word</var>), mais elle agit en fonction de ce paramètre et de deux autres valeurs (<var>search</var> and <var>replace</var>) qui ont été définies lors de la création de la fonction apply.
+<li>Finalement, la fonction <code>build_match_and_apply_functions()</code> renvoit un couple de deux valeurs : les deux fonctions que l'on vient de créer. Les constantes utilisées dans ces fonction (<var>pattern</var> au sein de <code>matches_rule()</code>, et <var>search</var> et <var>replace</var> au sein de la fonction  <code>apply_rule()</code>) restent dans ces fonctions, même une fois sortie de la fonction <code>build_match_and_apply_functions()</code>. Ce qui est franchement superbe.
 </ol>
 
-<p>If this is incredibly confusing (and it should be, this is weird stuff), it may become clearer when you see how to use it.
+<p>Si c'est confus dans votre esprit (c'est tout à fait normal, vu combien c'est étrange), ça devrait devenir plus clair avec cet exemple.
 
 <pre class=pp><code><a>patterns = \                                                        <span class=u>&#x2460;</span></a>
   (
@@ -230,19 +230,19 @@ def build_match_and_apply_functions(pattern, search, replace):
 <a>rules = [build_match_and_apply_functions(pattern, search, replace)  <span class=u>&#x2462;</span></a>
          for (pattern, search, replace) in patterns]</code></pre>
 <ol>
-<li>Our pluralization &#8220;rules&#8221; are now defined as a tuple of tuples of <em>strings</em> (not functions). The first string in each group is the regular expression pattern that you would use in <code>re.search()</code> to see if this rule matches. The second and third strings in each group are the search and replace expressions you would use in <code>re.sub()</code> to actually apply the rule to turn a noun into its plural.
-<li>There&#8217;s a slight change here, in the fallback rule. In the previous example, the <code>match_default()</code> function simply returned <code>True</code>, meaning that if none of the more specific rules matched, the code would simply add an <code>s</code> to the end of the given word. This example does something functionally equivalent. The final regular expression asks whether the word has an end (<code>$</code> matches the end of a string). Of course, every string has an end, even an empty string, so this expression always matches. Thus, it serves the same purpose as the <code>match_default()</code> function that always returned <code>True</code>: it ensures that if no more specific rule matches, the code adds an <code>s</code> to the end of the given word.
-<li>This line is magic. It takes the sequence of strings in <var>patterns</var> and turns them into a sequence of functions. How? By &#8220;mapping&#8221; the strings to the <code>build_match_and_apply_functions()</code> function. That is, it takes each triplet of strings and calls the <code>build_match_and_apply_functions()</code> function with those three strings as arguments. The <code>build_match_and_apply_functions()</code> function returns a tuple of two functions. This means that <var>rules</var> ends up being functionally equivalent to the previous example: a list of tuples, where each tuple is a pair of functions. The first function is the match function that calls <code>re.search()</code>, and the second function is the apply function that calls <code>re.sub()</code>.
+<li>Nos &#8220;r&egrave;gles&#8221; de pluralisations sont maintenant d&eacute;finies sous la forme d&#x27;un tuple de tuples de <em>strings</em> (et non de fonctions). La premi&egrave;re  string de chaque groupe est l&#x27;expression r&eacute;guli&egrave;re que l&#x27;on utiliserait avec <code>re.search()</code> pour voir si la r&egrave;gle s&#x27;applique. La seconde et troisi&egrave;me string dans chaque groupe sont les expressions de recherche et de remplacement que l&#x27;on utiliserait comme param&egrave;tre &agrave; la fonction <code>re.sub()</code> pour effectivement appliquer la r&egrave;gle permettant de transformer un nom en son pluriel.
+<li>Il y a quand m&ecirc;me un petit changement ici, dans la r&egrave;gle par d&eacute;faut. Dans l&#x27;exemple pr&eacute;c&eacute;dent, la fonction <code>match_default()</code> renvoyait simplement  <code>True</code>, pour dire que m&ecirc;me si aucune r&egrave;gle sp&eacute;cifique ne s&#x27;appliquait, il fallait simplement rajouter un <code>s</code> &agrave; la fin de chaque mot. Cet exemple fait quelque chose de fonctionnellement &eacute;quivalent. La derni&egrave;re expression r&eacute;guli&egrave;re v&eacute;rifie si le mot se finit (<code>$</code> repr&eacute;sentant la fin d&#x27;une cha&icirc;ne de caract&egrave;re). Bien s&ucirc;r, chaque string a une fin, m&ecirc;me une cha&icirc;ne de caract&egrave;re vide, donc cette expression r&eacute;guli&egrave;re se v&eacute;rifie tout le temps. Ainsi, elle sert &agrave; la m&ecirc;me chose que la fonction <code>match_default()</code> qui renvoyait tout le temps <code>True</code> : elle s&#x27;assure que m&ecirc;me si aucune r&egrave;gle sp&eacute;cifique ne s&#x27;applique, on ajoute un <code>s</code> &agrave; la fin de chaque mot.
+<li>Cette ligne est magique. Elle prend la séquence de strings dans la variable <var>patterns</var> et la transforme en une séquence de fonctions. Comment ? En &#8220;associant&#8221; les strings aux fonctions <code>build_match_and_apply_functions()</code>. C'est à dire, elle prend un triplet de strings et appelle la fonction  <code>build_match_and_apply_functions()</code> avec ces trois strings comme paramètres. La fonction <code>build_match_and_apply_functions()</code> renvoit un tuple de deux fonctions. Ce qui signifie que la variable <var>rules</var> finit par être fonctionnellement équivalente au précédent exemple : une liste de tuples, où chaque tuple est une paire de fonctions. La première fonction étant celle de recherche qui appelle <code>re.search()</code>, et la seconde fonction est celle qui applique la fonction qui appelle <code>re.sub()</code>.
 </ol>
 
-<p>Rounding out this version of the script is the main entry point, the <code>plural()</code> function.
+<p>Pour achever cette version du script, il ne manque plus que le point d&#x27;entr&eacute;e, la fonction <code>plural()</code>.
 
 <pre class=pp><code>def plural(noun):
 <a>    for matches_rule, apply_rule in rules:  <span class=u>&#x2460;</span></a>
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
-<li>Since the <var>rules</var> list is the same as the previous example (really, it is), it should come as no surprise that the <code>plural()</code> function hasn&#8217;t changed at all. It&#8217;s completely generic; it takes a list of rule functions and calls them in order. It doesn&#8217;t care how the rules are defined. In the previous example, they were defined as separate named functions. Now they are built dynamically by mapping the output of the <code>build_match_and_apply_functions()</code> function onto a list of raw strings. It doesn&#8217;t matter; the <code>plural()</code> function still works the same way.
+<li>Comme la liste <var>rules</var> n&#x27;a pas chang&eacute; depuis le dernier exemple, cela ne devrait pas vous surprendre que la fonction <code>plural()</code> n&#x27;ait pas chang&eacute; du tout elle non-plus. Elle est compl&egrave;tement g&eacute;n&eacute;rique; elle prend une liste de fonction r&egrave;gles and les appeller dans l&#x27;ordre. Cela ne compte pas comment les r&egrave;gles sont d&eacute;finies. Dans l&#x27;exemple pr&eacute;c&eacute;dent, elles &eacute;taient d&eacute;finies comme des fonctions nomm&eacute;es s&eacute;par&eacute;es. Maintenant elles sont construites dynamiquement en associant la sortie de la fonction <code>build_match_and_apply_functions()</code> a une liste de strings. Cela n&#x27;a aucune importance, la fonction <code>plural()</code> fonctionne toujours de la m&ecirc;me fa&ccedil;on.
 </ol>
 
 <p class=a>&#x2042;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Iterators avanc&eacute;s - Plongez au c&oelig;ur de Python 3</title>
+<title>It&eacute;rateurs avanc&eacute;s - Plongez au c&oelig;ur de Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -13,7 +13,7 @@ mark{display:inline}
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Vous &ecirc;tes ici: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#advanced-iterators>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Niveau de difficult&eacute;: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
-<h1>Iterators avanc&eacute;s</h1>
+<h1>It&eacute;rateurs avanc&eacute;s</h1>
 <blockquote class=q>
     <p><span class=u>&#x275D;</span> Les grosses puces ont des petites puces sur leurs dos pour les mordrent, les petites puces ont des puces encore plus petites, et ainsi de suite &agrave; l&#8217;infini. <span class=u>&#x275E;</span><br>&mdash; Augustus De Morgan
 </blockquote>
@@ -34,7 +34,7 @@ S = 6
 T = 2
 E = 4</code></pre>
 
-<p>Les puzzles de ce genre sont appel&eacute;s des <i>cryptarithmes</i> ou des <i>alpham&eacute;tiques</i> (ndlt: un cryptarithme, aussi connu sous les noms d'arithm&eacute;tique verbale, d&#8217;alpham&eacute;tique et de cryptarithm&eacute;tique, est un casse-t&ecirc;te num&eacute;rique et logique qui consiste en une &eacute;quation math&eacute;matique o&ugrave; les lettres repr&eacute;sentent des chiffres &agrave; trouver). Les lettres &eacute;pellent des mots r&eacute;els, mais si vous remplacez chaque lettre par un chiffre situ&eacute; dans l&#8217;intervalle <code>0&ndash;9</code>, cela "correspond" &eacute;galement &agrave; une &eacute;quation arithm&eacute;tique. L&#8217;astuce est de trouver quelle lettre est repr&eacute;sent&eacute;e par quel chiffre. Toutes les occurrences de chaque lettre doivent &ecirc;tre repr&eacute;sent&eacute;e par le m&ecirc;me chiffre, aucun chiffre ne peut être r&eacute;p&eacute;t&eacute; et aucun &#8220;mot&#8221; ne peut commencer par le chiffre 0.
+<p>Les puzzles de ce genre sont appel&eacute;s des <i>cryptarithmes</i> ou des <i>alpham&eacute;tiques</i> (<a href="glossaire.html#cryptarithme">ndlt</a>: un cryptarithme, aussi connu sous les noms d'arithm&eacute;tique verbale, d&#8217;alpham&eacute;tique et de cryptarithm&eacute;tique, est un casse-t&ecirc;te num&eacute;rique et logique qui consiste en une &eacute;quation math&eacute;matique o&ugrave; les lettres repr&eacute;sentent des chiffres &agrave; trouver). Les lettres &eacute;pellent des mots r&eacute;els, mais si vous remplacez chaque lettre par un chiffre situ&eacute; dans l&#8217;intervalle <code>0&ndash;9</code>, cela "correspond" &eacute;galement &agrave; une &eacute;quation arithm&eacute;tique. L&#8217;astuce est de trouver quelle lettre est repr&eacute;sent&eacute;e par quel chiffre. Toutes les occurrences de chaque lettre doivent &ecirc;tre repr&eacute;sent&eacute;e par le m&ecirc;me chiffre, aucun chiffre ne peut être r&eacute;p&eacute;t&eacute; et aucun &#8220;mot&#8221; ne peut commencer par le chiffre 0.
 
 <aside>Le puzzle alpham&eacute;tique le plus connu est <code>SEND + MORE = MONEY</code>.</aside>
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         if solution:
             print(solution)</code></pre>
 
-<p>Vous pouvez ex&eacute;cuter le programme &agrave; partir de la ligne de commande. Sur Linux, cela pourrait ressembler &agrave; ceci. (Cela peut parfois prendre du temps en fonction de la vitesse de votre ordinateur, et il n&8217;y a aucune barre de progression. Soyez seulement patient!)
+<p>Vous pouvez ex&eacute;cuter le programme &agrave; partir de la ligne de commande. Sur Linux, cela pourrait ressembler &agrave; ceci. (Cela peut parfois prendre du temps en fonction de la vitesse de votre ordinateur, et il n&#8217;y a aucune barre de progression. Soyez seulement patient!)
 
 <pre class='nd screen cmdline'>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "HAWAII + IDAHO + IOWA + OHIO == STATES"</kbd>
@@ -84,9 +84,9 @@ if __name__ == '__main__':
 
 <p class=a>&#x2042;
 
-<h2 id=re-findall>Finding all occurrences of a pattern</h2>
+<h2 id=re-findall>Trouver toutes les occurrences d&#8217;un pattern</h2>
 
-<p>The first thing this alphametics solver does is find all the letters (A&ndash;Z) in the puzzle.
+<p>La premi&egrave;re chose que fait ce solveur alpham&eacute;tique est de trouver toutes les lettres (A&ndash;Z) dans le puzzle.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
@@ -95,19 +95,19 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>re.findall('[A-Z]+', 'SEND + MORE == MONEY')</kbd>     <span class=u>&#x2461;</span></a>
 <samp class=pp>['SEND', 'MORE', 'MONEY']</samp></pre>
 <ol>
-<li>The <code>re</code> module is Python&#8217;s implementation of <a href=regular-expressions.html>regular expressions</a>. It has a nifty function called <code>findall()</code> which takes a regular expression pattern and a string, and finds all occurrences of the pattern within the string. In this case, the pattern matches sequences of numbers. The <code>findall()</code> function returns a list of all the substrings that matched the pattern.
-<li>Here the regular expression pattern matches sequences of letters. Again, the return value is a list, and each item in the list is a string that matched the regular expression pattern.
+<li>Le module <code>re</code> est une impl&eacute;mentation Python des <a href=regular-expressions.html>expressions r&eacute;guli&egrave;res</a>. Il comprend une fonction astucieuse appel&eacute;e <code>findall()</code> qui prend en param&egrave;tre une expression r&eacute;guli&egrave;re et une cha&icirc;ne de caract&egrave;res, et trouve toutes les occurences du motif recherch&eacute; &agrave; l&#8217;int&eacute;rieur de la cha&icirc;ne de caract&egrave;res. Dans ce cas-ci, le motif correspopnd &agrave; des s&eacute;quences de nombres. La fonction <code>findall()</code> retourne une liste de toutes les sous-cha&icirc;nes de caract&egrave;res qui correspondent au motif recherch&eacute;.
+<li>Voici l&#8217;expression r&eacute;guli&egrave;re correspondant aux s&eacute;quences de lettres. Une fois encore, la valeur de retour est une liste et chaque &eacute;l&eacute;ment de la liste est une cha&icirc;ne de caract&egrave;res qui correspond &agrave; l&#8217;expression r&eacute;guli&egrave;re.
 </ol>
 
-<p>Here&#8217;s another example that will stretch your brain a little.
+<p>Voici un autre exemple qui va mettre un petit peu votre cerveau &agrave; contribution.
 
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>re.findall(' s.*? s', "The sixth sick sheikh's sixth sheep's sick.")</kbd>
 <samp class=pp>[' sixth s', " sheikh's s", " sheep's s"]</samp></pre>
 
-<aside>This is the <a href=http://en.wikipedia.org/wiki/Tongue-twister>hardest tongue twister</a> in the English language.</aside>
+<aside>Ceci est le <a href=http://en.wikipedia.org/wiki/Tongue-twister>virelangue <a href="glossaire.html#virelangue">(ndlt)</a> le plus difficile</a> de la langue anglaise.</aside>
 
-<p>Surprised? The regular expression looks for a space, an <code>s</code>, and then the shortest possible series of any character (<code>.*?</code>), then a space, then another <code>s</code>. Well, looking at that input string, I see five matches:
+<p>Surpris? L&#8217;expression r&eacute;guli&egrave;re recherche un espace, un <code>s</code>, puis une s&eacute;rie de caract&egrave;res la plus courte possible (<code>.*?</code>), puis un espace, puis un autre <code>s</code>. Enfin, en regardant la cha&icirc;ne de caract&egrave;res pass&eacute;e en entr&eacute;e, je distingue cinq occurences:
 
 <ol>
 <li><code>The<mark> sixth s</mark>ick sheikh's sixth sheep's sick.</code>
@@ -117,9 +117,9 @@ if __name__ == '__main__':
 <li><code>The sixth sick sheikh's sixth<mark> sheep's s</mark>ick.</code>
 </ol>
 
-<p>But the <code>re.findall()</code> function only returned three matches. Specifically, it returned the first, the third, and the fifth. Why is that? Because <em>it doesn&#8217;t return overlapping matches</em>. The first match overlaps with the second, so the first is returned and the second is skipped. Then the third overlaps with the fourth, so the third is returned and the fourth is skipped. Finally, the fifth is returned. Three matches, not five.
+<p>Mais la fonction <code>re.findall()</code> ne retourne que trois occurences. Plus pr&eacute;cis&eacute;ment, elle a renvoy&eacute; la premi&egrave;re, la troisi&egrave;me et la cinqui&egrave;me. Pourquoi cela? Parcequ&#8217;elle <em>ne retourne pas les cas qui se superposent</em>. La premi&egrave;re occurence chevauche la seconde, la premi&egrave;re est donc retourn&eacute;e et la seconde ignor&eacute;e. Puis la troisi&egrave;me chevauche la quatri&egrave;me, la troisi&egrave;me est donc retourn&eacute;e et la quatri&egrave;me ignor&eacute;e. Finalement, la cinqui&egrave;me est retourn&eacute;e. Trois occurences, pas cinq.
 
-<p>This has nothing to do with the alphametics solver; I just thought it was interesting.
+<p>Cela n&#8217;a rien &agrave; voir avec le solveur alpham&eacute;tique; J&#8217;ai juste pens&eacute; que c&#8217;&eacute;tait int&eacute;ressant.
 
 <p class=a>&#x2042;
 
