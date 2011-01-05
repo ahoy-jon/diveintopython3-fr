@@ -123,9 +123,9 @@ if __name__ == '__main__':
 
 <p class=a>&#x2042;
 
-<h2 id=unique-items>Finding the unique items in a sequence</h2>
+<h2 id=unique-items>Trouver les &eacute;l&eacute;ments uniques dans une s&eacute;quence</h2>
 
-<p><a href=native-datatypes.html#sets>Sets</a> make it trivial to find the unique items in a sequence.
+<p>Les <a href=native-datatypes.html#sets>sets</a> rendent triviale la recherche des &eacute;l&eacute;ments uniques dans une s&eacute;quence.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['The', 'sixth', 'sick', "sheik's", 'sixth', "sheep's", 'sick']</kbd>
@@ -140,17 +140,17 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>set(''.join(words))</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Given a list of several strings, the <code>set()</code> function will return a set of unique strings from the list. This makes sense if you think of it like a <code>for</code> loop. Take the first item from the list, put it in the set. Second. Third. Fourth. Fifth&nbsp;&mdash;&nbsp;wait, that&#8217;s in the set already, so it only gets listed once, because Python sets don&#8217;t allow duplicates. Sixth. Seventh&nbsp;&mdash;&nbsp;again, a duplicate, so it only gets listed once. The end result? All the unique items in the original list, without any duplicates. The original list doesn&#8217;t even need to be sorted first.
-<li>The same technique works with strings, since a string is just a sequence of characters.
-<li>Given a list of strings, <code>''.join(<var>a_list</var>)</code> concatenates all the strings together into one.
-<li>So, given a list of strings, this line of code returns all the unique characters across all the strings, with no duplicates.
+<li>&Eacute;tant donn&eacute; une liste de plusieurs cha&icirc;nes de caract&egrave;res, la fonction <code>set()</code> retournera un ensemble de cha&icirc;nes de caract&egrave;res uniques de la liste. Cela prend tout son sens si vous y pensez comme &agrave; une boucle <code>for</code>. Prenez le premier &eacute;l&eacute;ment de la liste, mettez le dans le set. Le second. Le troisi&egrave;me. Le quatri&egrave;me. Le cinqui&egrave;me&nbsp;&mdash;&nbsp;attendez, celui l&agrave; est d&eacute;j&agrave; dans le set, par cons&eacute;quent il ne sera list&eacute; qu&#8217;une seule fois parce que les sets Python ne permettent pas les doublons. Le sixi&egrave;me. Le septi&egrave;me&nbsp;&mdash;&nbsp;encore une fois, un doublon, il ne sera donc list&eacute; qu&#8217;une fois. Le r&eacute;sultat final? Tous les &eacute;l&eacute;ments de la liste originale list&eacute;s une fois, sans aucun doublon. La liste initiale n&#8217;a m&ecirc;me pas besoin d&#8217;&ecirc;tre tri&eacute;e en premier.
+<li>La m&ecirc;me technique fonctionne aussi avec les cha&icirc;nes de caract&egrave;res puisqu&#8217;une cha&icirc;ne de caract&egrave;res est tout simplement une s&eacute;quence de caract&egrave;res.
+<li>&Eacute;tant donn&eacute; une liste de cha&icirc;nes de caract&egrave;res, <code>''.join(<var>a_list</var>)</code> concat&egrave;ne toutes les cha&icirc;nes de caract&egrave;res en une seule.
+<li>Donc, &eacute;tant donn&eacute; une liste de cha&icirc;nes de  caract&egrave;res, cette ligne de code renvoie tous les caract&egrave;res utilis&eacute;s dans les cha&icirc;nes de caract&egrave;res de fa&ccedil;on unique, sans aucun doublon.
 </ol>
 
-<p>The alphametics solver uses this technique to build a set of all the unique characters in the puzzle.
+<p>Le solveur alpham&eacute;tique utilise cette technique pour construire un ensemble de tous les caract&egrave;res uniques du puzzle.
 
 <pre class='nd pp'><code>unique_characters = set(''.join(words))</code></pre>
 
-<p>This list is later used to assign digits to characters as the solver iterates through the possible solutions.
+<p>Cette liste est ensuite utilis&eacute;e pour attribuer des chiffres aux caract&egrave;res alors que le solveur parcourt les solutions possibles.
 
 <p class=a>&#x2042;
 
