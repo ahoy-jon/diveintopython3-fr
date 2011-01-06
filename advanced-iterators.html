@@ -123,9 +123,9 @@ if __name__ == '__main__':
 
 <p class=a>&#x2042;
 
-<h2 id=unique-items>Trouver les &eacute;l&eacute;ments uniques dans une s&eacute;quence</h2>
+<h2 id=unique-items>Trouver les &eacute;l&eacute;ments distincts dans une s&eacute;quence</h2>
 
-<p>Les <a href=native-datatypes.html#sets>sets</a> rendent triviale la recherche des &eacute;l&eacute;ments uniques dans une s&eacute;quence.
+<p>Les <a href=native-datatypes.html#sets>sets</a> rendent triviale la recherche des &eacute;l&eacute;ments distincts dans une s&eacute;quence.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['The', 'sixth', 'sick', "sheik's", 'sixth', "sheep's", 'sick']</kbd>
@@ -140,13 +140,13 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>set(''.join(words))</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>&Eacute;tant donn&eacute; une liste de plusieurs cha&icirc;nes de caract&egrave;res, la fonction <code>set()</code> retournera un ensemble de cha&icirc;nes de caract&egrave;res uniques de la liste. Cela prend tout son sens si vous y pensez comme &agrave; une boucle <code>for</code>. Prenez le premier &eacute;l&eacute;ment de la liste, mettez le dans le set. Le second. Le troisi&egrave;me. Le quatri&egrave;me. Le cinqui&egrave;me&nbsp;&mdash;&nbsp;attendez, celui l&agrave; est d&eacute;j&agrave; dans le set, par cons&eacute;quent il ne sera list&eacute; qu&#8217;une seule fois parce que les sets Python ne permettent pas les doublons. Le sixi&egrave;me. Le septi&egrave;me&nbsp;&mdash;&nbsp;encore une fois, un doublon, il ne sera donc list&eacute; qu&#8217;une fois. Le r&eacute;sultat final? Tous les &eacute;l&eacute;ments de la liste originale list&eacute;s une fois, sans aucun doublon. La liste initiale n&#8217;a m&ecirc;me pas besoin d&#8217;&ecirc;tre tri&eacute;e en premier.
+<li>&Eacute;tant donn&eacute; une liste de plusieurs cha&icirc;nes de caract&egrave;res, la fonction <code>set()</code> retournera un ensemble de cha&icirc;nes de caract&egrave;res distincts de la liste. Cela prend tout son sens si vous y pensez comme &agrave; une boucle <code>for</code>. Prenez le premier &eacute;l&eacute;ment de la liste, mettez le dans le set. Le second. Le troisi&egrave;me. Le quatri&egrave;me. Le cinqui&egrave;me&nbsp;&mdash;&nbsp;attendez, celui l&agrave; est d&eacute;j&agrave; dans le set, par cons&eacute;quent il ne sera list&eacute; qu&#8217;une seule fois parce que les sets Python ne permettent pas les doublons. Le sixi&egrave;me. Le septi&egrave;me&nbsp;&mdash;&nbsp;encore une fois, un doublon, il ne sera donc list&eacute; qu&#8217;une fois. Le r&eacute;sultat final? Tous les &eacute;l&eacute;ments de la liste originale list&eacute;s une fois, sans aucun doublon. La liste initiale n&#8217;a m&ecirc;me pas besoin d&#8217;&ecirc;tre tri&eacute;e en premier.
 <li>La m&ecirc;me technique fonctionne aussi avec les cha&icirc;nes de caract&egrave;res puisqu&#8217;une cha&icirc;ne de caract&egrave;res est tout simplement une s&eacute;quence de caract&egrave;res.
 <li>&Eacute;tant donn&eacute; une liste de cha&icirc;nes de caract&egrave;res, <code>''.join(<var>a_list</var>)</code> concat&egrave;ne toutes les cha&icirc;nes de caract&egrave;res en une seule.
-<li>Donc, &eacute;tant donn&eacute; une liste de cha&icirc;nes de  caract&egrave;res, cette ligne de code renvoie tous les caract&egrave;res utilis&eacute;s dans les cha&icirc;nes de caract&egrave;res de fa&ccedil;on unique, sans aucun doublon.
+<li>Donc, &eacute;tant donn&eacute; une liste de cha&icirc;nes de  caract&egrave;res, cette ligne de code renvoie tous les caract&egrave;res distincts utilis&eacute;s dans les cha&icirc;nes de caract&egrave;res, sans aucun doublon.
 </ol>
 
-<p>Le solveur alpham&eacute;tique utilise cette technique pour construire un ensemble de tous les caract&egrave;res uniques du puzzle.
+<p>Le solveur alpham&eacute;tique utilise cette technique pour construire un ensemble de tous les caract&egrave;res distincts du puzzle.
 
 <pre class='nd pp'><code>unique_characters = set(''.join(words))</code></pre>
 
@@ -154,9 +154,9 @@ if __name__ == '__main__':
 
 <p class=a>&#x2042;
 
-<h2 id=assert>Making assertions</h2>
+<h2 id=assert>R&eacute;aliser une assertion</h2>
 
-<p>Like many programming languages, Python has an <code>assert</code> statement. Here&#8217;s how it works.
+<p>Comme de nombreux langages de programmation, Python a une instruction  <code>assert</code>. Voici comment elle fonctionne.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 2</kbd>                                     <span class=u>&#x2460;</span></a>
@@ -169,21 +169,21 @@ AssertionError</samp>
   File "&lt;stdin>", line 1, in &lt;module>
 AssertionError: Only for very large values of 2</samp></pre>
 <ol>
-<li>The <code>assert</code> statement is followed by any valid Python expression. In this case, the expression <code>1 + 1 == 2</code> evaluates to <code>True</code>, so the <code>assert</code> statement does nothing.
-<li>However, if the Python expression evaluates to <code>False</code>, the <code>assert</code> statement will raise an <code>AssertionError</code>.
-<li>You can also include a human-readable message that is printed if the <code>AssertionError</code> is raised.
+<li>L&#8217;affirmation <code>assert</code> est suivie de n&#8217;importe quelle expression Python valide. Dans ce cas-ci, l&#8217;expression <code>1 + 1 == 2</code> est &eacute;valu&eacute;e &agrave; <code>True</code>, l&#8217;affirmation <code>assert</code> ne fait donc rien.
+<li>Toutefois, si l&#8217;expression Python retourne <code>False</code>, l&#8217;affirmation <code>assert</code> d&eacute;clenchera une <code>AssertionError</code>.
+<li>Vous pouvez &eacute;galement inclure un message lisible par le commun des mortels qui est imprim&eacute; si l&#8217;erreur <code>AssertionError</code> est soulevée.
 </ol>
 
-<p>Therefore, this line of code:
+<p>Par cons&eacute;quent, cette ligne de code:
 
 <pre class='nd pp'><code>assert len(unique_characters) &lt;= 10, 'Too many letters'</code></pre>
 
-<p>&hellip;is equivalent to this:
+<p>&hellip;est &eacute;quivalente &agrave; celle-ci:
 
 <pre class='nd pp'><code>if len(unique_characters) > 10:
     raise AssertionError('Too many letters')</code></pre>
 
-<p>The alphametics solver uses this exact <code>assert</code> statement to bail out early if the puzzle contains more than ten unique letters. Since each letter is assigned a unique digit, and there are only ten digits, a puzzle with more than ten unique letters can not possibly have a solution.
+<p>Le solveur alpham&eacute;tique utilise cette affirmation exacte <code>assert</code> pour pr&eacute;venir des cas o&ugrave; le puzzle contient plus de dix lettres distinctes. Comme chaque lettre se voit attribuer un chiffre distinct et qu&#8217;il ya seulement dix chiffres, un puzzle avec plus de dix lettres distinctes ne peut pas avoir de solution.
 
 <p class=a>&#x2042;
 
