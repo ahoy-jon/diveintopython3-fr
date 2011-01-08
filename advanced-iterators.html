@@ -187,9 +187,9 @@ AssertionError: Only for very large values of 2</samp></pre>
 
 <p class=a>&#x2042;
 
-<h2 id=generator-expressions>Generator expressions</h2>
+<h2 id=generator-expressions>Expression g&eacute;n&eacute;ratrice</h2>
 
-<p>A generator expression is like a <a href=generators.html>generator function</a> without the function.
+<p>Une expression g&eacute;n&eacute;ratrice est comme une <a href=generators.html>fonction g&eacute;n&eacute;ratrice</a> mais sans la fonction.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>unique_characters = {'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</kbd>
@@ -203,17 +203,17 @@ AssertionError: Only for very large values of 2</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>tuple(ord(c) for c in unique_characters)</kbd>   <span class=u>&#x2463;</span></a>
 <samp class=pp>(69, 68, 77, 79, 78, 83, 82, 89)</samp></pre>
 <ol>
-<li>A generator expression is like an anonymous function that yields values. The expression itself looks like a <a href=comprehensions.html#listcomprehension>list comprehension</a>, but it&#8217;s wrapped in parentheses instead of square brackets.
-<li>The generator expression returns&hellip; an iterator.
-<li>Calling <code>next(<var>gen</var>)</code> returns the next value from the iterator.
-<li>If you like, you can iterate through all the possible values and return a tuple, list, or set, by passing the generator expression to <code>tuple()</code>, <code>list()</code>, or <code>set()</code>. In these cases, you don&#8217;t need an extra set of parentheses&nbsp;&mdash;&nbsp;just pass the &#8220;bare&#8221; expression <code>ord(c) for c in unique_characters</code> to the <code>tuple()</code> function, and Python figures out that it&#8217;s a generator expression.
+<li>Une expression g&eacute;n&eacute;ratrice est comme une fonction anonyme qui produit des valeurs. L&#8217;expression elle-m&ecirc;me ressemble &agrave; une <a href=comprehensions.html#listcomprehension>compr&eacute;hension de liste</a>, mais elle est plac&eacute;e entre parenth&egrave;ses plut&ocirc;t qu&#8217;entre des crochets.
+<li>L&#8217;expression g&eacute;n&eacute;ratrice retourne&hellip; un it&eacute;rateur.
+<li>Un appel &agrave; <code>next(<var>gen</var>)</code> retourne la valeur suivante de l'it&eacute;rateur.
+<li>Si vous le souhaitez, vous pouvez parcourir toutes les valeurs possibles et retourner un tuple, une liste, ou un ensemble, en passant l&#8217;expression g&eacute;n&eacute;ratrice &agrave; <code>tuple()</code>, <code>list()</code>, ou <code>set()</code>. Dans ce cas, vous n&#8217;avez pas besoin d&#8217;un jeu de parenth&egrave;ses suppl&eacute;mentaires&nbsp;&mdash;&nbsp;passez juste l&#8217;expression  &#8220;minimum&#8221; <code>ord(c) for c in unique_characters</code> &agrave; la fonction <code>tuple()</code> et Python comprend que c&#8217;est une expression g&eacute;n&eacute;ratrice.
 </ol>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Using a generator expression instead of a list comprehension can save both <abbr>CPU</abbr> and <abbr>RAM</abbr>. If you&#8217;re building an list just to throw it away (<i>e.g.</i> passing it to <code>tuple()</code> or <code>set()</code>), use a generator expression instead!
+    <p><span class=u>&#x261E;</span>L&#8217;utilisation d&#8217;une expression g&eacute;n&eacute;ratrice &agrave; la place d&#8217;une compr&eacute;hension de liste peut sauver &agrave; la fois <abbr>CPU</abbr> et <abbr>RAM</abbr>. Si vous construisez une liste juste pour la jeter (<i>par exemple</i> en la passant &agrave; <code>tuple()</code> ou <code>set()</code>), utilisez plut&ocirc;t une expression g&eacute;n&eacute;ratrice!
 </blockquote>
 
-<p>Here&#8217;s another way to accomplish the same thing, using a <a href=generators.html>generator function</a>:
+<p>Voici une autre fa&ccedil;on de faire la m&ecirc;me chose en utilisant une <a href=generators.html>fonction g&eacute;n&eacute;ratrice</a>:
 
 <pre class='nd pp'><code>def ord_map(a_string):
     for c in a_string:
@@ -221,7 +221,7 @@ AssertionError: Only for very large values of 2</samp></pre>
 
 gen = ord_map(unique_characters)</code></pre>
 
-<p>The generator expression is more compact but functionally equivalent.
+<p>L&#8217;expression g&eacute;n&eacute;ratrice est plus compacte mais fonctionnellement &eacute;quivalente.
 
 <p class=a>&#x2042;
 
