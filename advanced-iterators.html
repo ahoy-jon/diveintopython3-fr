@@ -225,11 +225,12 @@ gen = ord_map(unique_characters)</code></pre>
 
 <p class=a>&#x2042;
 
-<h2 id=permutations>Calculating Permutations&hellip; The Lazy Way!</h2>
+<h2 id=permutations>Le Calcul Des Permutations&hellip; Le Chemin Paresseux!</h2>
 
-<p>First of all, what the heck are permutations? Permutations are a mathematical concept. (There are actually several definitions, depending on what kind of math you&#8217;re doing. Here I&#8217;m talking about combinatorics, but if that doesn&#8217;t mean anything to you, don&#8217;t worry about it. As always, <a href=http://en.wikipedia.org/wiki/Permutation>Wikipedia is your friend</a>.)
+<p>Tout d&#8217abord, que diable sont les permutations? Les permutations sont un concept math&eacute;matique. (Il y a en fait plusieurs d&eacute;finitions qui d&eacute;pendent du type de math&eacute;matiques que vous pratiquez. Ici je parle d&#8217;analyse combinatoire, mais si cela ne signifie rien pour vous, ne vous inqui&eacute;tez pas. Comme toujours, <a href=http://fr.wikipedia.org/wiki/Combinatoire>Wikipedia est votre ami</a>.)
 
-<p>The idea is that you take a list of things (could be numbers, could be letters, could be dancing bears) and find all the possible ways to split them up into smaller lists. All the smaller lists have the same size, which can be as small as 1 and as large as the total number of items. Oh, and nothing can be repeated. Mathematicians say things like &#8220;let&#8217;s find the permutations of 3 different items taken 2 at a time,&#8221; which means you have a sequence of 3 items and you want to find all the possible ordered pairs.
+<p>L&#8217;id&eacute;e est que vous prenez une liste de choses (pouvant &ecirc;tre des nombres, pouvant &ecirc;tre des lettres, pouvant &ecirc;tre des ours dansant) et trouvez tous les moyens possibles de les scinder en listes plus petites. Toutes les listes plus petites ont la m&ecirc;me taille qui peut &ecirc;tre aussi petite que 1 et aussi grande que le nombre total d&#8217;&eacute;l&eacute;ments. Oh, et rien ne peut &ecirc;tre r&eacute;p&eacute;t&eacute;. Les math&eacute;maticiens disent des choses du genre &#8220;trouvons les permutations de 2 &eacute;l&eacute;ments choisis parmis 3 &eacute;l&eacute;ments distincts,&#8221; ce qui signifie que vous avez un ensemble de 3 &eacute;l&eacute;ments et que vous voulez trouver toutes les paires ordonn&eacute;es possibles.
+
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import itertools</kbd>                              <span class=u>&#x2460;</span></a>
@@ -251,16 +252,16 @@ gen = ord_map(unique_characters)</code></pre>
   File "&lt;stdin>", line 1, in &lt;module>
 StopIteration</samp></pre>
 <ol>
-<li>The <code>itertools</code> module has all kinds of fun stuff in it, including a <code>permutations()</code> function that does all the hard work of finding permutations.
-<li>The <code>permutations()</code> function takes a sequence (here a list of three integers) and a number, which is the number of items you want in each smaller group. The function returns an iterator, which you can use in a <code>for</code> loop or any old place that iterates. Here I&#8217;ll step through the iterator manually to show all the values.
-<li>The first permutation of <code>[1, 2, 3]</code> taken 2 at a time is <code>(1, 2)</code>.
-<li>Note that permutations are ordered: <code>(2, 1)</code> is different than <code>(1, 2)</code>.
-<li>That&#8217;s it! Those are all the permutations of <code>[1, 2, 3]</code> taken 2 at a time. Pairs like <code>(1, 1)</code> and <code>(2, 2)</code> never show up, because they contain repeats so they aren&#8217;t valid permutations. When there are no more permutations, the iterator raises a <code>StopIteration</code> exception.
+    <li>Le module <code>itertools</code> est compos&eacute; de toutes sortes de trucs amusants, cela inclue une fonction <code>permutations()</code> qui fait tout le travail difficile pour trouver les permutations.
+    <li>La fonction <code>permutations()</code> prend une s&eacute;quence (ici une liste de trois entiers) et un  nombre qui est le nombre d&#8217;&eacute;l&eacute;ments que vous voulez dans chaque groupe plus petit. La fonction retourne un it&eacute;rateur que vous pouvez utiliser dans une boucle <code>for</code> ou tout autre vieille m&eacute;thode d&#8217;it&eacute;ration. Ici je vais parcourir l&#8217; it&eacute;rateur manuellement pour r&eacute;v&eacute;ler toute les valeurs.
+    <li>La premi&egrave;re permutation de <code>[1, 2, 3]</code> pris 2 par 2 est <code>(1, 2)</code>.
+    <li>Notez que les permutations sont class&eacute;es: <code>(2, 1)</code> est diff&eacute;rente de <code>(1, 2)</code>.
+    <li>&Ccedil;a y est! Ce sont toutes les permutations de <code>[1, 2, 3]</code> prises 2 par 2. Les pairs comme <code>(1, 1)</code> et <code>(2, 2)</code> ne se pr&eacute;sentent jamais car elles contiennent des r&eacute;p&eacute;titions et ne sont donc pas des permutations valides. Quand il n'y a plus de permutations, l&#8217;it&eacute;rateur soul&egrave;ve une exception <code>StopIteration</code>.
 </ol>
 
-<aside>The <code>itertools</code> module has all kinds of fun stuff.</aside>
+<aside>Le module <code>itertools</code> contient beaucoup de trucs amusants.</aside>
 
-<p>The <code>permutations()</code> function doesn&#8217;t have to take a list. It can take any sequence&nbsp;&mdash;&nbsp;even a string.
+<p>La fonction <code>permutations()</code> n&#8217;a pas &agrave; prendre une liste. Il peut prendre n&#8217;importe quelle séquence&nbsp;&mdash;&nbsp;m&ecirc;me une cha&icirc;ne de caract&egrave;res.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import itertools</kbd>
@@ -286,9 +287,9 @@ StopIteration</samp>
  ('B', 'A', 'C'), ('B', 'C', 'A'),
  ('C', 'A', 'B'), ('C', 'B', 'A')]</samp></pre>
 <ol>
-<li>A string is just a sequence of characters. For the purposes of finding permutations, the string <code>'ABC'</code> is equivalent to the list <code>['A', 'B', 'C']</code>.
-<li>The first permutation of the 3 items <code>['A', 'B', 'C']</code>, taken 3 at a time, is <code>('A', 'B', 'C')</code>. There are five other permutations&nbsp;&mdash;&nbsp;the same three characters in every conceivable order.
-<li>Since the <code>permutations()</code> function always returns an iterator, an easy way to debug permutations is to pass that iterator to the built-in <code>list()</code> function to see all the permutations immediately.
+    <li>Une cha&icirc;ne de caract&egrave;res est juste une s&eacute;quence de caract&egrave;res. La cha&icirc;ne de caract&egrave;res <code>'ABC'</code> est &eacute;quivalente &agrave; la liste <code>['A', 'B', 'C']</code> dans le but de trouver les permutations.
+    <li>La premi&egrave;re permutation des 3 &eacute;l&eacute;ments <code>['A', 'B', 'C']</code>, pris 3 par 3 est <code>('A', 'B', 'C')</code>. Il y a cinq autres permutations&nbsp;&mdash;&nbsp;les m&ecirc;mes trois caract&egrave;res dans tous les ordres possibles.
+    <li>Puisque la fonction <code>permutations()</code> retourne toujours un it&eacute;rateur, un moyen facile de d&eacute;boguer des permutations est de passer cet it&eacute;rateur en param&egrave;tre &agrave; la fonction int&eacute;gr&eacute;e <code>list()</code> pour voir toutes les permutations imm&eacute;diatement.
 </ol>
 
 <p class=a>&#x2042;
