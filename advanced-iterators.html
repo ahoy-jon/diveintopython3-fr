@@ -15,11 +15,11 @@ mark{display:inline}
 <p id=level>Niveau de difficult&eacute;: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>It&eacute;rateurs avanc&eacute;s</h1>
 <blockquote class=q>
-    <p><span class=u>&#x275D;</span> Les grosses puces ont des petites puces sur leurs dos pour les mordrent, les petites puces ont des puces encore plus petites, et ainsi de suite &agrave; l&#8217;infini. <span class=u>&#x275E;</span><br>&mdash; Augustus De Morgan
+<p><span class=u>&#x275D;</span> Les grosses puces ont des petites puces sur leurs dos pour les mordrent, les petites puces ont des puces encore plus petites, et ainsi de suite &agrave; l&#8217;infini. <span class=u>&#x275E;</span><br>&mdash; Augustus De Morgan
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Lan&ccedil;ons nous</h2>
-<p class=f>Tout comme les <a href=regular-expressions.html>expressions r&eacute;guli&egrave;res</a> boostent <a href=strings.html>les cha&icirc;nes de caract&egrave;res</a>, le module <code>itertools</code> boostent les <a href=iterators.html>it&eacute;rateurs</a>. Mais en premier lieu, je veux vous montrer un puzzle classique.
+<p class=f>Tout comme les <a href=regular-expressions.html>expressions r&eacute;guli&egrave;res</a> boostent <a href=strings.html>les cha&icirc;nes de caract&egrave;res</a>, le module <code>itertools</code> boostent les <a href=iterators.html>it&eacute;rateurs</a>. Mais en premier lieu, je veux vous montrer un casse-t&ecirc;te classique.
 
 <pre class=nd><code>HAWAII + IDAHO + IOWA + OHIO == STATES
 510199 + 98153 + 9301 + 3593 == 621246
@@ -36,7 +36,7 @@ E = 4</code></pre>
 
 <p>Les puzzles de ce genre sont appel&eacute;s des <i>cryptarithmes</i> ou des <i>alpham&eacute;tiques</i> (<a href="glossaire.html#cryptarithme">ndlt</a>: un cryptarithme, aussi connu sous les noms d'arithm&eacute;tique verbale, d&#8217;alpham&eacute;tique et de cryptarithm&eacute;tique, est un casse-t&ecirc;te num&eacute;rique et logique qui consiste en une &eacute;quation math&eacute;matique o&ugrave; les lettres repr&eacute;sentent des chiffres &agrave; trouver). Les lettres &eacute;pellent des mots r&eacute;els, mais si vous remplacez chaque lettre par un chiffre situ&eacute; dans l&#8217;intervalle <code>0&ndash;9</code>, cela "correspond" &eacute;galement &agrave; une &eacute;quation arithm&eacute;tique. L&#8217;astuce est de trouver quelle lettre est repr&eacute;sent&eacute;e par quel chiffre. Toutes les occurrences de chaque lettre doivent &ecirc;tre repr&eacute;sent&eacute;e par le m&ecirc;me chiffre, aucun chiffre ne peut être r&eacute;p&eacute;t&eacute; et aucun &#8220;mot&#8221; ne peut commencer par le chiffre 0.
 
-<aside>Le puzzle alpham&eacute;tique le plus connu est <code>SEND + MORE = MONEY</code>.</aside>
+<aside>Le casse-t&ecirc;te alpham&eacute;tique le plus connu est <code>SEND + MORE = MONEY</code>.</aside>
 
 <p>Dans ce chapitre, nous allons plonger dans un programme Python incroyable, initialement &eacute;crit par Raymond Hettinger. Ce programme r&eacute;sout des &eacute;nigmes alpham&eacute;tiques <em>en seulement 14 lignes de code</em>.
 
@@ -408,7 +408,7 @@ Wesley</samp></pre>
 <samp class=pp>{'E': '0', 'D': '3', 'M': '2', 'O': '4',
  'N': '5', 'S': '1', 'R': '6', 'Y': '7'}</samp></pre>
 <ol>
-<li>&Eacute;tant donn&eacute; une liste de lettres et une liste de chiffres (chacun repr&eacute;sent&eacute;s ici par une cha&icirc;ne de 1-caract&egrave;re), la fonction <code>zip</code> va cr&eacute;er des paires de lettres et de chiffres en respectant leur ordre initial.
+<li>&Eacute;tant donn&eacute; une liste de lettres et une liste de chiffres (tous repr&eacute;sent&eacute;s ici par une cha&icirc;ne &agrave; 1 caract&egrave;re), la fonction <code>zip</code> va cr&eacute;er des paires de lettres et de chiffres en respectant leur ordre initial.
 <li>Pourquoi est-ce cool? Parce que cette structure de donn&eacute;es se trouve &ecirc;tre exactement la bonne structure &agrave; passer &agrave; la fonction <code>dict()</code> pour cr&eacute;er un dictionnaire qui utilise des lettres comme clefs et leur nombres associ&eacute;s comme valeurs. (Ce n&#8217;est pas la seule fa&ccedil;on de le faire, bien s&ucirc;r. Vous pouvez utiliser une <a href=comprehensions.html#dictionarycomprehension>compr&eacute;hension de dictionnaire</a> pour cr&eacute;er directement un dictionnaire.) Bien que la repr&eacute;sentation imprim&eacute;e du dictionnaire liste les paires dans un ordre diff&eacute;rent (les dictionnaires n&#8217;ont pas d&#8217;&#8220;ordre&#8221; en soi), vous pouvez voir que chaque lettre est associ&eacute;e &agrave; son chiffre, en fonction de l&#8217;agencement des s&eacute;quences initiales de <var>characters</var> et de <var>guess</var>.
 </ol>
 
@@ -425,9 +425,9 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p class=a>&#x2042;
 
-<h2 id=string-translate>A New Kind Of String Manipulation</h2>
+<h2 id=string-translate>Un nouveau type de manipulation des cha&icirc;nes de caract&egrave;res</h2>
 
-<p>Python strings have many methods. You learned about some of those methods in <a href=strings.html>the Strings chapter</a>: <code>lower()</code>, <code>count()</code>, and <code>format()</code>. Now I want to introduce you to a powerful but little-known string manipulation technique: the <code>translate()</code> method.
+<p>Les cha&icirc;nes de caract&egrave;res Python ont de nombreuses m&eacute;thodes. Vous avez appris certaines de ces m&eacute;thodes dans <a href=strings.html>le chapitre Strings</a>: <code>lower()</code>, <code>count()</code>, et <code>format()</code>. Maintenant, je veux vous initier &agrave; une technique de manipulation de cha&icirc;nes de caract&egrave;res puissante, mais peu connue: la m&eacute;thode <code>translate()</code>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>translation_table = {ord('A'): ord('O')}</kbd>  <span class=u>&#x2460;</span></a>
@@ -436,14 +436,14 @@ for guess in itertools.permutations(digits, len(characters)):
 <a><samp class=p>>>> </samp><kbd class=pp>'MARK'.translate(translation_table)</kbd>       <span class=u>&#x2462;</span></a>
 <samp class=pp>'MORK'</samp></pre>
 <ol>
-<li>String translation starts with a translation table, which is just a dictionary that maps one character to another. Actually, &#8220;character&#8221; is incorrect&nbsp;&mdash;&nbsp;the translation table really maps one <em>byte</em> to another.
-<li>Remember, bytes in Python 3 are integers. The <code>ord()</code> function returns the <abbr>ASCII</abbr> value of a character, which, in the case of A&ndash;Z, is always a byte from 65 to 90.
-<li>The <code>translate()</code> method on a string takes a translation table and runs the string through it. That is, it replaces all occurrences of the keys of the translation table with the corresponding values. In this case, &#8220;translating&#8221; <code>MARK</code> to <code>MORK</code>.
+<li>La translation de cha&icirc;ne de caract&egrave;res commence par une table de traduction qui est juste un dictionnaire faisant correspondre un caract&egrave;re &agrave; un autre. En fait &#8220;caract&egrave;re&#8221; est incorrect&nbsp;&mdash;&nbsp;la table de traduction fait r&eacute;ellement correspondre un <em>byte</em> &agrave; un autre.
+<li>Rappelez-vous, les bytes en Python 3 sont des nombres entiers. La fonction <code>ord()</code> retourne la valeur <abbr>ASCII</abbr> d&#8217;un caract&egrave;re, qui, dans le cas de A&ndash;Z, est toujours un byte de 65 &agrave; 90.
+<li>La m&eacute;thode <code>translate()</code> appliqu&eacute;e &agrave; une cha&icirc;ne de caract&egrave;res prend une table de traduction et passe la cha&icirc;ne de caract&egrave;re &agrave; travers celle-ci. Ce faisant, elle remplace toutes les occurences des clefs de la table de traduction par la valeur correspondante. &#8220;Traduisant&#8221; <code>MARK</code> en <code>MORK</code> dans ce cas.
 </ol>
 
-<aside>Now you&#8217;re getting to the <em>really</em> fun part.</aside>
+<aside>Maintenant vous attaquez la partie <em>vraiment</em> fun.</aside>
 
-<p>What does this have to do with solving alphametic puzzles? As it turns out, everything.
+<p>Qu&#8217;est-ce que cela a &agrave; voir avec la r&eacute;solution d&#8217;&eacute;nigmes alpham&eacute;tiques? Comme cela se termine, tout.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>characters = tuple(ord(c) for c in 'SMEDONRY')</kbd>       <span class=u>&#x2460;</span></a>
@@ -458,13 +458,13 @@ for guess in itertools.permutations(digits, len(characters)):
 <a><samp class=p>>>> </samp><kbd class=pp>'SEND + MORE == MONEY'.translate(translation_table)</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=pp>'9567 + 1085 == 10652'</samp></pre>
 <ol>
-<li>Using a <a href=#generator-expressions>generator expression</a>, we quickly compute the byte values for each character in a string. <var>characters</var> is an example of the value of <var>sorted_characters</var> in the <code>alphametics.solve()</code> function.
-<li>Using another generator expression, we quickly compute the byte values for each digit in this string. The result, <var>guess</var>, is of the form <a href=#guess>returned by the <code>itertools.permutations()</code> function</a> in the <code>alphametics.solve()</code> function.
-<li>This translation table is generated by <a href=#dict-zip>zipping <var>characters</var> and <var>guess</var> together</a> and building a dictionary from the resulting sequence of pairs. This is exactly what the <code>alphametics.solve()</code> function does inside the <code>for</code> loop.
-<li>Finally, we pass this translation table to the <code>translate()</code> method of the original puzzle string. This converts each letter in the string to the corresponding digit (based on the letters in <var>characters</var> and the digits in <var>guess</var>). The result is a valid Python expression, as a string.
+<li>En utilisant une <a href=#generator-expressions>expression g&eacute;n&eacute;ratrice</a>, nous calculons rapidement la valeur du byte pour chaque caract&egrave;re d&#8217;une cha&icirc;ne. <var>characters</var> est un exemple de valeur de <var>sorted_characters</var> dans la fonction <code>alphametics.solve()</code>.
+<li>En utilisant une autre expression g&eacute;n&eacute;ratrice, nous calculons rapidement les valeurs en byte pour chaque chiffre dans cette cha&icirc;ne de caract&egrave;res. Le r&eacute;sultat, <var>guess</var>, est de la forme <a href=#guess>retourn&eacute;e par la fonction <code>itertools.permutations()</code></a> dans la fonction <code>alphametics.solve()</code>.
+<li>Cette table de traduction est g&eacute;n&eacute;r&eacute;e en <a href=#dict-zip>zippant ensemble <var>characters</var> et <var>guess</var></a> et en construisant un dictionnaire &agrave; partir de la s&eacute;quence r&eacute;sultante de paires. C&#8217;est exactement ce que la fonction <code>alphametics.solve()</code> fait &agrave; l&#8217;int&eacute;rieur de la boucle <code>for</code>.
+<li>Finalement, nous passons cette table de traduction &agrave; la m&eacute;thode <code>translate()</code> de la cha&icirc;ne de caract&egrave;re du puzzle original. Ceci convertit chaque lettre de la cha&icirc;ne de caract&egrave;res vers le chiffre correspondant (bas&eacute; sur les lettres situ&eacute;s dans <var>characters</var> et les nombres situ&eacute;s dans <var>guess</var>). Le r&eacute;sultat est une expression Python valide, comme une cha&icirc;ne de cararct&egrave;res.
 </ol>
 
-<p>That&#8217;s pretty impressive. But what can you do with a string that happens to be a valid Python expression?
+<p>C&#8217;est assez impressionnant. Mais que pouvez-vous faire avec une cha&ecirc;ne de caract&egrave;res qui se trouve &ecirc;tre une expression Python valide?
 
 <p class=a>&#x2042;
 
