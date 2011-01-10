@@ -287,14 +287,14 @@ StopIteration</samp>
  ('B', 'A', 'C'), ('B', 'C', 'A'),
  ('C', 'A', 'B'), ('C', 'B', 'A')]</samp></pre>
 <ol>
-    <li>Une cha&icirc;ne de caract&egrave;res est juste une s&eacute;quence de caract&egrave;res. La cha&icirc;ne de caract&egrave;res <code>'ABC'</code> est &eacute;quivalente &agrave; la liste <code>['A', 'B', 'C']</code> dans le but de trouver les permutations.
-    <li>La premi&egrave;re permutation des 3 &eacute;l&eacute;ments <code>['A', 'B', 'C']</code>, pris 3 par 3 est <code>('A', 'B', 'C')</code>. Il y a cinq autres permutations&nbsp;&mdash;&nbsp;les m&ecirc;mes trois caract&egrave;res dans tous les ordres possibles.
-    <li>Puisque la fonction <code>permutations()</code> retourne toujours un it&eacute;rateur, un moyen facile de d&eacute;boguer des permutations est de passer cet it&eacute;rateur en param&egrave;tre &agrave; la fonction int&eacute;gr&eacute;e <code>list()</code> pour voir toutes les permutations imm&eacute;diatement.
+<li>Une cha&icirc;ne de caract&egrave;res est juste une s&eacute;quence de caract&egrave;res. La cha&icirc;ne de caract&egrave;res <code>'ABC'</code> est &eacute;quivalente &agrave; la liste <code>['A', 'B', 'C']</code> dans le but de trouver les permutations.
+<li>La premi&egrave;re permutation des 3 &eacute;l&eacute;ments <code>['A', 'B', 'C']</code>, pris 3 par 3 est <code>('A', 'B', 'C')</code>. Il y a cinq autres permutations&nbsp;&mdash;&nbsp;les m&ecirc;mes trois caract&egrave;res dans tous les ordres possibles.
+<li>Puisque la fonction <code>permutations()</code> retourne toujours un it&eacute;rateur, un moyen facile de d&eacute;boguer des permutations est de passer cet it&eacute;rateur en param&egrave;tre &agrave; la fonction int&eacute;gr&eacute;e <code>list()</code> pour voir toutes les permutations imm&eacute;diatement.
 </ol>
 
 <p class=a>&#x2042;
 
-<h2 id=more-itertools>Other Fun Stuff in the <code>itertools</code> Module</h2>
+<h2 id=more-itertools>Autre trucs amusants dans le module <code>itertools</code></h2>
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import itertools</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>list(itertools.product('ABC', '123'))</kbd>   <span class=u>&#x2460;</span></a>
@@ -304,8 +304,8 @@ StopIteration</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>list(itertools.combinations('ABC', 2))</kbd>  <span class=u>&#x2461;</span></a>
 <samp class=pp>[('A', 'B'), ('A', 'C'), ('B', 'C')]</samp></pre>
 <ol>
-<li>The <code>itertools.product()</code> function returns an iterator containing the Cartesian product of two sequences.
-<li>The <code>itertools.combinations()</code> function returns an iterator containing all the possible combinations of the given sequence of the given length. This is like the <code>itertools.permutations()</code> function, except combinations don&#8217;t include items that are duplicates of other items in a different order. So <code>itertools.permutations('ABC', 2)</code> will return both <code>('A', 'B')</code> and <code>('B', 'A')</code> (among others), but <code>itertools.combinations('ABC', 2)</code> will not return <code>('B', 'A')</code> because it is a duplicate of <code>('A', 'B')</code> in a different order.
+<li>La fonction <code>itertools.product()</code> retourne un it&eacute;rateur contenant le produit cartesien de deux s&eacute;quences.
+<li>La fonction <code>itertools.combinations()</code> retourne un it&eacute;rateur contenant toutes les combinaisons possibles de la s&eacute;quence donn&eacute;e pour une longueur donn&eacute;e. Ceci est identique &agrave; la fonction <code>itertools.permutations()</code>, &agrave; l&#8217;exception des combinaisons n&#8217;incluant pas des &eacute;l&eacute;ments &eacute;tant des doublons d&#8217;autres &eacute;l&eacute;ments rang&eacute;s dans un ordre diff&eacute;rent. Donc <code>itertools.permutations('ABC', 2)</code> retournera &agrave; la fois <code>('A', 'B')</code> et <code>('B', 'A')</code> (entre autres), mais <code>itertools.combinations('ABC', 2)</code> ne retournera pas <code>('B', 'A')</code> car c&#8217;est un doublon de <code>('A', 'B')</code> dans un ordre diff&eacute;rent.
 </ol>
 
 <p class=d>[<a href=examples/favorite-people.txt>download <code>favorite-people.txt</code></a>]
@@ -327,13 +327,13 @@ StopIteration</samp>
 <samp class=pp>['Alex', 'Anne', 'Dora', 'John', 'Mike',
 'Chris', 'Ethan', 'Sarah', 'Lizzie', 'Wesley']</samp></pre>
 <ol>
-<li>This idiom returns a list of the lines in a text file.
-<li>Unfortunately (for this example), the <code>list(open(<var>filename</var>))</code> idiom also includes the carriage returns at the end of each line. This list comprehension uses the <code>rstrip()</code> string method to strip trailing whitespace from each line. (Strings also have an <code>lstrip()</code> method to strip leading whitespace, and a <code>strip()</code> method which strips both.)
-<li>The <code>sorted()</code> function takes a list and returns it sorted. By default, it sorts alphabetically.
-<li>But the <code>sorted()</code> function can also take a function as the <var>key</var> parameter, and it sorts by that key. In this case, the sort function is <code>len()</code>, so it sorts by <code>len(<var>each item</var>)</code>. Shorter names come first, then longer, then longest.
+<li>Cet idiome retourne une liste des lignes siitu&eacute;es dans un fichier texte.
+<li>Malheureusement (pour cet exemple), l&#8217;idiome <code>list(open(<var>filename</var>))</code> comprend &eacute;galement les retours chariot &agrave; la fin de chaque ligne. Cette compr&eacute;hension de liste utilise la m&eacute;thode de cha&icirc;nes de caract&egrave;res <code>rstrip()</code> pour les retirer avec les espaces qui tra&icirc;nent &agrave; la fin de chaque ligne. (Les cha&icirc;nes de caract&egrave;res disposent aussi d&#8217;une m&eacute;thode <code>lstrip()</code> pour enlever les espaces situ&eacute;s en d&eacute;but de cha&icirc;ne de caract&egrave;res et une m&eacute;thode <code>strip()</code> qui enl&egrave;vent les deux.)
+<li>La fonction <code>sorted()</code> prend une liste et la retourne tri&eacute;e. Elle trie alphab&eacute;tiquement par d&eacute;faut.
+<li>Mais la fonction <code>sorted()</code> peut aussi prendre une fonction avec le param&egrave;tre <var>key</var> et elle fera son tri en fonction de cette clef. Dans ce cas, la fonction de tri est <code>len()</code>, le tri est donc organis&eacute; en fonction de <code>len(<var>chaque &eacute;l&eacute;ment</var>)</code>. Le nom le plus petit vient en premier, puis un plus long et en dernier le plus long.
 </ol>
 
-<p>What does this have to do with the <code>itertools</code> module? I&#8217;m glad you asked.
+<p>Qu&#8217;est-ce que cela a &agrave; voir avec le module <code>itertools</code>? Je suis content que vous vous posiez la question.
 
 <pre class=screen>
 &hellip;continuing from the previous interactive shell&hellip;
@@ -365,17 +365,17 @@ Names with 6 letters:
 Lizzie
 Wesley</samp></pre>
 <ol>
-<li>The <code>itertools.groupby()</code> function takes a sequence and a key function, and returns an iterator that generates pairs. Each pair contains the result of <code>key_function(<var>each item</var>)</code> and another iterator containing all the items that shared that key result.
-<li>Calling the <code>list()</code> function &#8220;exhausted&#8221; the iterator, <i>i.e.</i> you&#8217;ve already generated every item in the iterator to make the list. There&#8217;s no &#8220;reset&#8221; button on an iterator; you can&#8217;t just start over once you&#8217;ve exhausted it. If you want to loop through it again (say, in the upcoming <code>for</code> loop), you need to call <code>itertools.groupby()</code> again to create a new iterator.
-<li>In this example, given a list of names <em>already sorted by length</em>, <code>itertools.groupby(names, len)</code> will put all the 4-letter names in one iterator, all the 5-letter names in another iterator, and so on. The <code>groupby()</code> function is completely generic; it could group strings by first letter, numbers by their number of factors, or any other key function you can think of.
+<li>La fonction <code>itertools.groupby()</code> prend une s&eacute;quence et une fonction clef et retourne un it&eacute;rateur qui g&eacute;n&egrave;re des pairs. Chaque pair contient le r&eacute;sultat de <code>key_function(<var>chaque &eacute;l&eacute;ment</var>)</code> et un autre it&eacute;rateur contenant tous les &eacute;l&eacute;ments qui partagent ce r&eacute;sultat de clef.
+<li>L&#8217;appel de la fonction <code>list()</code> a &#8220;&eacute;puis&eacute;&#8221; l&#8217;it&eacute;rateur, <i>par exemple:</i> vous avez d&eacute;j&agrave; g&eacute;n&eacute;r&eacute; chaque &eacute;l&eacute;ment contenu par l&#8217;it&eacute;rateur pour construire la liste. Il n&#8217;y a pas de bouton &#8220;reset&#8221; sur un it&eacute;rateur; vous ne pouvez pas juste recommencer une fois que vous l&#8217;avez &eacute;puis&eacute;. Si vous voulez refaire un boucle dans celui-ci (par exemple dans la prochaine boucle <code>for</code>), vous devez appel&eacute; &agrave; nouveau <code>itertools.groupby()</code> afin de cr&eacute;er un nouvel it&eacute;rateur.
+<li>Dans cet exemple, &eacute;tant donn&eacute; une liste de noms <em>d&eacute;j&agrave; tri&eacute;s par longueur</em>, <code>itertools.groupby(names, len)</code> mettra tous les noms de 4 lettres dans un it&eacute;rateur, tous les noms de 5 lettres dans un autre it&eacute;rateur, et ainsi de suite. La fonction <code>groupby()</code> est compl&egrave;tement g&eacute;n&eacute;rique; elle pourrait regrouper les cha&icirc;nes de caract&egrave;res en fonction de la premi&egrave;re lettre, les compter en fonction de leur nombre d&#8217occurences, ou de toute autre fonction clef &agrave; laquelle vous pouvez penser.
 </ol>
 <!-- YO DAWG, WE HEARD YOU LIKE LOOPING, SO WE PUT AN ITERATOR IN YOUR ITERATOR SO YOU CAN LOOP WHILE YOU LOOP. -->
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>The <code>itertools.groupby()</code> function only works if the input sequence is already sorted by the grouping function. In the example above, you grouped a list of names by the <code>len()</code> function. That only worked because the input list was already sorted by length.
+    <p><span class=u>&#x261E;</span>La fonction <code>itertools.groupby()</code> ne fonctionne seulement que si la s&eacute;quence d&#8217;entr&eacute;e est d&eacute;j&agrave; tri&eacute;e par la fonction de groupement. Dans l&#8217;exemple ci-dessus vous avez regoup&eacute; une liste de noms via la fonction <code>len()</code>. Cela a march&eacute; seulement parce que la liste d&#8217;entr&eacute;e &eacute;tait d&eacute;j&agrave; tri&eacute;e par longueur.
 </blockquote>
 
-<p>Are you watching closely?
+<p>Regardez-vous de pr&egrave;s?
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>list(range(0, 3))</kbd>
 <samp class=pp>[0, 1, 2]</samp>
@@ -390,13 +390,13 @@ Wesley</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>list(itertools.zip_longest(range(0, 3), range(10, 14)))</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=pp>[(0, 10), (1, 11), (2, 12), (None, 13)]</samp></pre>
 <ol>
-<li>The <code>itertools.chain()</code> function takes two iterators and returns an iterator that contains all the items from the first iterator, followed by all the items from the second iterator. (Actually, it can take any number of iterators, and it chains them all in the order they were passed to the function.)
-<li>The <code>zip()</code> function does something prosaic that turns out to be extremely useful: it takes any number of sequences and returns an iterator which returns tuples of the first items of each sequence, then the second items of each, then the third, and so on.
-<li>The <code>zip()</code> function stops at the end of the shortest sequence. <code>range(10, 14)</code> has 4 items (10, 11, 12, and 13), but <code>range(0, 3)</code> only has 3, so the <code>zip()</code> function returns an iterator of 3 items.
-<li>On the other hand, the <code>itertools.zip_longest()</code> function stops at the end of the <em>longest</em> sequence, inserting <code>None</code> values for items past the end of the shorter sequences.
+<li>La fonction <code>itertools.chain()</code> prend deux it&eacute;rateurs et retourne un it&eacute;rateur qui contient tous les &eacute;l&eacute;ments du premier it&eacute;rateur suivis par tous les &eacute;l&eacute;ments du second it&eacute;rateur. (En fait, elle peut prendre n&#8217;importe quel nombre d&#8217;it&eacute;rateurs et elle les cha&icirc;ne dans l&#8217;ordre dans lequel ils ont &eacute;t&eacute; pass&eacute;s &agrave; la fonction.)
+<li>La fonction <code>zip()</code> fait quelque chose de prosa&iuml;que qui se r&eacute;v&egrave;le &ecirc;tre extr&ecirc;mement utile: elle prend n&#8217;importe quel nombre de s&eacute;quences et retourne un it&eacute;rateur qui retourne des tuples des premiers &eacute;l&eacute;ments de chaque s&eacute;quence, puis des seconds &eacute;l&eacute;ments de chacun d&#8217;entre eux, puis des troisi&egrave;mes et ainsi de suite.
+<li>La fonction <code>zip()</code> s&#8217;arr&ecirc;te &agrave; la fin de la s&eacute;quence la plus courte. <code>range(10, 14)</code> contient 4 &eacute;l&eacute;ments (10, 11, 12, et 13) mais <code>range(0, 3)</code> seulement 3, par cons&eacute;quent la fonction <code>zip()</code> retourne un it&eacute;rateur de 3 &eacute;l&eacute;ments.
+<li>Par ailleurs, la fonction <code>itertools.zip_longest()</code> s&#8217;arr&ecirc;te &agrave; la fin de la s&eacute;quence <em>la plus longue</em>, ins&eacute;rant des valeurs <code>None</code> pour les &eacute;l&eacute;ments une fois pass&eacute; la fin de la s&eacute;quence la plus courte.
 </ol>
 
-<p id=dict-zip>OK, that was all very interesting, but how does it relate to the alphametics solver? Here&#8217;s how:
+<p id=dict-zip>OK, tout cela &eacute;tait tr&egrave;s int&eacute;ressant mais comment cela interagit-il avec le solveur alpham&eacute;tique? Voici comment:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>characters = ('S', 'M', 'E', 'D', 'O', 'N', 'R', 'Y')</kbd>
@@ -408,11 +408,11 @@ Wesley</samp></pre>
 <samp class=pp>{'E': '0', 'D': '3', 'M': '2', 'O': '4',
  'N': '5', 'S': '1', 'R': '6', 'Y': '7'}</samp></pre>
 <ol>
-<li>Given a list of letters and a list of digits (each represented here as 1-character strings), the <code>zip</code> function will create a pairing of letters and digits, in order.
-<li>Why is that cool? Because that data structure happens to be exactly the right structure to pass to the <code>dict()</code> function to create a dictionary that uses letters as keys and their associated digits as values. (This isn&#8217;t the only way to do it, of course. You could use a <a href=comprehensions.html#dictionarycomprehension>dictionary comprehension</a> to create the dictionary directly.) Although the printed representation of the dictionary lists the pairs in a different order (dictionaries have no &#8220;order&#8221; per se), you can see that each letter is associated with the digit, based on the ordering of the original <var>characters</var> and <var>guess</var> sequences.
+<li>&Eacute;tant donn&eacute; une liste de lettres et une liste de chiffres (chacun repr&eacute;sent&eacute;s ici par une cha&icirc;ne de 1-caract&egrave;re), la fonction <code>zip</code> va cr&eacute;er des paires de lettres et de chiffres en respectant leur ordre initial.
+<li>Pourquoi est-ce cool? Parce que cette structure de donn&eacute;es se trouve &ecirc;tre exactement la bonne structure &agrave; passer &agrave; la fonction <code>dict()</code> pour cr&eacute;er un dictionnaire qui utilise des lettres comme clefs et leur nombres associ&eacute;s comme valeurs. (Ce n&#8217;est pas la seule fa&ccedil;on de le faire, bien s&ucirc;r. Vous pouvez utiliser une <a href=comprehensions.html#dictionarycomprehension>compr&eacute;hension de dictionnaire</a> pour cr&eacute;er directement un dictionnaire.) Bien que la repr&eacute;sentation imprim&eacute;e du dictionnaire liste les paires dans un ordre diff&eacute;rent (les dictionnaires n&#8217;ont pas d&#8217;&#8220;ordre&#8221; en soi), vous pouvez voir que chaque lettre est associ&eacute;e &agrave; son chiffre, en fonction de l&#8217;agencement des s&eacute;quences initiales de <var>characters</var> et de <var>guess</var>.
 </ol>
 
-<p id=guess>The alphametics solver uses this technique to create a dictionary that maps letters in the puzzle to digits in the solution, for each possible solution.
+<p id=guess>Le solveur alpham&eacute;tique utilise cette technique pour cr&eacute;er un dictionnaire qui transpose les lettres du puzzle en chiffres dans la solution, pour chaque solution possible.
 
 <pre class='nd pp'><code>characters = tuple(ord(c) for c in sorted_characters)
 digits = tuple(ord(c) for c in '0123456789')
@@ -421,7 +421,7 @@ for guess in itertools.permutations(digits, len(characters)):
     ...
 <mark>    equation = puzzle.translate(dict(zip(characters, guess)))</mark></code></pre>
 
-<p>But what is this <code>translate()</code> method? Ah, now you&#8217;re getting to the <em>really</em> fun part.
+<p>Mais quelle est cette m&eacute;thode <code>translate()</code>? Ah, maintenant vous attaquez la partie <em>vraiment</em> fun.
 
 <p class=a>&#x2042;
 
