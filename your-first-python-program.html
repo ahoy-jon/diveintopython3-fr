@@ -18,42 +18,48 @@ mark{display:inline}
 <p id=level>Difficulty level: <span class=u title=novice>&#x2666;&#x2662;&#x2662;&#x2662;&#x2662;</span>
 <h1>Votre Premier Programme en Python</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Don&rsquo;t bury your burden in saintly silence. You have a problem? Great. Rejoice, dive in, and investigate. <span class=u>&#x275E;</span><br>&mdash; <a href=http://fr.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
+<p><span class=u>&#x275D;</span> Don&rsquo;t bury your burden in saintly silence. 
+You have a problem? Great. Rejoice, dive in, and investigate. 
+<span class=u>&#x275E;</span><br>&mdash; <a href=http://fr.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>En plongée</h2>
-<p class=f>La convention stipule que je dois vous ennuyer avec les blocs de construction fondamentaux de la programmation, afin que nous puissions travailler lentement &agrave; construire quelque chose d'utile. Passons tout cela. Voici un programme complet et fonctionnel en Python. Cela n'a pas forcement de sens pour vous. Ne vous inqui&#233;tez pas, parce que vous allez diss&eacute;quer ligne par ligne.
+<p class=f>La convention stipule que je dois vous ennuyer avec les blocs de construction
+fondamentaux de la programmation, afin que nous puissions travailler lentement &agrave;
+construire quelque chose d'utile. Passons tout cela. Voici un programme complet et fonctionnel
+en Python. Cela n'a pas forcement de sens pour vous. Ne vous inqui&#233;tez pas, parce que vous 
+allez diss&eacute;quer ligne par ligne.
 
 Mais d'abord lisez-le et voyez ce que, si quelque chose, vous pouvez en faire.
 <p class=d>[<a href=examples/humansize.py>t&eacute;l&eacute;charger <code>humansize.py</code></a>]
 <pre class=pp><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
-def taille_approximative(taille, un_kilooctect_est_1024_octects=True):
-    '''Converti une taille de fichier en une forme lisible par un &ecirc;tre humain.
+def approximate_size(size, a_kilobyte_is_1024_bytes=True):
+    '''Convert a file size to human-readable form.
 
-    Arguments:
-    taille -- taille du fichier en octect
-    un_kilooctect_est_1024_octects -- si Vrai (par défaut), utilisation des multiples de 1024
-                                si Faux , utilisation des multiples de 1000
+    Keyword arguments:
+    size -- file size in bytes
+    a_kilobyte_is_1024_bytes -- if True (default), use multiples of 1024
+                                if False, use multiples of 1000
 
-    Retour: string (Cha&icirc;ne de charact&egrave;res)
+    Returns: string
 
     '''
-    if taille &lt; 0:
-        raise ValueError('la taille doit être positif')
+    if size &lt; 0:
+        raise ValueError('number must be non-negative')
 
-    multiple = 1024 if un_kilooctect_est_1024_octects else 1000
+    multiple = 1024 if a_kilobyte_is_1024_bytes else 1000
     for suffix in SUFFIXES[multiple]:
-        taille /= multiple
+        size /= multiple
         if size &lt; multiple:
-            return '{0:.1f} {1}'.format(taille, suffix)
+            return '{0:.1f} {1}'.format(size, suffix)
 
-    raise ValueError('la taille est trop grande (nombre trop grand)')
+    raise ValueError('number too large')
 
 if __name__ == '__main__':
-    print(taille_approximative(1000000000000, False))
-    print(taille_approximative(1000000000000))</code></pre>
+    print(approximate_size(1000000000000, False))
+    print(approximate_size(1000000000000))</code></pre>
 <p>Maintenant, nous allons ex&eacute;cuter ce programme avec la ligne de commande. Sur Windows, il ressemblera &agrave; quelque chose comme ceci :
 <pre class='nd screen'>
 <samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
