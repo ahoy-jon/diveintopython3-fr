@@ -190,18 +190,25 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
     '''</code></pre>
 <aside>Every function deserves a decent docstring.</aside>
-<p>Triple quotes signify a multi-line string. Everything between the start and end quotes is part of a single string, including carriage returns, leading white space, and other quote characters. You can use them anywhere, but you&#8217;ll see them most often used when defining a <code>docstring</code>.
+<p>Triple quotes signify a multi-line string. Everything between the start and end quotes is part of a single string, including carriage returns, 
+leading white space, and other quote characters. You can use them anywhere, but you&#8217;ll see them most often used when defining a <code>docstring</code>.
 <blockquote class='note compare perl5'>
 <p><span class=u>&#x261E;</span>Triple quotes are also an easy way to define a string with both single and double quotes, like <code>qq/.../</code> in Perl 5.
 </blockquote>
-<p>Everything between the triple quotes is the function&#8217;s <code>docstring</code>, which documents what the function does. A <code>docstring</code>, if it exists, must be the first thing defined in a function (that is, on the next line after the function declaration). You don&#8217;t technically need to give your function a <code>docstring</code>, but you always should. I know you&#8217;ve heard this in every programming class you&#8217;ve ever taken, but Python gives you an added incentive: the <code>docstring</code> is available at runtime as an attribute of the function.
+<p>Everything between the triple quotes is the function&#8217;s <code>docstring</code>, which documents what the function does. A <code>docstring</code>, 
+if it exists, must be the first thing defined in a function (that is, on the next line after the function declaration). You don&#8217;t technically need 
+to give your function a <code>docstring</code>, but you always should. I know you&#8217;ve heard this in every programming class you&#8217;ve ever taken, 
+but Python gives you an added incentive: the <code>docstring</code> is available at runtime as an attribute of the function.
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Many Python <abbr>IDE</abbr>s use the <code>docstring</code> to provide context-sensitive documentation, so that when you type a function name, its <code>docstring</code> appears as a tooltip. This can be incredibly helpful, but it&#8217;s only as good as the <code>docstring</code>s you write.
+<p><span class=u>&#x261E;</span>Many Python <abbr>IDE</abbr>s use the <code>docstring</code> to provide context-sensitive documentation, so that when you 
+type a function name, its <code>docstring</code> appears as a tooltip. This can be incredibly helpful, but it&#8217;s only as good as the <code>docstring</code>s you write.
 </blockquote>
 <p class=a>&#x2042;
 
 <h2 id=importsearchpath>The <code>import</code> Search Path</h2>
-<p>Before this goes any further, I want to briefly mention the library search path. Python looks in several places when you try to import a module. Specifically, it looks in all the directories defined in <code>sys.path</code>. This is just a list, and you can easily view it or modify it with standard list methods. (You&#8217;ll learn more about lists in <a href=native-datatypes.html#lists>Native Datatypes</a>.)
+<p>Avant que cela n'aille plus loin, je voudrais mentionner brièvement le "library search path". Python regarde dans diffèrents endroits quand vous essayez d'importer un module.
+En particulier, Python regarde dans tous les répertoires définis dans le <code>sys.path</code>. C'est juste une liste, et vous pouvez facilement la regarder et la modifier avec les 
+méthodes standards sur les listes. (Vous allez en apprendre plus sur les listes dans <a href=native-datatypes.html#lists>Les types natifs</a>.)
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import sys</kbd>                                                 <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                                                   <span class=u>&#x2461;</span></a>
