@@ -71,47 +71,72 @@ if __name__ == '__main__':
 <samp>1.0 To
 931.3 Gio</samp></pre>
 
-<p>Qu'est ce qui vient de ce passer ? Vous avez ex&eacute;cut&eacute; votre premier programme Python. Vous avez appel&eacute; l'interpr&eacute;teur Python en ligne de commande, et vous avez pass&eacute; le nom du script que vous vouliez que Python &eacute;x&eacute;cute. Le script d&eacute;finit une fonction unique, la  fonction <code>taille_approximative()</code>, qui prend en entr&eacute;e une taille exacte de fichier en octect et calcule une &#8220;jolie&#8221; (mais approxim&eacute;e) taille. (Vous avez probablement vu dans l&rsquo;Explorateur Windows ou de Mac OS X Finder, ou Nautilus ou Dolphin ou Thunar sur Linux. Si vous affichez un dossier de documents sous forme de liste &agrave; plusieurs colonnes, il affichera un tableau avec l'ic&ocirc;ne du document, le nom du document, la taille, type, date de modification, etc. 
-   Si un dossier contient un fichier de 1093 octect nomm&eacute; <code>TODO</code>, votre gestionnaire de fichier ne va pas afficher <code>TODO 1093 octects</code>; Il va probablement afficher un texte du genre <code>TODO 1kb</code> &agrave; la place. C'est ce que la fonction <code>taille_approximative()</code> fait.)
+<p>Qu'est ce qui vient de ce passer ? Vous avez ex&eacute;cut&eacute; votre premier programme Python. Vous avez appel&eacute;
+l'interpr&eacute;teur Python en ligne de commande, et vous avez pass&eacute; le nom du script que vous vouliez que Python 
+&eacute;x&eacute;cute. Le script d&eacute;finit une fonction unique, la  fonction <code>taille_approximative()</code>, 
+qui prend en entr&eacute;e une taille exacte de fichier en octect et calcule une &#8220;jolie&#8221; (mais approxim&eacute;e) 
+taille. (Vous avez probablement vu dans l&rsquo;Explorateur Windows ou de Mac OS X Finder, ou Nautilus ou Dolphin ou Thunar 
+sur Linux. Si vous affichez un dossier de documents sous forme de liste &agrave; plusieurs colonnes, il affichera un tableau
+avec l'ic&ocirc;ne du document, le nom du document, la taille, type, date de modification, etc. 
 
-<p>Si vous regardez au bas du script, vous allez voir deux appels <code>print(taille_approximative(<var>arguments</var>))</code>. Ce sont des appels de fonction&nbsp;&mdash;&nbsp; Premi&egrave;rement il appelle la fonction <code>taille_approximative()</code> en passant les arguments, puis prennent la valeur de retour pour la passer directement &agrave; la fonction <code>print()</code>. La fonction <code>print()</code> est int&eacute;gr&eacute;e; Vous allez jamais avoir de d&eacute;claration explicite de cette fonction. Vous pouvez juste l'utiliser partout et tout le temps. (Il y a un paquet de fonction d&eacute;j&agrave; int&eacute;gr&eacute;e, et encore plus qui sont plac&eacute;es dans des <i>modules</i> s&eacute;par&eacute;s. Patience.)
+Si un dossier contient un fichier de 1093 octect nomm&eacute; <code>TODO</code>, votre gestionnaire de fichier ne va pas afficher 
+<code>TODO 1093 octects</code>; Il va probablement afficher un texte du genre <code>TODO 1kb</code> &agrave; la place. 
+C'est ce que la fonction <code>taille_approximative()</code> fait.)
 
-<p>Alors, pourquoi ne l'ex&eacute;cution du script sur la ligne de commande vous donne le m&ecirc;me r&eacute;sultat &agrave; chaque fois? Nous y reviendrons. Tout d'abord, regardons cette fonction <code>taille_approximative()</code>.
+<p>Si vous regardez au bas du script, vous allez voir deux appels <code>print(print(approximate_size(<var>arguments</var>))</code>.
+Ce sont des appels de fonction&nbsp;&mdash;&nbsp; Premi&egrave;rement il appelle la fonction <code>taille_approximative()</code> en 
+passant les arguments, puis prennent la valeur de retour pour la passer directement &agrave; la fonction <code>print()</code>. La fonction
+<code>print()</code> est int&eacute;gr&eacute;e; Vous allez jamais avoir de d&eacute;claration explicite de cette fonction. Vous pouvez juste
+l'utiliser partout et tout le temps. (Il y a un paquet de fonction d&eacute;j&agrave; int&eacute;gr&eacute;e, et encore plus qui sont plac&eacute;es
+dans des <i>modules</i> s&eacute;par&eacute;s. Patience.)
+
+<p>Alors, pourquoi ne l'ex&eacute;cution du script sur la ligne de commande vous donne le m&ecirc;me r&eacute;sultat &agrave; chaque fois ?
+Nous y reviendrons. Tout d'abord, regardons cette fonction <code>taille_approximative()</code>.
 
 <p class=a>&#x2042;
 
 <h2 id=declaringfunctions>Déclarer des fonctions</h2>
 <p>
-Python a des foncions comme la pluspart des autres languages de programmation, mais il n'y a pas de fichiers séparés avec des headers comme en <abbr>C++</abbr> ou des sections pour les <code>interface</code>/<code>implementation</code> comme Pascal.
+Python a des foncions comme la pluspart des autres languages de programmation, mais il n'y a pas de fichiers séparés avec des headers comme 
+en <abbr>C++</abbr> ou des sections pour les <code>interface</code>/<code>implementation</code> comme Pascal.
   
   Quand vous avez besoin d'un fonction, vous avez juste à la déclarer comme cela : 
 <pre class='nd pp'><code>def taille_approximative(taille, un_kilooctect_est_1024_octects=True):</code></pre>
 <aside>>Quand vous avez besoin d'une fonction, vous avez juste à la déclarer.</aside>
-<p>Le mot clés <code>def</code> commence la déclaration de la fonction, suivi par le nom de la fonction, suivi par les arguments entre parenthèses. Si il y a plusieurs arguments, ils sont séparés par des virgules.
+<p>Le mot clés <code>def</code> commence la déclaration de la fonction, suivi par le nom de la fonction, suivi par les arguments entre parenthèses.
+Si il y a plusieurs arguments, ils sont séparés par des virgules.
 <p>
 Il est à noter que la fonction ne définit pas de type de retour. 
-Les fonctions Python ne spécifient par le type de données de leur valeur de retour, elles ne spécifient même pas si elles retournent une valeur. (Dans les faits, toutes les fonctions Python retournent une valeur; si la fonction execute à un moment l'instruction <code>return</code>, cela va retourner cette valeur, sinon cela va retourner <code>None</code>, l'équivalent de null en Python.)
+Les fonctions Python ne spécifient par le type de données de leur valeur de retour, elles ne spécifient même pas si elles retournent une valeur. 
+(Dans les faits, toutes les fonctions Python retournent une valeur; si la fonction execute à un moment l'instruction <code>return</code>, cela 
+va retourner cette valeur, sinon cela va retourner <code>None</code>, l'équivalent de null en Python.)
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>
-Dans certains langages, les fonctions (qui retournent une valeur) commencent avec <code>function</code>, et les sous-routines (qui ne retournent pas de valeur) commencent par <code>sub</code>. Il n'y a pas de sous-routines en Python, Tout est une fonction, toutes les fonctions retournent une valeur (même si c'est <code>None</code>), et toutes les fonctions commencent par le mot clés <code>def</code>.
+Dans certains langages, les fonctions (qui retournent une valeur) commencent avec <code>function</code>, et les sous-routines (qui ne retournent pas de valeur) 
+commencent par <code>sub</code>. Il n'y a pas de sous-routines en Python, Tout est une fonction, toutes les fonctions retournent une valeur 
+(même si c'est <code>None</code>), et toutes les fonctions commencent par le mot clés <code>def</code>.
 </blockquote>
-<p>La fonction <code>approximate_size()</code> prend deux arguments en entrée. Les deux arguments &nbsp;&mdash;&nbsp;<var>size</var> et <var>a_kilobyte_is_1024_bytes</var>&nbsp;&mdash;&nbsp;
-mais pas d'arguments qui spécifie le type de donnée.
- En Python, les variables ne sont jamais typée explicitement. Python  infère quel type de donnée est la variable et en garde la trace en interne.
+<p>La fonction <code>approximate_size()</code> prend deux arguments en entrée. Les deux arguments &nbsp;&mdash;&nbsp;<var>size</var> 
+et <var>a_kilobyte_is_1024_bytes</var>&nbsp;&mdash;&nbsp; mais pas d'arguments qui spécifie le type de donnée.
+
+En Python, les variables ne sont jamais typée explicitement. Python infère quel type de données est la variable et en garde la trace en interne.
 <blockquote class='note compare java'>
-<p><span class=u>&#x261E;</span>En Java et d'autres langages à typage statique, vous devez spécifier le type de retour des fonctions et de chacun des arguments. En Python, vous n'avez jamais à spécifier le type de quoi que ce soit. Python garde une trace des types en interne.
+<p><span class=u>&#x261E;</span>En Java et d'autres langages à typage statique, vous devez spécifier le type de retour des fonctions et de chacun des arguments. 
+En Python, vous n'avez jamais à spécifier le type de quoi que ce soit. Python garde une trace des types en interne.
 </blockquote>
 
 <h3 id=optional-arguments>Optional and Named Arguments</h3>
 
-<p>Python allows function arguments to have default values; if the function is called without the argument, the argument gets its default value. Furthermore, arguments can be specified in any order by using named arguments.
+<p>Python allows function arguments to have default values; if the function is called without the argument, the argument gets its default value. Furthermore, 
+arguments can be specified in any order by using named arguments.
 
 <p>Let&#8217;s take another look at that <code>approximate_size()</code> function declaration:
 
 <pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 
-<p>The second argument, <var>a_kilobyte_is_1024_bytes</var>, specifies a default value of <code>True</code>. This means the argument is <i>optional</i>; you can call the function without it, and Python will act as if you had called it with <code>True</code> as a second parameter.
+<p>The second argument, <var>a_kilobyte_is_1024_bytes</var>, specifies a default value of <code>True</code>. This means the argument is <i>optional</i>; you 
+can call the function without it, and Python will act as if you had called it with <code>True</code> as a second parameter.
 
 <p>Now look at the bottom of the script:
 
